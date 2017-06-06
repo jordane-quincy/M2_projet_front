@@ -27,10 +27,9 @@ import { CreateAccountService } from '../providers/create-account-service';
     TabsPage,
     Login,
     CreateAccountPage,
-    OffersListPage
-    ],
     TabsPage,
-    UserOffersPage
+    UserOffersPage,
+    OffersListPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +45,7 @@ import { CreateAccountService } from '../providers/create-account-service';
     TabsPage,
     Login,
     CreateAccountPage,
-    OffersListPage
+    OffersListPage,
     TabsPage,
     UserOffersPage
   ],
