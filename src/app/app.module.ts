@@ -14,6 +14,7 @@ import { OffersListPage } from '../pages/offers-list/offers-list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from '../providers/loginService';
+import { CreateAccountService } from '../providers/create-account-service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { LoginService } from '../providers/loginService';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    LoginService
+    LoginService,
+    CreateAccountService
   ]
 })
 export class AppModule {}
