@@ -1,0 +1,57 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-img width="80" height="80" src=""></ion-img>
+            </ion-col>
+        </ion-row>
+
+        <form (ngSubmit)="login()" [formGroup]="form">
+
+            <ion-row align-items-center>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Email universitaire</ion-label>
+                        <ion-input type="email" placeholder="" formControlName="email" required></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row align-items-center justify-content-center>
+                <ion-col>
+                      <ion-item>
+                        <ion-label color="primary" stacked>Mot de passe</ion-label>
+                        <ion-input type="password" placeholder="" formControlName="password" required></ion-input>
+                      </ion-item>
+              </ion-col>
+            </ion-row>
+
+            <ion-row align-items-center justify-content-center>
+
+                    <button ion-button round col-6 type="submit" [disabled]="form.invalid">Connexion</button>
+
+            </ion-row>
+
+        </form>
+
+        <ion-row align-items-center justify-content-center>
+
+                <a href="">Pas de compte ?</a>
+
+        </ion-row>
+
+        <ion-row align-items-center justify-content-center>
+
+                <a href="">Mot de passe oublié ?</a>
+
+        </ion-row>
+    </ion-grid>
+</ion-content>
