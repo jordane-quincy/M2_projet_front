@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-offer-details',
@@ -7,7 +7,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class OfferDetailsPage {
 
+  offer: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    console.log(this.navParams);
+    if(this.navParams.data) {
+      this.offer = this.navParams.data.offer;
+    }
   }
 
   ionViewDidLoad() {

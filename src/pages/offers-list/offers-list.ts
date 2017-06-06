@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+
+import { OfferDetailsPage } from '../offer-details/offer-details';
+
 import { Offer } from '../../models/index';
+
 
 @Component({
   selector: 'page-offers-list',
@@ -22,8 +26,9 @@ export class OffersListPage {
   }
 
   handleOfferClick(offer: any): void {
-    // console.log(offer);
-    // this.navCtrl.push()
+    this.navCtrl.push(OfferDetailsPage, {
+      offer: offer
+    });
   }
 
 }

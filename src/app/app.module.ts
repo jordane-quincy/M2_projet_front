@@ -5,24 +5,31 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { CreateAccountPage } from '../pages/create-account/create-account';
+import { NotificationPage } from '../pages/notification/notification';
 import { TabsPage } from '../pages/tabs/tabs';
+import { MenuPage } from '../pages/menu/menu';
 import { Login } from '../pages/login/login';
 import { OffersListPage } from '../pages/offers-list/offers-list';
 import { OfferDetailsPage } from '../pages/offer-details/offer-details';
+import { UserOffersPage } from '../pages/user-offers/user-offers';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from '../providers/loginService';
+import { CreateAccountService } from '../providers/create-account-service';
 
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
+    MenuPage,
     Login,
     CreateAccountPage,
     OffersListPage,
-    OfferDetailsPage
-    ],
+    OfferDetailsPage,
+    UserOffersPage,
+    NotificationPage
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -32,15 +39,19 @@ import { LoginService } from '../providers/loginService';
   entryComponents: [
     MyApp,
     TabsPage,
+    MenuPage,
     Login,
     CreateAccountPage,
     OffersListPage,
-    OfferDetailsPage
+    OfferDetailsPage,
+    UserOffersPage,
+    NotificationPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     LoginService,
+    CreateAccountService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
