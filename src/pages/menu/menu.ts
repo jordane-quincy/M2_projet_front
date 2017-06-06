@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { UserOffersPage } from '../user-offers/user-offers';
 /**
  * Generated class for the Menu page.
  *
@@ -17,7 +19,8 @@ export class MenuPage {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Menu');
+  openPageUserOffers()
+  {
+    this.navCtrl.push(UserOffersPage);
   }
 }
