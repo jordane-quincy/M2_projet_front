@@ -13,7 +13,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item icon-left>
+    <button ion-item icon-left (click)="openPageProfil()">
       <ion-icon name="contact" class="icon-profil" item-start></ion-icon>
       Mon profil
     </button>
@@ -28,7 +28,7 @@
       Ajouter une offre
     </button>
 
-    <button ion-item icon-left>
+    <button ion-item icon-left (click)="openPageAppointment()">
       <ion-icon name="calendar" class="ionic-calendar" item-start></ion-icon>
       Mes rendez-vous
     </button>
