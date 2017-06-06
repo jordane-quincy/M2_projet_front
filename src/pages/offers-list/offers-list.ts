@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Offer } from '../../models/index';
+
 
 @Component({
   selector: 'page-offers-list',
@@ -8,14 +9,25 @@ import { Offer } from '../../models/index';
 })
 export class OffersListPage {
 
-  offersList: Offer[];
+  offersList: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.offersList = [{
+      title: 'title',
+      description: 'description'
+    },
+    {
+      title: "autre title",
+      description: 'autre description'
+    }];
+  }
+
+  ionViewDidLoad() {  
 
   }
 
-  ionViewDidLoad() {
-
+  handleOfferClick(): void {
+    console.log('click');
   }
 
 }

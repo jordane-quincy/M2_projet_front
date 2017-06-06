@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { CreateAccountService } from '../../providers/create-account-service'
 /**
  * Generated class for the CreateAccountPage page.
  *
@@ -56,5 +57,10 @@ export class CreateAccountPage {
 
   createAccount() {
     console.log(this.createAccountForm.value);
+    // Formatting body
+    let body = this.createAccountForm.value;
+    body.password = body.passwordForm.password;
+    delete(body.passwordForm);
+    //CreateAccountService.createAccount(body);
   }
 }
