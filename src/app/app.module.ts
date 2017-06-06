@@ -13,6 +13,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { Login } from '../pages/login/login';
 import { OffersListPage } from '../pages/offers-list/offers-list';
 import { UserOffersPage } from '../pages/user-offers/user-offers';
+import { ProfilPage } from '../pages/profil/profil';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -30,7 +31,8 @@ import { CreateAccountService } from '../providers/create-account-service';
     Login,
     CreateAccountPage,
     OffersListPage,
-    UserOffersPage
+    UserOffersPage,
+    ProfilPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { CreateAccountService } from '../providers/create-account-service';
     Login,
     CreateAccountPage,
     OffersListPage,
-    UserOffersPage
+    UserOffersPage,
+    ProfilPage
   ],
   providers: [
     StatusBar,
