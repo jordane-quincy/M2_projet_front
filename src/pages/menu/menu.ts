@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { UserOffersPage } from '../user-offers/user-offers';
+import { AppointmentPage } from '../appointment/appointment';
 /**
  * Generated class for the Menu page.
  *
@@ -22,5 +23,9 @@ export class MenuPage {
   openPageUserOffers()
   {
     this.navCtrl.push(UserOffersPage);
+  }
+
+  openPageAppointment(){
+    this.navCtrl.push(AppointmentPage);
   }
 }

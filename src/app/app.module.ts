@@ -12,6 +12,7 @@ import { Login } from '../pages/login/login';
 import { OffersListPage } from '../pages/offers-list/offers-list';
 import { OfferDetailsPage } from '../pages/offer-details/offer-details';
 import { UserOffersPage } from '../pages/user-offers/user-offers';
+import { AppointmentPage } from '../pages/appointment/appointment';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -29,8 +30,12 @@ import { AutocompleSkillsComponent } from '../components/autocomple-skills/autoc
     OffersListPage,
     OfferDetailsPage,
     UserOffersPage,
+<<<<<<< HEAD
     NotificationPage,
     AutocompleSkillsComponent
+=======
+    AppointmentPage
+>>>>>>> 13534e77c75119ee8d41b377e87b503067a862e9
   ],
   imports: [
     BrowserModule,
@@ -46,8 +51,12 @@ import { AutocompleSkillsComponent } from '../components/autocomple-skills/autoc
     CreateAccountPage,
     OffersListPage,
     OfferDetailsPage,
-    UserOffersPage,
+    AppointmentPage
+<<<<<<< .mine
+
+=======
     NotificationPage
+>>>>>>> .theirs
   ],
   providers: [
     StatusBar,
