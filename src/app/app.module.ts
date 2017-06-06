@@ -8,10 +8,16 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
 import { NotificationPage } from '../pages/notification/notification';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MenuPage } from '../pages/menu/menu';
-import { Login } from '../pages/login/login';
+import { LoginPage } from '../pages/login/login';
 import { OffersListPage } from '../pages/offers-list/offers-list';
 import { OfferDetailsPage } from '../pages/offer-details/offer-details';
 import { UserOffersPage } from '../pages/user-offers/user-offers';
+import { PendingRequestPage } from '../pages/pending-request/pending-request';
+
+import { AddOfferPage } from '../pages/add-offer/add-offer';
+
+import { ProfilePage } from '../pages/profile/profile';
+import { AppointmentPage } from '../pages/appointment/appointment';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,18 +26,29 @@ import { CreateAccountService } from '../providers/create-account-service';
 import { HeaderContentComponent } from '../components/header-content/header-content';
 import { CreditProvider } from '../providers/credit-service';
 
+import { ImagePicker } from '@ionic-native/image-picker';
+
+import { AutocompleSkillsComponent } from '../components/autocomple-skills/autocomple-skills';
+
+
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
     MenuPage,
-    Login,
+    LoginPage,
     CreateAccountPage,
     OffersListPage,
+    UserOffersPage,
+    AddOfferPage,
     OfferDetailsPage,
     UserOffersPage,
     NotificationPage,
-    HeaderContentComponent
+    HeaderContentComponent,
+    AutocompleSkillsComponent,
+    AppointmentPage,
+    ProfilePage,
+    PendingRequestPage
   ],
   imports: [
     BrowserModule,
@@ -43,20 +60,26 @@ import { CreditProvider } from '../providers/credit-service';
     MyApp,
     TabsPage,
     MenuPage,
-    Login,
+    LoginPage,
     CreateAccountPage,
     OffersListPage,
-    OfferDetailsPage,
     UserOffersPage,
-    NotificationPage
+    AddOfferPage,
+    ProfilePage,
+    OfferDetailsPage,
+    AppointmentPage,
+    NotificationPage,
+    PendingRequestPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     LoginService,
     CreateAccountService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CreditProvider
+
+    CreditProvider,
+    ImagePicker,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

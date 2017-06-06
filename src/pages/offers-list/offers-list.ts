@@ -3,9 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { OfferDetailsPage } from '../offer-details/offer-details';
 
-import { Offer } from '../../models/index';
-
-
 @Component({
   selector: 'page-offers-list',
   templateUrl: 'offers-list.html',

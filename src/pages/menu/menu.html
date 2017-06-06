@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item icon-left>
+    <button ion-item icon-left (click)="openPageProfil()">
       <ion-icon name="contact" class="icon-profil" item-start></ion-icon>
       Mon profil
     </button>
@@ -16,14 +16,19 @@
       Mes offres
     </button>
 
-    <button ion-item icon-left>
+    <button ion-item icon-left (click)="openPageAddOffer()">
       <ion-icon name="add-circle" color="secondary" item-start></ion-icon>
       Ajouter une offre
     </button>
 
-    <button ion-item icon-left>
+    <button ion-item icon-left (click)="openPageAppointment()">
       <ion-icon name="calendar" class="ionic-calendar" item-start></ion-icon>
       Mes rendez-vous
+    </button>
+
+    <button ion-item icon-left (click)="openPagePendingRequest()">
+      <ion-icon name="refresh" class="ionic-refresh" item-start></ion-icon>
+      Mes demandes en attentes
     </button>
   </ion-list>
 
