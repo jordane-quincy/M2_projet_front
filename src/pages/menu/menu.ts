@@ -19,12 +19,6 @@ export class MenuPage {
 
   }
 
-  ionViewDidEnter() {
-    this.navCtrl.popToRoot;
-  }
-
-
-
   openPageUserOffers()
   {
     this.navCtrl.push(UserOffersPage);
