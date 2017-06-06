@@ -28,6 +28,7 @@ export class CreateAccountPage {
   answer1Ctrl: FormControl;
   question2Ctrl: FormControl;
   answer2Ctrl: FormControl;
+  skillsCtrl: FormControl;
 
   static passwordMatch(group: FormGroup) {
     const password = group.get('password').value;
@@ -52,6 +53,7 @@ export class CreateAccountPage {
     this.answer1Ctrl = fb.control('', [Validators.required]);
     this.question2Ctrl = fb.control('', [Validators.required]);
     this.answer2Ctrl = fb.control('', [Validators.required]);
+    this.skillsCtrl = fb.control('');
 
     // defin create account form
     this.createAccountForm = fb.group({
@@ -64,7 +66,8 @@ export class CreateAccountPage {
       question1: this.question1Ctrl,
       answer1: this.answer1Ctrl,
       question2: this.question2Ctrl,
-      answer2: this.answer2Ctrl
+      answer2: this.answer2Ctrl,
+      skills: this.skillsCtrl
     });
   }
 
