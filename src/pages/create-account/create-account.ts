@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 /**
  * Generated class for the CreateAccountPage page.
  *
@@ -14,11 +14,29 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 export class CreateAccountPage {
   createAccountForm: FormGroup;
-
+  lastNameCtrl: FormControl;
+  firstNameCtrl: FormControl;
+  phoneNumberCtrl: FormControl;
+  emailCtrl: FormControl;
+  passwordCtrl: FormControl;
+  repeatPasswordCtrl: FormControl;
   constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder) {
+    // Define control
+    this.lastNameCtrl = fb.control('', Validators.required);
+    this.firstNameCtrl = fb.control('', Validators.required);
+    this.phoneNumberCtrl = fb.control('');
+    this.emailCtrl = fb.control('', Validators.required);
+    this.passwordCtrl = fb.control('', Validators.required);
+    this.repeatPasswordCtrl = fb.control('', Validators.required);
+
+    // defin create account form
     this.createAccountForm = fb.group({
-      lastName: fb.control(''),
-      firstName: fb.control('')
+      lastName: this.lastNameCtrl,
+      firstName: this.firstNameCtrl,
+      phoneNumber: this.phoneNumberCtrl,
+      email: this.emailCtrl,
+      password: this.passwordCtrl,
+      repeatPassword: this.repeatPasswordCtrl
     });
   }
 
