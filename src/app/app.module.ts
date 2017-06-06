@@ -17,6 +17,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from '../providers/loginService';
 import { CreateAccountService } from '../providers/create-account-service';
+import { HeaderContentComponent } from '../components/header-content/header-content';
+import { CreditProvider } from '../providers/credit-service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { CreateAccountService } from '../providers/create-account-service';
     OffersListPage,
     OfferDetailsPage,
     UserOffersPage,
-    NotificationPage
+    NotificationPage,
+    HeaderContentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { CreateAccountService } from '../providers/create-account-service';
     SplashScreen,
     LoginService,
     CreateAccountService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CreditProvider
   ]
 })
 export class AppModule {}
