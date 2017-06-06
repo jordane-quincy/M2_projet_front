@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
+import { NotificationPage } from '../pages/notification/notification';
 import { HomePage } from '../pages/home/home';
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -25,6 +26,7 @@ import { CreateAccountService } from '../providers/create-account-service';
     MyApp,
     AboutPage,
     ContactPage,
+    NotificationPage,
     HomePage,
     TabsPage,
     MenuPage,
@@ -44,6 +46,7 @@ import { CreateAccountService } from '../providers/create-account-service';
     MyApp,
     AboutPage,
     ContactPage,
+    NotificationPage,
     HomePage,
     TabsPage,
     MenuPage,
