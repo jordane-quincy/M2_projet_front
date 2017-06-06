@@ -18,12 +18,14 @@ export class LoginService {
 
   }
 
-  connect(url: string, param: Object) : Observable<any> {
+  connect(param: Object) : Observable<any> {
       const headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
     return this.http.post(url, JSON.stringify(param), headers)
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+
+
   }
 
 }
