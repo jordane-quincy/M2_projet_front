@@ -10,10 +10,12 @@ import { CreateAccountPage } from '../create-account/create-account'
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
-
+  tab1Root = HomePage;
+  tab2Root = AboutPage;
   tab3Root = ContactPage;
   tab4Root = MenuPage;
-  tab5Root = CreateAccountPage
+  tab5Root = CreateAccountPage;
+
   constructor() {
 
   }
