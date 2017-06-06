@@ -8,5 +8,14 @@
 
 
 <ion-content padding>
+  <ion-list>
+      <ion-item *ngFor="let offer of offersList" (click)="handleOfferClick()">
+        <ion-avatar item-start>
+          toto
+        </ion-avatar>
+        <h2>{{offer.title}}</h2>
+        <p>{{offer.description}}</p>
+      </ion-item>
+  </ion-list>
 
 </ion-content>
