@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Offer } from '../../models/index';
 
-
 @Component({
   selector: 'page-offers-list',
   templateUrl: 'offers-list.html',
@@ -22,12 +21,9 @@ export class OffersListPage {
     }];
   }
 
-  ionViewDidLoad() {  
-
-  }
-
-  handleOfferClick(): void {
-    console.log('click');
+  handleOfferClick(offer: any): void {
+    // console.log(offer);
+    // this.navCtrl.push()
   }
 
 }
