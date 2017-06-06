@@ -15,7 +15,7 @@ import { OffersListPage } from '../offers-list/offers-list';
   selector: 'page-login',
   templateUrl: 'login.html'
 })
-export class Login {
+export class LoginPage {
     createAccountPage = CreateAccountPage;
 
     form: FormGroup;

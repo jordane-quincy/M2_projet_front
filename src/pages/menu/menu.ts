@@ -3,7 +3,11 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ProfilPage } from '../profil/profil';
 import { UserOffersPage } from '../user-offers/user-offers';
+
+import { AddOfferPage } from '../add-offer/add-offer';
+
 import { AppointmentPage } from '../appointment/appointment';
+
 /**
  * Generated class for the Menu page.
  *
@@ -29,6 +33,12 @@ export class MenuPage {
   openPageUserOffers()
   {
     this.navCtrl.push(UserOffersPage);
+  }
+
+
+  openPageAddOffer()
+  {
+    this.navCtrl.push(AddOfferPage);
   }
 
   openPageAppointment(){
