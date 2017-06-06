@@ -6,9 +6,11 @@ import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
+import { NotificationPage } from '../pages/notification/notification';
 import { HomePage } from '../pages/home/home';
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { TabsPage } from '../pages/tabs/tabs';
+import { MenuPage } from '../pages/menu/menu';
 import { Login } from '../pages/login/login';
 import { OffersListPage } from '../pages/offers-list/offers-list';
 import { UserOffersPage } from '../pages/user-offers/user-offers';
@@ -23,13 +25,14 @@ import { CreateAccountService } from '../providers/create-account-service';
     MyApp,
     AboutPage,
     ContactPage,
+    NotificationPage,
     HomePage,
     TabsPage,
+    MenuPage,
     Login,
     CreateAccountPage,
-    TabsPage,
-    UserOffersPage,
-    OffersListPage
+    OffersListPage,
+    UserOffersPage
   ],
   imports: [
     BrowserModule,
@@ -41,12 +44,13 @@ import { CreateAccountService } from '../providers/create-account-service';
     MyApp,
     AboutPage,
     ContactPage,
+    NotificationPage,
     HomePage,
     TabsPage,
+    MenuPage,
     Login,
     CreateAccountPage,
     OffersListPage,
-    TabsPage,
     UserOffersPage
   ],
   providers: [
