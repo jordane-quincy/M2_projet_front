@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { OffersListPage } from '../pages/offers-list/offers-list';
 import { OfferDetailsPage } from '../pages/offer-details/offer-details';
 import { UserOffersPage } from '../pages/user-offers/user-offers';
+import { PendingRequestPage } from '../pages/pending-request/pending-request';
 
 import { AddOfferPage } from '../pages/add-offer/add-offer';
 
@@ -42,7 +43,8 @@ import { AutocompleSkillsComponent } from '../components/autocomple-skills/autoc
     NotificationPage,
     AutocompleSkillsComponent,
     AppointmentPage,
-    ProfilPage
+    ProfilPage,
+    PendingRequestPage
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { AutocompleSkillsComponent } from '../components/autocomple-skills/autoc
     ProfilPage,
     OfferDetailsPage,
     AppointmentPage,
-    NotificationPage
+    NotificationPage,
+    PendingRequestPage
   ],
   providers: [
     StatusBar,

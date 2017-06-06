@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { ProfilPage } from '../profil/profil';
 import { UserOffersPage } from '../user-offers/user-offers';
+import { PendingRequestPage } from '../pending-request/pending-request';
 
 import { AddOfferPage } from '../add-offer/add-offer';
 
@@ -44,4 +45,9 @@ export class MenuPage {
   openPageAppointment(){
     this.navCtrl.push(AppointmentPage);
   }
+
+  openPagePendingRequest(){
+    this.navCtrl.push(PendingRequestPage);
+  }
+
 }
