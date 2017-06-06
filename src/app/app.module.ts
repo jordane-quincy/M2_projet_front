@@ -1,8 +1,13 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { ImagePicker } from '@ionic-native/image-picker';
 
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { NotificationPage } from '../pages/notification/notification';
@@ -13,23 +18,18 @@ import { OffersListPage } from '../pages/offers-list/offers-list';
 import { OfferDetailsPage } from '../pages/offer-details/offer-details';
 import { UserOffersPage } from '../pages/user-offers/user-offers';
 import { PendingRequestPage } from '../pages/pending-request/pending-request';
-
 import { AddOfferPage } from '../pages/add-offer/add-offer';
-
 import { ProfilePage } from '../pages/profile/profile';
 import { AppointmentPage } from '../pages/appointment/appointment';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from '../providers/loginService';
 import { CreateAccountService } from '../providers/create-account-service';
-import { HeaderContentComponent } from '../components/header-content/header-content';
-import { CreditProvider } from '../providers/credit-service';
-
-import { ImagePicker } from '@ionic-native/image-picker';
+import { CreditService } from '../providers/credit-service';
+import { HttpService } from '../providers/http-service';
+import { TokenService } from '../providers/token-service';
 
 import { AutocompleSkillsComponent } from '../components/autocomple-skills/autocomple-skills';
-
+import { HeaderContentComponent } from '../components/header-content/header-content';
 
 @NgModule({
   declarations: [
@@ -76,10 +76,19 @@ import { AutocompleSkillsComponent } from '../components/autocomple-skills/autoc
     SplashScreen,
     LoginService,
     CreateAccountService,
-
-    CreditProvider,
+    CreditService,
     ImagePicker,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    HttpService,
+    TokenService,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {
+      provide: Http,
+      useFactory: (backend: XHRBackend, options: RequestOptions, tokenService: TokenService) => {
+        return new HttpService(backend, options, tokenService);
+      },
+      deps: [XHRBackend, RequestOptions, TokenService]
+    }
+    
   ]
 })
 export class AppModule {}

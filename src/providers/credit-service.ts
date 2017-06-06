@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class CreditProvider {
+export class CreditService {
 
   credit: number;
 
