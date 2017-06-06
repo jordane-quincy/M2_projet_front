@@ -19,8 +19,9 @@ export class AddOfferPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private imagePicker: ImagePicker) {
             this.form = fb.group({
-                        titre: fb.control('', [Validators.required]),
-                        description: fb.control('', [Validators.required])
+                        title: fb.control('', [Validators.required]),
+                        description: fb.control('', [Validators.required]),
+                        duration: fb.control('1')
                     });
   }
 
