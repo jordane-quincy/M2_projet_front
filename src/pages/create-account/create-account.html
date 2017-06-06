@@ -14,37 +14,40 @@
 
 
 <ion-content padding>
-  <ion-list>
+    <form (ngSubmit)="createAccount()" [formGroup]="createAccountForm">
+      <ion-list>
 
-    <ion-item>
-      <ion-label floating>Nom</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Nom</ion-label>
+          <ion-input  type="text" formControlName="lastName"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Prénom</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Prénom</ion-label>
+          <ion-input type="text" formControlName="firstName"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Téléphone</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Téléphone</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Mot de passe</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Mot de passe</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Répeter mot de passe</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Répeter mot de passe</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
 
-  </ion-list>
+      </ion-list>
+      <button ion-button type="submit">Button</button>
+    </form>
 </ion-content>
