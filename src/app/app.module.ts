@@ -11,6 +11,7 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Login } from '../pages/login/login';
 import { OffersListPage } from '../pages/offers-list/offers-list';
+import { UserOffersPage } from '../pages/user-offers/user-offers';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,6 +29,9 @@ import { CreateAccountService } from '../providers/create-account-service';
     CreateAccountPage,
     OffersListPage
     ],
+    TabsPage,
+    UserOffersPage
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -43,6 +47,8 @@ import { CreateAccountService } from '../providers/create-account-service';
     Login,
     CreateAccountPage,
     OffersListPage
+    TabsPage,
+    UserOffersPage
   ],
   providers: [
     StatusBar,
