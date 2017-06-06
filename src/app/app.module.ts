@@ -30,12 +30,9 @@ import { AutocompleSkillsComponent } from '../components/autocomple-skills/autoc
     OffersListPage,
     OfferDetailsPage,
     UserOffersPage,
-<<<<<<< HEAD
     NotificationPage,
-    AutocompleSkillsComponent
-=======
+    AutocompleSkillsComponent,
     AppointmentPage
->>>>>>> 13534e77c75119ee8d41b377e87b503067a862e9
   ],
   imports: [
     BrowserModule,
@@ -51,12 +48,8 @@ import { AutocompleSkillsComponent } from '../components/autocomple-skills/autoc
     CreateAccountPage,
     OffersListPage,
     OfferDetailsPage,
-    AppointmentPage
-<<<<<<< .mine
-
-=======
+    AppointmentPage,
     NotificationPage
->>>>>>> .theirs
   ],
   providers: [
     StatusBar,
