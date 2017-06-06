@@ -19,6 +19,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from '../providers/loginService';
 import { CreateAccountService } from '../providers/create-account-service';
+import { AutocompleSkillsComponent } from '../components/autocomple-skills/autocomple-skills';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CreateAccountService } from '../providers/create-account-service';
     Login,
     CreateAccountPage,
     OffersListPage,
-    UserOffersPage
+    UserOffersPage,
+    AutocompleSkillsComponent
   ],
   imports: [
     BrowserModule,
