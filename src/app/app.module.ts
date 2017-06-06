@@ -44,8 +44,7 @@ import { CreateAccountService } from '../providers/create-account-service';
     TabsPage,
     Login,
     CreateAccountPage,
-    OffersListPage
-    TabsPage,
+    OffersListPage,
     UserOffersPage
   ],
   providers: [
