@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { CreateAccountService } from '../../providers/create-account-service';
+import * as _ from 'lodash';
 /**
  * Generated class for the CreateAccountPage page.
  *
@@ -28,7 +30,7 @@ export class CreateAccountPage {
     return password === repeatPassword ? null : { matchingError: true };
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private createAccountService: CreateAccountService) {
     // Define control
     this.lastNameCtrl = fb.control('', Validators.required);
     this.firstNameCtrl = fb.control('', Validators.required);
@@ -56,5 +58,17 @@ export class CreateAccountPage {
 
   createAccount() {
     console.log(this.createAccountForm.value);
+    // Formatting body
+    let body = _.cloneDeep(this.createAccountForm.value);
+    body.password = body.passwordForm.password;
+    delete(body.passwordForm);
+    this.createAccountService.createAccount(body).subscribe(
+      res => {
+        console.log("success");
+      },
+      err => {
+        console.log("err");
+      }
+    );
   }
 }

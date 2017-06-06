@@ -9,12 +9,15 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { TabsPage } from '../pages/tabs/tabs';
+import { MenuPage } from '../pages/menu/menu';
 import { Login } from '../pages/login/login';
 import { OffersListPage } from '../pages/offers-list/offers-list';
+import { UserOffersPage } from '../pages/user-offers/user-offers';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginService } from '../providers/loginService';
+import { CreateAccountService } from '../providers/create-account-service';
 
 @NgModule({
   declarations: [
@@ -23,10 +26,12 @@ import { LoginService } from '../providers/loginService';
     ContactPage,
     HomePage,
     TabsPage,
+    MenuPage,
     Login,
     CreateAccountPage,
-    OffersListPage
-    ],
+    OffersListPage,
+    UserOffersPage
+  ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -39,14 +44,17 @@ import { LoginService } from '../providers/loginService';
     ContactPage,
     HomePage,
     TabsPage,
+    MenuPage,
     Login,
     CreateAccountPage,
-    OffersListPage
+    OffersListPage,
+    UserOffersPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     LoginService,
+    CreateAccountService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
