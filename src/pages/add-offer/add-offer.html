@@ -29,7 +29,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-label color="primary" stacked>Titre</ion-label>
-                        <ion-input type="text" placeholder="" formControlName="titre" required></ion-input>
+                        <ion-input type="text" placeholder="" formControlName="title" required></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -40,6 +40,15 @@
                         <ion-label color="primary" stacked>Description</ion-label>
                         <ion-textarea type="text" placeholder="" formControlName="description" required></ion-textarea>
                     </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row align-items-center>
+                <ion-col>
+                    <ion-item>
+                        <ion-label color="primary" stacked>Durée : {{form.get('duration').value}} heure(s)</ion-label>
+                        <ion-range value="1" step="1" max="5" formControlName="duration" snaps="true"></ion-range>
+                  </ion-item>
                 </ion-col>
             </ion-row>
 
