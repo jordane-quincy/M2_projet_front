@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../constants/constants';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -19,7 +20,8 @@ export class UserService {
   }
 
   createAccount(body: any): Observable<any> {
-    return this.http.post("http://localhost:8080/user/create", JSON.stringify(body))
+    let httpAddress: string = `${environment.backendUrl}/user/create`;
+    return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
