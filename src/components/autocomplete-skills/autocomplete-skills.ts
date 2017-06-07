@@ -53,7 +53,6 @@ export class AutocompleteSkillsComponent {
   addSkill() {
     this.selectedSkills.push({
       skillLabel: "",
-      skillMark: 0,
       customSkill: true
     });
     this.emitUpdateEvent();
@@ -63,7 +62,6 @@ export class AutocompleteSkillsComponent {
     if (!_.find(this.selectedSkills, {skillLabel: skill})) {
       this.selectedSkills.push({
         skillLabel: skill,
-        skillMark: 0,
         customSkill: false
       });
       this.emitUpdateEvent();

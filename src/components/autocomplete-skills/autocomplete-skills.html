@@ -25,10 +25,6 @@
               <ion-input readonly="{{!selectedSkill.customSkill}}" type="text" (ngModelChange)="emitUpdateEvent()" [(ngModel)]="selectedSkill.skillLabel"></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col col-12 col-md-6>
-            <ion-label color="primary" stacked class="skillMark">Evaluation <ion-badge item-end>{{ selectedSkill.skillMark }} / 5</ion-badge></ion-label>
-            <ion-range class="align-with-input" [(ngModel)]="selectedSkill.skillMark" (ngModelChange)="emitUpdateEvent()" max=5 min=0 snaps="true" step="1"></ion-range>
-          </ion-col>
           <ion-icon (click)="deleteSkillFromList(i)" class="delete-icon" name="close"></ion-icon>
         </ion-row>
       </div>

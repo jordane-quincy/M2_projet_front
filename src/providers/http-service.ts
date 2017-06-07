@@ -21,6 +21,7 @@ export class HttpService extends Http {
       request.headers = new Headers([]);
     }
     request.headers.append('Authorization', token);
+    request.headers.append('Content-Type', 'application/json');
     return super.request(request, options).catch(this.catchAuthError(this));
   }
 
