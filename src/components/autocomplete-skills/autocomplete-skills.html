@@ -13,23 +13,24 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <h6 class="align-with-ion-item">Liste des compétences sélectionnées</h6><ion-icon (click)="addSkill()" class="add-icon" name="add"></ion-icon>
+        <h6 class="align-with-ion-item">Liste des compétences sélectionnées <ion-icon (click)="addSkill()" class="add-icon" name="add"></ion-icon></h6>
       </ion-col>
     </ion-row>
     <ion-list>
       <div *ngFor="let selectedSkill of selectedSkills; let i = index">
-        <ion-row>
+        <ion-row class="row">
           <ion-col col-12 col-md-6>
             <ion-item>
-              <ion-label floating>Compétence {{i + 1}}</ion-label>
+              <ion-label color="primary" stacked>Compétence {{i + 1}}</ion-label>
               <ion-input readonly="{{!selectedSkill.customSkill}}" type="text" (ngModelChange)="emitUpdateEvent()" [(ngModel)]="selectedSkill.skillLabel"></ion-input>
             </ion-item>
           </ion-col>
           <ion-col col-12 col-md-6>
+            <ion-label color="primary" stacked class="skillMark">Evaluation <ion-badge item-end>{{ selectedSkill.skillMark }} / 5</ion-badge></ion-label>
             <ion-range class="align-with-input" [(ngModel)]="selectedSkill.skillMark" (ngModelChange)="emitUpdateEvent()" max=5 min=0 snaps="true" step="1"></ion-range>
           </ion-col>
+          <ion-icon (click)="deleteSkillFromList(i)" class="delete-icon" name="close"></ion-icon>
         </ion-row>
-        <ion-icon (click)="deleteSkillFromList(i)" class="delete-icon" name="close"></ion-icon>
       </div>
     </ion-list>
   </ion-grid>

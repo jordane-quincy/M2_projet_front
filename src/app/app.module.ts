@@ -25,6 +25,7 @@ import { AddOfferPage } from '../pages/add-offer/add-offer';
 import { ProfilePage } from '../pages/profile/profile';
 import { AppointmentPage } from '../pages/appointment/appointment';
 import { AddStudentPage } from '../pages/add-student/add-student';
+import { LessonSearchPage } from '../pages/lesson-search/lesson-search';
 
 import { UserService } from '../providers/user-service';
 import { CreditService } from '../providers/credit-service';
@@ -55,7 +56,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     AppointmentPage,
     ProfilePage,
     PendingRequestPage,
-    AddStudentPage
+    AddStudentPage,
+    LessonSearchPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     AppointmentPage,
     NotificationPage,
     PendingRequestPage,
-    AddStudentPage
+    AddStudentPage,
+    LessonSearchPage
   ],
   providers: [
     StatusBar,
