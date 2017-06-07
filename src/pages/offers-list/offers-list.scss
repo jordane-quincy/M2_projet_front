@@ -18,4 +18,9 @@ page-offers-list {
         padding-left: 16px;
     }
 
+    [text-nowrap] {
+        width: 100%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
 }

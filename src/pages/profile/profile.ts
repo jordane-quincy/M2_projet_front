@@ -49,10 +49,10 @@ export class ProfilePage {
     this.profile.roleTitle = "M1 TNSI";
 
     this.profile.competences[0].name = "HTML";
-    this.profile.competences[0].value = "76";
+    this.profile.competences[0].value = "2";
 
     this.profile.competences[1].name = "JavaScript";
-    this.profile.competences[1].value = "50";
+    this.profile.competences[1].value = "5";
 
     this.profile.comments[0].mark = "5/5";
     this.profile.comments[0].comment = "Très bon cours. Avec beaucoup de contenu. prof ponctuel";
@@ -97,10 +97,5 @@ export class ProfilePage {
 
       i++;
     }
-  }
-
-  addCompetences(){
-    // this.navCtrl.push();
-    console.log("Je clique sur ajouter des compétences");
   }
 }
