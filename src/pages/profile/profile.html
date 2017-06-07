@@ -9,15 +9,22 @@
   <!-- INFOS PERSO -->
   <ion-grid>
     <ion-row>
-      <ion-col col-12 text-center>AVATAR</ion-col>
+      <ion-col col-12 text-center>
+        <div *ngIf="!profile.picture; else userPicture"><ion-img src="assets/blanc.png" class="profile-img"></ion-img></div>
+        <template #userPicture><ion-img [src]=profile.picture class="profile-img"></ion-img></template>
+      </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-12 text-center>{{profile.lastname}} {{profile.firstname}}</ion-col>
+      <ion-col col-12 text-center class="name-style">{{profile.lastname}} {{profile.firstname}}</ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-12 text-center>{{profile.birthdate}}</ion-col>
+      <ion-col col-12 text-center class="birthdate-role-style">{{profile.birthdate}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center class="birthdate-role-style">{{profile.role}} {{profile.roleTitle}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -29,26 +36,14 @@
 
     <ion-card-content>
       <ion-grid>
-        <ion-row>
-          <ion-col col-3 class="no-padding">
-            <ion-item class="middle">HTML</ion-item>
+        <ion-row *ngFor="let competence of profile.competences">
+          <ion-col col-4 class="no-padding">
+            <ion-item class="middle">{{ competence.name }}</ion-item>
           </ion-col>
 
           <ion-col col-8>
             <ion-item>
-              <ion-range value="55" step="2" class="no-padding"></ion-range>
-            </ion-item>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col col-3 class="no-padding">
-            <ion-item class="middle">JavaScript</ion-item>
-          </ion-col>
-
-          <ion-col col-8>
-            <ion-item>
-              <ion-range value="55" step="2" class="no-padding"></ion-range>
+              <ion-range min="0" max="100" step="1" pin="true" disabled [(ngModel)]="competence.value" class="no-padding"></ion-range>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -65,7 +60,7 @@
   <!-- NOTATION -->
   <ion-item text-center>
     <!-- Etoile 1 -->
-    <span [ngSwitch]="profile.mark[0]">
+    <span [ngSwitch]="profile.stars[0]">
       <span *ngSwitchCase="1">
         <ion-icon name="star" class="icon-size"></ion-icon>
       </span>
@@ -80,7 +75,7 @@
     </span>
 
     <!-- Etoile 2 -->
-    <span [ngSwitch]="profile.mark[1]">
+    <span [ngSwitch]="profile.stars[1]">
       <span *ngSwitchCase="1">
         <ion-icon name="star" class="icon-size"></ion-icon>
       </span>
@@ -95,7 +90,7 @@
     </span>
 
     <!-- Etoile 3 -->
-    <span [ngSwitch]="profile.mark[2]">
+    <span [ngSwitch]="profile.stars[2]">
       <span *ngSwitchCase="1">
         <ion-icon name="star" class="icon-size"></ion-icon>
       </span>
@@ -110,7 +105,7 @@
     </span>
 
     <!-- Etoile 4 -->
-    <span [ngSwitch]="profile.mark[3]">
+    <span [ngSwitch]="profile.stars[3]">
       <span *ngSwitchCase="1">
         <ion-icon name="star" class="icon-size"></ion-icon>
       </span>
@@ -125,7 +120,7 @@
     </span>
 
     <!-- Etoile 5 -->
-    <span [ngSwitch]="profile.mark[4]">
+    <span [ngSwitch]="profile.stars[4]">
       <span *ngSwitchCase="1">
         <ion-icon name="star" class="icon-size"></ion-icon>
       </span>
@@ -148,23 +143,13 @@
 
     <ion-card-content>
       <ion-grid>
-        <ion-row>
-          <ion-col col-3 class="no-padding">
-            <ion-item class="middle">4/5</ion-item>
+        <ion-row *ngFor="let comment of profile.comments">
+          <ion-col col-2>
+            {{ comment.mark }}
           </ion-col>
 
-          <ion-col col-9>
-            <ion-item>Super cours, très bien expliqué</ion-item>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col col-3 class="no-padding">
-            <ion-item class="middle">1/5</ion-item>
-          </ion-col>
-
-          <ion-col col-9>
-            Déçu du contenu du cours
+          <ion-col col-10>
+            {{ comment.comment }}
           </ion-col>
         </ion-row>
       </ion-grid>
