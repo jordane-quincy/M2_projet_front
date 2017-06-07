@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { CreateAccountService } from '../../providers/create-account-service';
 import * as _ from 'lodash';
+import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills'
 
 @Component({
   selector: 'page-create-account',
@@ -31,7 +31,7 @@ export class CreateAccountPage {
     return password === repeatPassword ? null : { matchingError: true };
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private createAccountService: CreateAccountService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder) {
     // Define control
     this.lastNameCtrl = fb.control('', Validators.required);
     this.firstNameCtrl = fb.control('', Validators.required);
@@ -67,11 +67,9 @@ export class CreateAccountPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CreateAccountPage');
   }
 
   createAccount() {
-    console.log(this.createAccountForm.value);
     // Formatting body
     let body = _.cloneDeep(this.createAccountForm.value);
     body.password = body.passwordForm.password;
@@ -91,13 +89,14 @@ export class CreateAccountPage {
     delete(body.answer1);
     delete(body.question2);
     delete(body.answer2);
-    this.createAccountService.createAccount(body).subscribe(
-      res => {
-        console.log("success");
-      },
-      err => {
-        console.log("err");
-      }
-    );
+    this.navCtrl.push(CreateAccountSkillsPage, {body: body})
+    // this.createAccountService.createAccount(body).subscribe(
+    //   res => {
+    //     console.log("success");
+    //   },
+    //   err => {
+    //     console.log("err");
+    //   }
+    // );
   }
 }

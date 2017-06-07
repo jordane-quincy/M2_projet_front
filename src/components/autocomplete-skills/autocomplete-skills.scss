@@ -1,0 +1,23 @@
+autocomplete-skills {
+  .selectionnable_item {
+    cursor: pointer;
+  }
+  .selectionnable_item:hover {
+    background-color: #e8e8e8
+  }
+
+  .align-with-ion-item {
+    margin-left: 16px
+  }
+
+  .delete-icon, .add-icon {
+    float: right;
+    color: black;
+    font-size: 3rem;
+    cursor: pointer;
+  }
+
+  .align-with-input {
+    margin-top: 3.74rem;
+  }
+}

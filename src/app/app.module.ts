@@ -10,6 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ImagePicker } from '@ionic-native/image-picker';
 
 import { CreateAccountPage } from '../pages/create-account/create-account';
+import { CreateAccountSkillsPage } from '../pages/create-account-skills/create-account-skills';
 import { NotificationPage } from '../pages/notification/notification';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MenuPage } from '../pages/menu/menu';
@@ -29,7 +30,7 @@ import { CreditService } from '../providers/credit-service';
 import { HttpService } from '../providers/http-service';
 import { TokenService } from '../providers/token-service';
 
-import { AutocompleSkillsComponent } from '../components/autocomple-skills/autocomple-skills';
+import { AutocompleteSkillsComponent } from '../components/autocomplete-skills/autocomplete-skills';
 import { HeaderContentComponent } from '../components/header-content/header-content';
 
 @NgModule({
@@ -39,6 +40,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     MenuPage,
     LoginPage,
     CreateAccountPage,
+    CreateAccountSkillsPage,
     OffersListPage,
     UserOffersPage,
     AddOfferPage,
@@ -46,7 +48,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     UserOffersPage,
     NotificationPage,
     HeaderContentComponent,
-    AutocompleSkillsComponent,
+    AutocompleteSkillsComponent,
     AppointmentPage,
     ProfilePage,
     PendingRequestPage,
@@ -64,6 +66,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     MenuPage,
     LoginPage,
     CreateAccountPage,
+    CreateAccountSkillsPage,
     OffersListPage,
     UserOffersPage,
     AddOfferPage,

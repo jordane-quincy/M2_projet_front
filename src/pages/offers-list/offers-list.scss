@@ -2,6 +2,20 @@ page-offers-list {
 
     .offers-list-item {
         cursor: pointer;
+        padding-left: 0;
+    }
+
+    h2 span {
+        font-weight: 400;
+        font-size: 0.8em;
+        color: #ababab;
+        position: relative;
+        top: -1px;
+        margin-left: 10px;
+    }
+
+    .list-md .item-block .item-inner {
+        padding-left: 16px;
     }
 
 }
