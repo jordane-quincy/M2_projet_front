@@ -98,9 +98,4 @@ export class ProfilePage {
       i++;
     }
   }
-
-  addCompetences(){
-    // this.navCtrl.push();
-    console.log("Je clique sur ajouter des compétences");
-  }
 }
