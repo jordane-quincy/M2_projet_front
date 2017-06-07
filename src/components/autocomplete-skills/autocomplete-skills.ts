@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
 import * as _ from 'lodash';
-/**
- * Generated class for the AutocompleSkillsComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
+
+
 @Component({
-  selector: 'autocomple-skills',
-  templateUrl: 'autocomple-skills.html'
+  selector: 'autocomplete-skills',
+  templateUrl: 'autocomplete-skills.html'
 })
-export class AutocompleSkillsComponent {
+export class AutocompleteSkillsComponent {
 
   text: string;
 
@@ -18,8 +14,9 @@ export class AutocompleSkillsComponent {
 
   skills: string[];
 
+  selectedSkills: Object[];
+
   constructor() {
-    console.log('Hello AutocompleSkillsComponent Component');
     this.text = 'Hello World';
     this.completeSkills = [
       "JS",
@@ -30,6 +27,7 @@ export class AutocompleSkillsComponent {
       "Ionic"
     ]
     this.skills = _.cloneDeep(this.completeSkills);
+    this.selectedSkills = [];
   }
 
   getSkills(ev: any) {
@@ -46,8 +44,27 @@ export class AutocompleSkillsComponent {
     }
   }
 
-  onClickSkill(ev: any) {
-    console.log(ev);
+  addSkill() {
+    this.selectedSkills.push({
+      skillLabel: "",
+      skillMark: 0,
+      customSkill: true
+    });
+    console.log(this.selectedSkills);
+  }
+
+  onClickSkill(skill: string) {
+    if (!_.find(this.selectedSkills, {skillLabel: skill})) {
+      this.selectedSkills.push({
+        skillLabel: skill,
+        skillMark: 0,
+        customSkill: false
+      });
+    }
+  }
+
+  deleteSkillFromList(index: number) {
+    this.selectedSkills.splice(index, 1);
   }
 
 }
