@@ -19,7 +19,7 @@ export class UserService {
   }
 
   createAccount(body: any): Observable<any> {
-    return this.http.post("http://httpbin.org/post", JSON.stringify(body))
+    return this.http.post("http://localhost:8080/user/create", JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
