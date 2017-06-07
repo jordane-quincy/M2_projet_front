@@ -17,14 +17,14 @@ export class ProfilePage {
       birthdate: "",
       role: "",
       roleTitle: "",
-      competences: [
+      skills: [
         {
           name: "",
-          value: ""
+          validate: ""
         },
         {
           name: "",
-          value: ""
+          validate: ""
         }
       ],
       comments: [
@@ -48,17 +48,17 @@ export class ProfilePage {
     this.profile.role = "Etudiant";
     this.profile.roleTitle = "M1 TNSI";
 
-    this.profile.competences[0].name = "HTML";
-    this.profile.competences[0].value = "2";
+    this.profile.skills[0].name = "HTML";
+    this.profile.skills[0].validate = "false";
 
-    this.profile.competences[1].name = "JavaScript";
-    this.profile.competences[1].value = "5";
+    this.profile.skills[1].name = "JavaScript";
+    this.profile.skills[1].validate = "true";
 
     this.profile.comments[0].mark = "5/5";
-    this.profile.comments[0].comment = "Très bon cours. Avec beaucoup de contenu. prof ponctuel";
+    this.profile.comments[0].text = "Très bon cours. Avec beaucoup de contenu. prof ponctuel";
 
     this.profile.comments[1].mark = "1/5";
-    this.profile.comments[1].comment = "Cours de merde";
+    this.profile.comments[1].text = "Cours de merde";
 
     this.starsDefinition(2.75);
   }
