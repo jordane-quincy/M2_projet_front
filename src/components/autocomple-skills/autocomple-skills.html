@@ -10,5 +10,10 @@
       {{ skill }}
     </ion-item>
   </ion-list>
-
+  <h6 class=".align-with-ion-item">Liste des compétences sélectionnées</h6>
+  <ion-list>
+    <ion-item *ngFor="let selectedSkill of selectedSkills">
+      {{selectedSkill.skillLabel}}
+    </ion-item>
+  </ion-list>
 </div>

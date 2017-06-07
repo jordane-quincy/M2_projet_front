@@ -18,6 +18,8 @@ export class AutocompleSkillsComponent {
 
   skills: string[];
 
+  selectedSkills: Object[];
+
   constructor() {
     console.log('Hello AutocompleSkillsComponent Component');
     this.text = 'Hello World';
@@ -30,6 +32,7 @@ export class AutocompleSkillsComponent {
       "Ionic"
     ]
     this.skills = _.cloneDeep(this.completeSkills);
+    this.selectedSkills = [];
   }
 
   getSkills(ev: any) {
@@ -46,8 +49,15 @@ export class AutocompleSkillsComponent {
     }
   }
 
-  onClickSkill(ev: any) {
-    console.log(ev);
+  onClickSkill(skill: string) {
+    if (!_.find(this.selectedSkills, {skillLabel: skill})) {
+      console.log(skill);
+      this.selectedSkills.push({
+        skillLabel: skill,
+        skillMark: 0
+      });
+      console.log(this.selectedSkills);
+    }
   }
 
 }
