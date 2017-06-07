@@ -29,5 +29,23 @@
     <ion-list-header>
      Cours à suivre
     </ion-list-header>
+    <ion-item-sliding class="sliding" *ngFor="let appointment of appointmentList">
+      <ion-item>
+        <ion-avatar item-start>
+           <img src="data:image/jpeg;base64,{{appointment.picture}}"/>
+         </ion-avatar>
+        <h2>{{appointment.title}}</h2>
+        <ion-icon name="calendar" class="icon-calendar"></ion-icon>
+         {{appointment.date}} de {{appointment.start}}h - {{appointment.end}}h
+      </ion-item>
+      <ion-item-options class="options">
+        <button ion-button color="secondary" icon-left (click)="showConfirmValid(appointment.price)">
+          <ion-icon name="checkmark" large></ion-icon>
+        </button>
+        <button ion-button color="danger" icon-left (click)="showConfirmDelete()">
+          <ion-icon name="trash" large></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>
