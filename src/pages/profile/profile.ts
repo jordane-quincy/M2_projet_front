@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { CreateAccountPage } from '../create-account/create-account';
 
 @Component({
   selector: 'page-profile',
@@ -98,4 +99,38 @@ export class ProfilePage {
       i++;
     }
   }
+
+  goToUpdateProfile() {
+    this.navCtrl.push(CreateAccountPage, {user:
+      {
+         "lastName":"Duriez",
+         "firstName":"Jean-Baptiste",
+         "birthDate":781401600000,
+         "phoneNumber":"0668554964",
+         "email":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
+         "question":"Nom de la mère",
+         "answer":"Lemaire",
+         "formation":"M2 TNSI-FA",
+         "password":"abcd",
+         "skills":[
+            {
+               "skillLabel":"JS",
+               "skillMark":3,
+               "customSkill":false
+            },
+            {
+               "skillLabel":"React",
+               "skillMark":4,
+               "customSkill":false
+            },
+            {
+               "skillLabel":"Custom competence",
+               "skillMark":5,
+               "customSkill":true
+            }
+         ]
+      }
+    });
+  }
+
 }
