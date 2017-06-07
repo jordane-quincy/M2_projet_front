@@ -21,6 +21,8 @@ export class CreateAccountPage {
   passwordForm: FormGroup;
   questionCtrl: FormControl;
   answerCtrl: FormControl;
+  formationCtrl: FormControl;
+  formationList: any[];
 
   static passwordMatch(group: FormGroup) {
     const password = group.get('password').value;
@@ -43,6 +45,10 @@ export class CreateAccountPage {
     )
     this.questionCtrl = fb.control('', [Validators.required]);
     this.answerCtrl = fb.control('', [Validators.required]);
+    this.formationCtrl = fb.control('', [Validators.required]);
+
+    this.formationList = ["L3-Info", "M2 TNSI-FA", "M2-TNSI-FI"];
+
 
     // defin create account form
     this.createAccountForm = fb.group({
@@ -53,7 +59,8 @@ export class CreateAccountPage {
       email: this.emailCtrl,
       passwordForm: this.passwordForm,
       question: this.questionCtrl,
-      answer: this.answerCtrl
+      answer: this.answerCtrl,
+      formation: this.formationCtrl
     });
   }
 

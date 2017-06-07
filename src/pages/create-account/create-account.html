@@ -74,6 +74,16 @@
                         </div>
                   </ion-col>
             </ion-row>
+            <ion-row align-items-center justify-content-center>
+              <ion-col>
+                <ion-item>
+                  <ion-label>Formation</ion-label>
+                  <ion-select submitText="Okay" cancelText="Cancel" formControlName="formation">
+                    <ion-option *ngFor="let form of formationList" [value]="form">{{form}}</ion-option>
+                  </ion-select>
+                </ion-item>
+              </ion-col>
+            </ion-row>
             <div formGroupName="passwordForm">
                   <ion-row align-items-center justify-content-center>
                         <ion-col>
@@ -99,7 +109,7 @@
                                   La répétition de mot de passe est requise
                               </div>
                               <div class="input-error" *ngIf="passwordForm.touched && passwordForm.hasError('matchingError')">
-                                  Les mots de passes ne correspondent pas
+                                  Les mots de passe ne correspondent pas
                               </div>
                         </ion-col>
                   </ion-row>
