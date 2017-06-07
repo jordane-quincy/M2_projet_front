@@ -104,44 +104,24 @@
             </div>
           <br/>
           <h5 class="align-with-ion-item no-margin-bottom">
-            Compétences :
-          </h5>
-          <autocomplete-skills></autocomplete-skills>
-
-
-          <h5 class="align-with-ion-item no-margin-bottom">
             Questions de récupération de mot de passe
           </h5>
           <ion-item>
-            <ion-label floating>Intitulé question 1</ion-label>
-            <ion-input type="text" formControlName="question1"></ion-input>
+            <ion-label floating>Intitulé question</ion-label>
+            <ion-input type="text" formControlName="question"></ion-input>
           </ion-item>
-          <div class="input-error" *ngIf="question1Ctrl.touched && question1Ctrl.hasError('required')">
+          <div class="input-error" *ngIf="questionCtrl.touched && questionCtrl.hasError('required')">
             L'intitulé de la question est requis
           </div>
           <ion-item>
-            <ion-label floating>Réponse question 1</ion-label>
-            <ion-input type="text" formControlName="answer1"></ion-input>
+            <ion-label floating>Réponse question</ion-label>
+            <ion-input type="text" formControlName="answer"></ion-input>
           </ion-item>
-          <div class="input-error" *ngIf="answer1Ctrl.touched && answer1Ctrl.hasError('required')">
+          <div class="input-error" *ngIf="answerCtrl.touched && answerCtrl.hasError('required')">
             La réponse à la question est requise
           </div>
-          <ion-item>
-            <ion-label floating>Intitulé question 2</ion-label>
-            <ion-input type="text" formControlName="question2"></ion-input>
-          </ion-item>
-          <div class="input-error" *ngIf="question2Ctrl.touched && question2Ctrl.hasError('required')">
-            L'intitulé de la question est requis
-          </div>
-          <ion-item>
-            <ion-label floating>Réponse question 2</ion-label>
-            <ion-input type="text" formControlName="answer2"></ion-input>
-          </ion-item>
-          <div class="input-error" *ngIf="answer2Ctrl.touched && answer2Ctrl.hasError('required')">
-            L'intitulé de la question est requis
-          </div>
           <br/>
-          <button ion-button type="submit" [disabled]="createAccountForm.invalid">Suivant   <ion-icon name="arrow-forward"></ion-icon></button>
+          <button ion-button type="submit" >Suivant   <ion-icon name="arrow-forward"></ion-icon></button>
         </form>
       </ion-col>
     </ion-row>

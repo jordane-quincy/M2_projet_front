@@ -11,6 +11,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { CreateAccountSkillsPage } from '../pages/create-account-skills/create-account-skills';
+import { ForgottenPasswordPage } from '../pages/forgotten-password/forgotten-password';
 import { NotificationPage } from '../pages/notification/notification';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MenuPage } from '../pages/menu/menu';
@@ -22,6 +23,7 @@ import { PendingRequestPage } from '../pages/pending-request/pending-request';
 import { AddOfferPage } from '../pages/add-offer/add-offer';
 import { ProfilePage } from '../pages/profile/profile';
 import { AppointmentPage } from '../pages/appointment/appointment';
+import { AddStudentPage } from '../pages/add-student/add-student';
 
 import { LoginService } from '../providers/loginService';
 import { CreateAccountService } from '../providers/create-account-service';
@@ -40,6 +42,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     LoginPage,
     CreateAccountPage,
     CreateAccountSkillsPage,
+    ForgottenPasswordPage,
     OffersListPage,
     UserOffersPage,
     AddOfferPage,
@@ -50,7 +53,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     AutocompleteSkillsComponent,
     AppointmentPage,
     ProfilePage,
-    PendingRequestPage
+    PendingRequestPage,
+    AddStudentPage
   ],
   imports: [
     BrowserModule,
@@ -65,6 +69,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     LoginPage,
     CreateAccountPage,
     CreateAccountSkillsPage,
+    ForgottenPasswordPage,
     OffersListPage,
     UserOffersPage,
     AddOfferPage,
@@ -72,7 +77,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     OfferDetailsPage,
     AppointmentPage,
     NotificationPage,
-    PendingRequestPage
+    PendingRequestPage,
+    AddStudentPage
   ],
   providers: [
     StatusBar,

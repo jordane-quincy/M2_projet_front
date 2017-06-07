@@ -19,11 +19,8 @@ export class CreateAccountPage {
   passwordCtrl: FormControl;
   repeatPasswordCtrl: FormControl;
   passwordForm: FormGroup;
-  question1Ctrl: FormControl;
-  answer1Ctrl: FormControl;
-  question2Ctrl: FormControl;
-  answer2Ctrl: FormControl;
-  skillsCtrl: FormControl;
+  questionCtrl: FormControl;
+  answerCtrl: FormControl;
 
   static passwordMatch(group: FormGroup) {
     const password = group.get('password').value;
@@ -44,11 +41,8 @@ export class CreateAccountPage {
       {password: this.passwordCtrl, repeatPassword: this.repeatPasswordCtrl},
       {validator: CreateAccountPage.passwordMatch}
     )
-    this.question1Ctrl = fb.control('', [Validators.required]);
-    this.answer1Ctrl = fb.control('', [Validators.required]);
-    this.question2Ctrl = fb.control('', [Validators.required]);
-    this.answer2Ctrl = fb.control('', [Validators.required]);
-    this.skillsCtrl = fb.control('');
+    this.questionCtrl = fb.control('', [Validators.required]);
+    this.answerCtrl = fb.control('', [Validators.required]);
 
     // defin create account form
     this.createAccountForm = fb.group({
@@ -58,11 +52,8 @@ export class CreateAccountPage {
       phoneNumber: this.phoneNumberCtrl,
       email: this.emailCtrl,
       passwordForm: this.passwordForm,
-      question1: this.question1Ctrl,
-      answer1: this.answer1Ctrl,
-      question2: this.question2Ctrl,
-      answer2: this.answer2Ctrl,
-      skills: this.skillsCtrl
+      question: this.questionCtrl,
+      answer: this.answerCtrl
     });
   }
 
@@ -71,32 +62,10 @@ export class CreateAccountPage {
 
   createAccount() {
     // Formatting body
-    let body = _.cloneDeep(this.createAccountForm.value);
-    body.password = body.passwordForm.password;
-    body.resetPasswordQuestions = [
-      {
-        question: body.question1,
-        answer: body.answer1
-      },
-      {
-        question: body.question2,
-        answer: body.answer2
-      }
-    ];
-    body.birthDate = +new Date(body.birthDate);
-    delete(body.passwordForm);
-    delete(body.question1);
-    delete(body.answer1);
-    delete(body.question2);
-    delete(body.answer2);
-    this.navCtrl.push(CreateAccountSkillsPage, {body: body})
-    // this.createAccountService.createAccount(body).subscribe(
-    //   res => {
-    //     console.log("success");
-    //   },
-    //   err => {
-    //     console.log("err");
-    //   }
-    // );
+    let user = _.cloneDeep(this.createAccountForm.value);
+    user.password = user.passwordForm.password;
+    user.birthDate = +new Date(user.birthDate);
+    delete(user.passwordForm);
+    this.navCtrl.push(CreateAccountSkillsPage, {user: user});
   }
 }

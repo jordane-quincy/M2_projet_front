@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import * as _ from 'lodash';
 
 
@@ -14,7 +14,9 @@ export class AutocompleteSkillsComponent {
 
   skills: string[];
 
-  selectedSkills: Object[];
+  @Input() selectedSkills: Object[];
+
+  @Output() selectedSkillsChange = new EventEmitter<Object>();
 
   constructor() {
     this.text = 'Hello World';
@@ -28,6 +30,10 @@ export class AutocompleteSkillsComponent {
     ]
     this.skills = _.cloneDeep(this.completeSkills);
     this.selectedSkills = [];
+  }
+
+  emitUpdateEvent() {
+    this.selectedSkillsChange.emit(this.selectedSkills);
   }
 
   getSkills(ev: any) {
@@ -50,7 +56,7 @@ export class AutocompleteSkillsComponent {
       skillMark: 0,
       customSkill: true
     });
-    console.log(this.selectedSkills);
+    this.emitUpdateEvent();
   }
 
   onClickSkill(skill: string) {
@@ -60,11 +66,13 @@ export class AutocompleteSkillsComponent {
         skillMark: 0,
         customSkill: false
       });
+      this.emitUpdateEvent();
     }
   }
 
   deleteSkillFromList(index: number) {
     this.selectedSkills.splice(index, 1);
+    this.emitUpdateEvent();
   }
 
 }
