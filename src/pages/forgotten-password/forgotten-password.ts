@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../../providers/user-service';
+import { ResetPasswordPage } from '../reset-password/reset-password';
 
 
 @Component({
@@ -24,14 +25,12 @@ export class ForgottenPasswordPage {
 
   askForResetPassword() {
     // Send to the back the email to see if it exists, if yes, then redirect to the reset password page with secret questionCtrl
-    console.log(this.forgottenPasswordForm.value);
     this.userService.createAccount(this.forgottenPasswordForm.value).subscribe(
       res => {
         // Success, get the question in the response
         console.log("success");
-        console.log(res);
         //redirect to the resetPassword view with the question
-
+        this.navCtrl.push(ResetPasswordPage, {questionLabel: "Quel est le nom de jeune fille de ta mère"});
 
       },
       err => {

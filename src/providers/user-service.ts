@@ -24,4 +24,10 @@ export class UserService {
     return this.http.post("http://httpbin.org/post", JSON.stringify(body), headers)
       .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
+
+  resetPassword(body: any): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.post("http://httpbin.org/post", JSON.stringify(body), headers)
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
 }
