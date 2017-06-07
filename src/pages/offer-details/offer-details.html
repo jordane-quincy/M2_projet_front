@@ -1,11 +1,18 @@
 <ion-header>
-  
+
   <header-content [title]="offer.title"></header-content>
-  
+
 </ion-header>
 
 
 <ion-content padding>
-  {{offer | json}}
 
+    <h2>{{ offer.title }} <span>{{offer.duration}} h</span></h2>
+    <p>{{ offer.description }}</p>
+
+    <ion-row align-items-center justify-content-center>
+
+            <button ion-button round col-6>Je m'inscris</button>
+
+    </ion-row>
 </ion-content>

@@ -10,32 +10,32 @@ import { OffersListPage } from '../offers-list/offers-list';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-    createAccountPage = CreateAccountPage;
+  createAccountPage = CreateAccountPage;
 
-    form: FormGroup;
+  form: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private loginService: LoginService) {
-      this.form = fb.group({
-                            email: fb.control('', [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]),
-                            password: fb.control('', [Validators.required])
-                        });
+    this.form = fb.group({
+        email: fb.control('', [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]),
+        password: fb.control('', [Validators.required])
+    });
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Login');
+
   }
 
   login(){
-      console.log(this.form.value);
-      this.loginService.connect(this.form.value).subscribe(
-        result => {
-               this.navCtrl.push(OffersListPage);
-        },
-        error => {
+    console.log(this.form.value);
+    this.loginService.connect(this.form.value).subscribe(
+      result => {
+        this.navCtrl.push(OffersListPage);
+      },
+      error => {
 
-        }
-          );
+      }
+    );
   }
 
 }
