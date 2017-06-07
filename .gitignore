@@ -11,7 +11,6 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
-config.rb
 
 .idea/
 .sass-cache/
@@ -36,3 +35,4 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+config.rb
