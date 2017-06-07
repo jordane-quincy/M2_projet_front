@@ -12,6 +12,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { CreateAccountSkillsPage } from '../pages/create-account-skills/create-account-skills';
 import { ForgottenPasswordPage } from '../pages/forgotten-password/forgotten-password';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { NotificationPage } from '../pages/notification/notification';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MenuPage } from '../pages/menu/menu';
@@ -43,6 +44,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     CreateAccountPage,
     CreateAccountSkillsPage,
     ForgottenPasswordPage,
+    ResetPasswordPage,
     OffersListPage,
     UserOffersPage,
     AddOfferPage,
@@ -70,6 +72,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     CreateAccountPage,
     CreateAccountSkillsPage,
     ForgottenPasswordPage,
+    ResetPasswordPage,
     OffersListPage,
     UserOffersPage,
     AddOfferPage,
