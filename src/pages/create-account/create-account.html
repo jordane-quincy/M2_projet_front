@@ -9,10 +9,12 @@
 
 <ion-content>
   <ion-grid>
-    <ion-row>
-      <ion-col col-md-12 col-xl-6 offset-xl-3>
+    <ion-row align-items-center justify-content-center>
+      <ion-col col-xs-12 col-sm-6 col-md-4>
         <form (ngSubmit)="createAccount()" [formGroup]="createAccountForm">
-
+            <h5 class="align-with-ion-item no-margin-bottom">
+                Informations
+            </h5>
             <ion-row align-items-center justify-content-center>
                   <ion-col>
                         <ion-item>
@@ -102,26 +104,26 @@
                         </ion-col>
                   </ion-row>
             </div>
-          <br/>
-          <h5 class="align-with-ion-item no-margin-bottom">
-            Questions de récupération de mot de passe
-          </h5>
-          <ion-item>
-            <ion-label floating>Intitulé question</ion-label>
-            <ion-input type="text" formControlName="question"></ion-input>
-          </ion-item>
-          <div class="input-error" *ngIf="questionCtrl.touched && questionCtrl.hasError('required')">
-            L'intitulé de la question est requis
-          </div>
-          <ion-item>
-            <ion-label floating>Réponse question</ion-label>
-            <ion-input type="text" formControlName="answer"></ion-input>
-          </ion-item>
-          <div class="input-error" *ngIf="answerCtrl.touched && answerCtrl.hasError('required')">
-            La réponse à la question est requise
-          </div>
-          <br/>
-          <button ion-button type="submit" >Suivant   <ion-icon name="arrow-forward"></ion-icon></button>
+            <br/>
+            <h5 class="align-with-ion-item no-margin-bottom">
+              Questions de récupération de mot de passe
+            </h5>
+            <ion-item>
+                  <ion-label color="primary" stacked>Intitulé question</ion-label>
+                  <ion-input type="text" formControlName="question"></ion-input>
+            </ion-item>
+            <div class="input-error" *ngIf="questionCtrl.touched && questionCtrl.hasError('required')">
+                L' intitulé de la question est requis
+            </div>
+            <ion-item>
+                  <ion-label color="primary" stacked>Réponse question</ion-label>
+                  <ion-input type="text" formControlName="answer"></ion-input>
+            </ion-item>
+            <div class="input-error" *ngIf="answerCtrl.touched && answerCtrl.hasError('required')">
+              La réponse à la question est requise
+            </div>
+            <br/>
+            <button ion-button type="submit" >Suivant <ion-icon name="arrow-forward"></ion-icon></button>
         </form>
       </ion-col>
     </ion-row>

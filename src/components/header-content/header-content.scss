@@ -1,7 +1,19 @@
 header-content {
 
     .credit-info {
-        float: right;
+        position: absolute;
+        top: 15px;
+        right: 15px;
     }
 
+    img {
+        padding: 5px;
+        margin: auto;
+        display: block;
+    }
+
+    .back-button.show-back-button {
+        display: inline-block;
+        position: absolute;
+    }
 }

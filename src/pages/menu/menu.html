@@ -30,16 +30,11 @@
       <ion-icon name="refresh" class="ionic-refresh" item-start></ion-icon>
       Mes demandes en attentes
     </button>
+
+    <button ion-item icon-left color="danger" (click)="exit()">
+      <ion-icon name="power"></ion-icon>
+      Déconnexion
+    </button>
   </ion-list>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col offset-3 col-6>
-        <button ion-button full color="danger" icon-left>
-          <ion-icon name="power"></ion-icon>
-          Déconnexion
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
 </ion-content>

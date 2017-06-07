@@ -4,6 +4,16 @@ page-menu {
         margin-top: 55px;
     }
 
+    ion-icon {
+        text-align: center;
+        width: 60px;
+        padding: 0;
+    }
+
+    button .item-inner {
+        margin-left: 0 !important;
+    }
+
 }
 
 .icon-profil{

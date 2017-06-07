@@ -17,7 +17,26 @@ autocomplete-skills {
     cursor: pointer;
   }
 
+  .delete-icon {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+    font-size: 2rem;
+  }
+
   .align-with-input {
     margin-top: 3.74rem;
+  }
+
+  .skillMark {
+    position: absolute;
+  }
+
+  ion-range {
+    padding-top: 12px;
+  }
+
+  .row {
+    position: relative;
   }
 }
