@@ -67,11 +67,9 @@ export class CreateAccountPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CreateAccountPage');
   }
 
   createAccount() {
-    console.log(this.createAccountForm.value);
     // Formatting body
     let body = _.cloneDeep(this.createAccountForm.value);
     body.password = body.passwordForm.password;
