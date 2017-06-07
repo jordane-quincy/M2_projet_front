@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
+import { ProfilePage } from '../profile/profile';
 import { UserOffersPage } from '../user-offers/user-offers';
+import { PendingRequestPage } from '../pending-request/pending-request';
+import { AddOfferPage } from '../add-offer/add-offer';
 import { AppointmentPage } from '../appointment/appointment';
-/**
- * Generated class for the Menu page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-menu',
@@ -20,12 +17,28 @@ export class MenuPage {
 
   }
 
+  openPageProfil()
+  {
+    this.navCtrl.push(ProfilePage);
+  }
+
   openPageUserOffers()
   {
     this.navCtrl.push(UserOffersPage);
   }
 
+
+  openPageAddOffer()
+  {
+    this.navCtrl.push(AddOfferPage);
+  }
+
   openPageAppointment(){
     this.navCtrl.push(AppointmentPage);
   }
+
+  openPagePendingRequest(){
+    this.navCtrl.push(PendingRequestPage);
+  }
+
 }

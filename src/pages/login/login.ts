@@ -1,21 +1,15 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { LoginService } from '../../providers/loginService';
 import { CreateAccountPage } from '../create-account/create-account';
 import { OffersListPage } from '../offers-list/offers-list';
 
-/**
- * Generated class for the Login page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html'
 })
-export class Login {
+export class LoginPage {
     createAccountPage = CreateAccountPage;
 
     form: FormGroup;

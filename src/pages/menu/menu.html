@@ -1,19 +1,12 @@
-<!--
-  Generated template for the Menu page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Menu 5h</ion-title>
-  </ion-navbar>
+  <header-content title="Menu"></header-content>
+  
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <button ion-item icon-left>
+    <button ion-item icon-left (click)="openPageProfil()">
       <ion-icon name="contact" class="icon-profil" item-start></ion-icon>
       Mon profil
     </button>
@@ -23,7 +16,7 @@
       Mes offres
     </button>
 
-    <button ion-item icon-left>
+    <button ion-item icon-left (click)="openPageAddOffer()">
       <ion-icon name="add-circle" color="secondary" item-start></ion-icon>
       Ajouter une offre
     </button>
@@ -31,6 +24,11 @@
     <button ion-item icon-left (click)="openPageAppointment()">
       <ion-icon name="calendar" class="ionic-calendar" item-start></ion-icon>
       Mes rendez-vous
+    </button>
+
+    <button ion-item icon-left (click)="openPagePendingRequest()">
+      <ion-icon name="refresh" class="ionic-refresh" item-start></ion-icon>
+      Mes demandes en attentes
     </button>
   </ion-list>
 

@@ -3,12 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { CreateAccountService } from '../../providers/create-account-service';
 import * as _ from 'lodash';
-/**
- * Generated class for the CreateAccountPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @Component({
   selector: 'page-create-account',
   templateUrl: 'create-account.html',

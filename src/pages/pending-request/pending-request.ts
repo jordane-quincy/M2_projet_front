@@ -2,21 +2,16 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'page-offer-details',
-  templateUrl: 'offer-details.html',
+  selector: 'page-pending-request',
+  templateUrl: 'pending-request.html',
 })
-export class OfferDetailsPage {
-
-  offer: any;
+export class PendingRequestPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    if(this.navParams.data) {
-      this.offer = this.navParams.data.offer;
-    }
   }
 
   ionViewDidLoad() {
-
+    console.log('ionViewDidLoad PendingRequestPage');
   }
 
 }
