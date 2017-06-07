@@ -2,7 +2,8 @@
   <ion-searchbar
     [showCancelButton]="shouldShowCancel"
     (ionInput)="getSkills($event)"
-    animated="true">
+    animated="true"
+    placeholder="Rechercher une compétence">
   </ion-searchbar>
   <ion-list>
     <ion-item class="selectionnable_item" (click)="onClickSkill(skill)" *ngFor="let skill of skills">

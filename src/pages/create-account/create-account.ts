@@ -19,10 +19,8 @@ export class CreateAccountPage {
   passwordCtrl: FormControl;
   repeatPasswordCtrl: FormControl;
   passwordForm: FormGroup;
-  question1Ctrl: FormControl;
-  answer1Ctrl: FormControl;
-  question2Ctrl: FormControl;
-  answer2Ctrl: FormControl;
+  questionCtrl: FormControl;
+  answerCtrl: FormControl;
 
   static passwordMatch(group: FormGroup) {
     const password = group.get('password').value;
@@ -43,10 +41,8 @@ export class CreateAccountPage {
       {password: this.passwordCtrl, repeatPassword: this.repeatPasswordCtrl},
       {validator: CreateAccountPage.passwordMatch}
     )
-    this.question1Ctrl = fb.control('', [Validators.required]);
-    this.answer1Ctrl = fb.control('', [Validators.required]);
-    this.question2Ctrl = fb.control('', [Validators.required]);
-    this.answer2Ctrl = fb.control('', [Validators.required]);
+    this.questionCtrl = fb.control('', [Validators.required]);
+    this.answerCtrl = fb.control('', [Validators.required]);
 
     // defin create account form
     this.createAccountForm = fb.group({
@@ -56,10 +52,8 @@ export class CreateAccountPage {
       phoneNumber: this.phoneNumberCtrl,
       email: this.emailCtrl,
       passwordForm: this.passwordForm,
-      question1: this.question1Ctrl,
-      answer1: this.answer1Ctrl,
-      question2: this.question2Ctrl,
-      answer2: this.answer2Ctrl
+      question: this.questionCtrl,
+      answer: this.answerCtrl
     });
   }
 
@@ -70,22 +64,8 @@ export class CreateAccountPage {
     // Formatting body
     let user = _.cloneDeep(this.createAccountForm.value);
     user.password = user.passwordForm.password;
-    user.resetPasswordQuestions = [
-      {
-        question: user.question1,
-        answer: user.answer1
-      },
-      {
-        question: user.question2,
-        answer: user.answer2
-      }
-    ];
     user.birthDate = +new Date(user.birthDate);
     delete(user.passwordForm);
-    delete(user.question1);
-    delete(user.answer1);
-    delete(user.question2);
-    delete(user.answer2);
     this.navCtrl.push(CreateAccountSkillsPage, {user: user});
   }
 }

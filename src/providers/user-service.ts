@@ -6,15 +6,22 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
-export class CreateAccountService {
+export class UserService {
 
   constructor(public http: Http) {
 
   }
 
-  createAccount(body: Object): Observable<any> {
+  createAccount(body: any): Observable<any> {
      let headers = new Headers({ 'Content-Type': 'application/json' });
      return this.http.post("http://httpbin.org/post", JSON.stringify(body), headers)
        .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  // Ask if we can go to reset password screen, check if user exists with the email
+  askForResetPassword(body: any): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    return this.http.post("http://httpbin.org/post", JSON.stringify(body), headers)
+      .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { LoginService } from '../../providers/loginService';
 import { CreateAccountPage } from '../create-account/create-account';
+import { ForgottenPasswordPage } from '../forgotten-password/forgotten-password';
 import { OffersListPage } from '../offers-list/offers-list';
 
 @Component({
@@ -11,6 +12,7 @@ import { OffersListPage } from '../offers-list/offers-list';
 })
 export class LoginPage {
   createAccountPage = CreateAccountPage;
+  forgottenPasswordPage = ForgottenPasswordPage;
 
   form: FormGroup;
 
