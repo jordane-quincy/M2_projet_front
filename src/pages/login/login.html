@@ -1,15 +1,15 @@
 <ion-content padding>
     <ion-grid>
-        <ion-row>
-            <ion-col>
-                <ion-img width="80" height="80" src=""></ion-img>
-            </ion-col>
+        <ion-row align-items-center justify-content-center>
+
+                <ion-img width="200" height="200" src="assets/logo-full.png"></ion-img>
+
         </ion-row>
 
         <form (ngSubmit)="login()" [formGroup]="form">
 
-            <ion-row align-items-center>
-                <ion-col>
+            <ion-row align-items-center justify-content-center>
+                <ion-col col-xs-12 col-sm-6 col-md-4>
                     <ion-item>
                         <ion-label color="primary" stacked>Email universitaire</ion-label>
                         <ion-input type="email" placeholder="" formControlName="email" required></ion-input>
@@ -18,7 +18,7 @@
             </ion-row>
 
             <ion-row align-items-center justify-content-center>
-                <ion-col>
+                <ion-col col-xs-12 col-sm-6 col-md-4>
                       <ion-item>
                         <ion-label color="primary" stacked>Mot de passe</ion-label>
                         <ion-input type="password" placeholder="" formControlName="password" required></ion-input>
@@ -27,23 +27,22 @@
             </ion-row>
 
             <ion-row align-items-center justify-content-center>
-
-                    <button ion-button round col-6 type="submit" [disabled]="form.invalid">Connexion</button>
-
+                    <ion-col col-xs-12 col-sm-6 col-md-4>
+                        <button ion-button col-12 type="submit" [disabled]="form.invalid">Connexion</button>
+                    </ion-col>
             </ion-row>
 
         </form>
 
         <ion-row align-items-center justify-content-center>
-
-                <a [navPush]="createAccountPage">Pas de compte ?</a>
-
+                    <a [navPush]="forgottenPasswordPage">Mot de passe oublié ?</a>
         </ion-row>
 
-        <ion-row align-items-center justify-content-center>
-
-                <a [navPush]="forgottenPasswordPage">Mot de passe oublié ?</a>
-
+        <ion-row align-items-center justify-content-center class="create-account">
+                <span>Vous n'avez pas de compte ?</span>
+                <button ion-button [navPush]="createAccountPage">Créer</button>
         </ion-row>
+
+
     </ion-grid>
 </ion-content>
