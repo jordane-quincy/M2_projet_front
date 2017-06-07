@@ -36,7 +36,7 @@ export class CreateAccountSkillsPage {
         this.navCtrl.push(LoginPage);
       },
       err => {
-        console.log("err");
+        console.log(err);
         this.toastService.presentToast((err || {}).message, "alert");
       }
     );
