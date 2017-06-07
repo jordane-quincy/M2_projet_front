@@ -2,7 +2,23 @@ page-profil {
 
 }
 
+.profile-img{
+  width: 200px;
+  height: 200px;
+}
+
+.name-style{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.birthdate-role-style{
+  font-style: italic;
+  font-size: 16px;
+}
+
 .header{
+  background-color: #f8f8f8;
   font-weight: bold;
 }
 
@@ -11,12 +27,21 @@ page-profil {
 }
 
 .middle{
-  vertical-align: middle;
-  width: 100%;
+  font-size: 13px;
   height: 100%;
   padding: 0px;
+  vertical-align: middle;
+  width: 100%;
 }
 
 .icon-size{
   font-size: 30px;
 }
+
+// ion-row{
+//   border: 1px solid black;
+// }
+//
+// ion-col{
+//   border: 1px solid black;
+// }
