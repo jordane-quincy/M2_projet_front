@@ -21,6 +21,7 @@ import { PendingRequestPage } from '../pages/pending-request/pending-request';
 import { AddOfferPage } from '../pages/add-offer/add-offer';
 import { ProfilePage } from '../pages/profile/profile';
 import { AppointmentPage } from '../pages/appointment/appointment';
+import { AddStudentPage } from '../pages/add-student/add-student';
 
 import { LoginService } from '../providers/loginService';
 import { CreateAccountService } from '../providers/create-account-service';
@@ -48,7 +49,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     AutocompleSkillsComponent,
     AppointmentPage,
     ProfilePage,
-    PendingRequestPage
+    PendingRequestPage,
+    AddStudentPage
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     OfferDetailsPage,
     AppointmentPage,
     NotificationPage,
-    PendingRequestPage
+    PendingRequestPage,
+    AddStudentPage
   ],
   providers: [
     StatusBar,
@@ -88,7 +91,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
       },
       deps: [XHRBackend, RequestOptions, TokenService]
     }
-    
+
   ]
 })
 export class AppModule {}
