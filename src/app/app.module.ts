@@ -26,7 +26,7 @@ import { AppointmentPage } from '../pages/appointment/appointment';
 import { AddStudentPage } from '../pages/add-student/add-student';
 
 import { LoginService } from '../providers/loginService';
-import { CreateAccountService } from '../providers/create-account-service';
+import { UserService } from '../providers/user-service';
 import { CreditService } from '../providers/credit-service';
 import { HttpService } from '../providers/http-service';
 import { TokenService } from '../providers/token-service';
@@ -84,7 +84,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     StatusBar,
     SplashScreen,
     LoginService,
-    CreateAccountService,
+    UserService,
     CreditService,
     ImagePicker,
     HttpService,

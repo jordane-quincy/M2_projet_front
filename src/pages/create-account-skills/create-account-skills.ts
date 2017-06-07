@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CreateAccountService } from '../../providers/create-account-service';
+import { NavController, NavParams } from 'ionic-angular';
+import { UserService } from '../../providers/user-service';
 import * as _ from 'lodash';
 
 @Component({
@@ -13,7 +13,7 @@ export class CreateAccountSkillsPage {
 
   selectedSkills: Object[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private createAccountService: CreateAccountService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
     this.user = _.cloneDeep(navParams.get('user'));
     this.selectedSkills = [];
   }
@@ -26,7 +26,7 @@ export class CreateAccountSkillsPage {
     (this.user.skills || []).map(skill => {
       delete(skill.customSkill);
     });
-    this.createAccountService.createAccount(this.user).subscribe(
+    this.userService.createAccount(this.user).subscribe(
       res => {
         console.log("success");
       },
