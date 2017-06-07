@@ -11,6 +11,7 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
+config.rb
 
 .idea/
 .sass-cache/
@@ -30,6 +31,7 @@ www/build
 www/.gitkeep
 www/index.html
 $RECYCLE.BIN/
+
 
 .DS_Store
 Thumbs.db

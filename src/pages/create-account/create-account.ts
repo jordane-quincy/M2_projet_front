@@ -23,7 +23,6 @@ export class CreateAccountPage {
   answer1Ctrl: FormControl;
   question2Ctrl: FormControl;
   answer2Ctrl: FormControl;
-  skillsCtrl: FormControl;
 
   static passwordMatch(group: FormGroup) {
     const password = group.get('password').value;
@@ -48,7 +47,6 @@ export class CreateAccountPage {
     this.answer1Ctrl = fb.control('', [Validators.required]);
     this.question2Ctrl = fb.control('', [Validators.required]);
     this.answer2Ctrl = fb.control('', [Validators.required]);
-    this.skillsCtrl = fb.control('');
 
     // defin create account form
     this.createAccountForm = fb.group({
@@ -61,8 +59,7 @@ export class CreateAccountPage {
       question1: this.question1Ctrl,
       answer1: this.answer1Ctrl,
       question2: this.question2Ctrl,
-      answer2: this.answer2Ctrl,
-      skills: this.skillsCtrl
+      answer2: this.answer2Ctrl
     });
   }
 
@@ -71,32 +68,24 @@ export class CreateAccountPage {
 
   createAccount() {
     // Formatting body
-    let body = _.cloneDeep(this.createAccountForm.value);
-    body.password = body.passwordForm.password;
-    body.resetPasswordQuestions = [
+    let user = _.cloneDeep(this.createAccountForm.value);
+    user.password = user.passwordForm.password;
+    user.resetPasswordQuestions = [
       {
-        question: body.question1,
-        answer: body.answer1
+        question: user.question1,
+        answer: user.answer1
       },
       {
-        question: body.question2,
-        answer: body.answer2
+        question: user.question2,
+        answer: user.answer2
       }
     ];
-    body.birthDate = +new Date(body.birthDate);
-    delete(body.passwordForm);
-    delete(body.question1);
-    delete(body.answer1);
-    delete(body.question2);
-    delete(body.answer2);
-    this.navCtrl.push(CreateAccountSkillsPage, {body: body})
-    // this.createAccountService.createAccount(body).subscribe(
-    //   res => {
-    //     console.log("success");
-    //   },
-    //   err => {
-    //     console.log("err");
-    //   }
-    // );
+    user.birthDate = +new Date(user.birthDate);
+    delete(user.passwordForm);
+    delete(user.question1);
+    delete(user.answer1);
+    delete(user.question2);
+    delete(user.answer2);
+    this.navCtrl.push(CreateAccountSkillsPage, {user: user});
   }
 }
