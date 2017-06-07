@@ -27,7 +27,6 @@ export class CreateAccountSkillsPage {
     (this.user.skills || []).forEach(element => {
       delete(element.customSkill);
     });
-    console.log(this.user);
     this.userService.createAccount(this.user).subscribe(
       res => {
         console.log("success");
