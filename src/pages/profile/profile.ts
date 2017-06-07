@@ -15,7 +15,8 @@ export class ProfilePage {
       lastname: "DELPECH",
       birthdate: "14/02/1993",
       etudiant: true,
-      title: "M1 TNSI"
+      title: "M1 TNSI",
+      mark: 4
     }]
   }
 
