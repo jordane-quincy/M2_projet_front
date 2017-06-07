@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { AddStudentPage } from '../add-student/add-student';
+
 @Component({
   selector: 'page-user-offers',
   templateUrl: 'user-offers.html',
@@ -14,7 +16,10 @@ export class UserOffersPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserOffers');
+  }
+
+  addStudent(){
+    this.navCtrl.push(AddStudentPage);
   }
 
 }

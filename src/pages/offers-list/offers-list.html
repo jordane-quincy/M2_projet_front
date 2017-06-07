@@ -5,13 +5,13 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
       <ion-item *ngFor="let offer of offersList" (click)="handleOfferClick(offer)" class="offers-list-item">
         <!--<ion-avatar item-start>
           <img padding src="data:image/png;base64,{{offer.icon}}"/>
         </ion-avatar>-->
-        <h2>{{offer.title}}</h2>
+        <h2>{{offer.title}} <span>{{offer.duration}} h</span></h2>
         <p>{{offer.description}}</p>
       </ion-item>
   </ion-list>
