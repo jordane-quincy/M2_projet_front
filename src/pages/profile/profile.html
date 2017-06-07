@@ -18,7 +18,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-col col-12 text-center>{{profil.birthdate}}</ion-col>
+        <ion-col col-12 text-center>{{profil.birthdate}} - {{profil.mark}}</ion-col>
       </ion-row>
     </ion-grid>
 
@@ -53,6 +53,12 @@
               </ion-item>
             </ion-col>
           </ion-row>
+
+          <ion-row>
+            <ion-col col-12 text-right>
+              <ion-icon name="add-circle" color="secondary" class="icon-add"></ion-icon>
+            </ion-col>
+          </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>
@@ -66,7 +72,35 @@
       <ion-icon name="star-outline"></ion-icon>
     </ion-item>
 
-    <!-- COMMENTAIRES -->
+    <!-- AVIS -->
+    <ion-card>
+      <ion-card-header class="header">
+        Avis
+      </ion-card-header>
 
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3 class="no-padding">
+              <ion-item class="middle">4/5</ion-item>
+            </ion-col>
+
+            <ion-col col-9>
+              <ion-item>Super cours, très bien expliqué</ion-item>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-3 class="no-padding">
+              <ion-item class="middle">1/5</ion-item>
+            </ion-col>
+
+            <ion-col col-9>
+              Déçu du contenu du cours
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </ion-item>
 </ion-content>
