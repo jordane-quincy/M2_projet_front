@@ -1,26 +1,28 @@
 <ion-header>
-  
+
   <header-content title="Profil" ></header-content>
-  
+
 </ion-header>
 
 
 <ion-content padding>
   <ion-item *ngFor="let profil of profil">
+    <!-- INFOS PERSO -->
     <ion-grid>
       <ion-row>
-        <ion-col col-12>AVATAR</ion-col>
+        <ion-col col-12 text-center>AVATAR</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-12>{{profil.lastname}} {{profil.firstname}}</ion-col>
+        <ion-col col-12 text-center>{{profil.lastname}} {{profil.firstname}}</ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-col col-12>{{profil.birthdate}}</ion-col>
+        <ion-col col-12 text-center>{{profil.birthdate}}</ion-col>
       </ion-row>
     </ion-grid>
 
+    <!-- COMPETENCES -->
     <ion-card>
       <ion-card-header class="header">
         Compétences
@@ -29,30 +31,42 @@
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col col-3>
-              HTML
+            <ion-col col-3 class="no-padding">
+              <ion-item class="middle">HTML</ion-item>
             </ion-col>
 
             <ion-col col-8>
               <ion-item>
-                <ion-range value="55" step="2"></ion-range>
+                <ion-range value="55" step="2" class="no-padding"></ion-range>
               </ion-item>
             </ion-col>
           </ion-row>
 
           <ion-row>
-            <ion-col col-3>
-              JavaScript
+            <ion-col col-3 class="no-padding">
+              <ion-item class="middle">JavaScript</ion-item>
             </ion-col>
 
             <ion-col col-8>
               <ion-item>
-                <ion-range value="55" step="2"></ion-range>
+                <ion-range value="55" step="2" class="no-padding"></ion-range>
               </ion-item>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-card-content>
     </ion-card>
+
+    <!-- NOTATION -->
+    <ion-item text-center>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star"></ion-icon>
+      <ion-icon name="star-outline"></ion-icon>
+      <ion-icon name="star-outline"></ion-icon>
+    </ion-item>
+
+    <!-- COMMENTAIRES -->
+
   </ion-item>
 </ion-content>
