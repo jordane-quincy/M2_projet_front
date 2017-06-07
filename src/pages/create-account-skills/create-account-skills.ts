@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 
 @Component({
   selector: 'page-create-account-skills',
-  templateUrl: 'create-account-skills.html',
+  templateUrl: 'create-account-skills.html'
 })
 export class CreateAccountSkillsPage {
 

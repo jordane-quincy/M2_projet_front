@@ -1,5 +1,9 @@
 page-offer-details {
 
+    .fixed-content {
+        margin-bottom: 106px;
+    }
+
     h2 span {
         font-weight: 400;
         font-size: 0.8em;
@@ -7,6 +11,13 @@ page-offer-details {
         position: relative;
         top: -1px;
         margin-left: 10px;
+    }
+
+    .subscribe {
+        position: fixed;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
 }

@@ -14,6 +14,33 @@ export class OffersListPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.offersList = [{
       title: 'title',
+      description: 'description description description description description description description description description description description description description description description description description description description description description',
+      duration: 1
+    },
+    {
+      title: "autre title",
+      description: 'autre description',
+      duration: 2
+    },{
+      title: 'title',
+      description: 'description',
+      duration: 1
+    },
+    {
+      title: "autre title",
+      description: 'autre description',
+      duration: 2
+    },{
+      title: 'title',
+      description: 'description description description description description description description description description description description description description description description description description description description description description',
+      duration: 1
+    },
+    {
+      title: "autre title",
+      description: 'autre description',
+      duration: 2
+    },{
+      title: 'title',
       description: 'description',
       duration: 1
     },
