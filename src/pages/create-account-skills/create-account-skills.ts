@@ -22,11 +22,23 @@ export class CreateAccountSkillsPage {
   ionViewDidLoad() {
   }
 
-  presentToast(message: string) {
+  presentSuccessToast(message: string) {
     let toast = this.toastCtrl.create({
       message: message,
       duration: 3000,
-      position: "top"
+      position: "top",
+      cssClass: "toast-success"
+    });
+    toast.present();
+  }
+
+  presentErrorToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      showCloseButton: true,
+      closeButtonText: 'Ok',
+      position: "top",
+      cssClass: "toast-alert"
     });
     toast.present();
   }
@@ -36,12 +48,13 @@ export class CreateAccountSkillsPage {
     this.userService.createAccount(this.user).subscribe(
       res => {
         console.log("success");
-        this.presentToast("Votre compte a été créé, validez-le avec le lien dans l'email qui vous a été envoyé");
+        this.presentSuccessToast("Votre compte a été créé, validez-le avec le lien dans l'email qui vous a été envoyé");
         // redirect to login page
         this.navCtrl.push(LoginPage);
       },
       err => {
         console.log("err");
+        this.presentErrorToast((err || {}).message);
       }
     );
   }

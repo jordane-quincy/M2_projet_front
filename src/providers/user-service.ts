@@ -14,7 +14,7 @@ export class UserService {
 
   createAccount(body: any): Observable<any> {
      let headers = new Headers({ 'Content-Type': 'application/json' });
-     return this.http.post("http://httpbin.org/post", JSON.stringify(body), headers)
+     return this.http.post("https://httpbin.org/post", JSON.stringify(body), headers)
        .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 

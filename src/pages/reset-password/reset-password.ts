@@ -43,11 +43,23 @@ export class ResetPasswordPage {
   ionViewDidLoad() {
   }
 
-  presentToast(message: string) {
+  presentSuccessToast(message: string) {
     let toast = this.toastCtrl.create({
       message: message,
       duration: 3000,
-      position: "top"
+      position: "top",
+      cssClass: "toast-success"
+    });
+    toast.present();
+  }
+
+  presentErrorToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      showCloseButton: true,
+      closeButtonText: 'Ok',
+      position: "top",
+      cssClass: "toast-alert"
     });
     toast.present();
   }
@@ -60,15 +72,13 @@ export class ResetPasswordPage {
     // send the new password to the back
     this.userService.resetPassword(body).subscribe(
       res => {
-        // Success, get the question in the response
-        console.log("success");
-        this.presentToast("Mot de passe réinitialisé");
+        this.presentSuccessToast("Mot de passe réinitialisé");
         //redirect to the loginPage
         this.navCtrl.push(LoginPage);
       },
       err => {
         // Error, bad answer or error server
-        console.log("err");
+        this.presentErrorToast((err || {}).message);
       }
     );
   }
