@@ -10,4 +10,42 @@
     <ion-label color="primary" stacked>Mots clés</ion-label>
     <ion-input type="text"></ion-input>
   </ion-item>
+
+  <ion-item>
+    <ion-label>Domaines</ion-label>
+    <ion-select [(ngModel)]="domaines" multiple="true" cancelText="Annuler" okText="Ok">>
+      <ion-option value="informatique">Informatiques</ion-option>
+      <ion-option value="sciences">Sciences</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Matières</ion-label>
+    <ion-select [(ngModel)]="matieres" multiple="true" cancelText="Annuler" okText="Ok">>
+      <ion-option value="informatique">Informatique</ion-option>
+      <ion-option value="mathematiques">Mathématiques</ion-option>
+      <ion-option value="francais">Français</ion-option>
+      <ion-option value="physique">Physique</ion-option>
+      <ion-option value="chimie">Chimie</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" [(ngModel)]="structure">
+      <ion-label range-left>Durée | {{structure.lower}}h </ion-label>
+      <ion-label range-right> {{structure.upper}}h</ion-label>
+    </ion-range>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Enseignant</ion-label>
+    <ion-toggle checked="true"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Etudiant</ion-label>
+    <ion-toggle checked="true"></ion-toggle>
+  </ion-item>
+
+  <button ion-button full>Rechercher</button>
 </ion-content>
