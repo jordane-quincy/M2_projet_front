@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content padding>
+
   <ion-list>
    <ion-list-header>
     Cours à donner
@@ -19,12 +20,13 @@
         {{appointment.date}} de {{appointment.start}}h - {{appointment.end}}h
      </ion-item>
      <ion-item-options class="options">
-       <button ion-button color="danger" icon-left (click)="showConfirm()">
+       <button ion-button color="danger" icon-left (click)="showConfirmDelete(apointment.id)">
          <ion-icon name="trash" large></ion-icon>
        </button>
      </ion-item-options>
    </ion-item-sliding>
   </ion-list>
+
   <ion-list>
     <ion-list-header>
      Cours à suivre
@@ -42,10 +44,11 @@
         <button ion-button color="secondary" icon-left (click)="showConfirmValid(appointment.price)">
           <ion-icon name="checkmark" large></ion-icon>
         </button>
-        <button ion-button color="danger" icon-left (click)="showConfirmDelete()">
+        <button ion-button color="danger" icon-left (click)="showConfirmDelete(apointment.id)">
           <ion-icon name="trash" large></ion-icon>
         </button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
 </ion-content>

@@ -21,10 +21,10 @@ export class NotificationPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationPage');
+
   }
 
-    handleNotifClick(): void {
+  handleNotifClick(): void {
     console.log('click');
   }
 

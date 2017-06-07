@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { LoginPage } from '../login/login';
 import { ProfilePage } from '../profile/profile';
 import { UserOffersPage } from '../user-offers/user-offers';
 import { PendingRequestPage } from '../pending-request/pending-request';
@@ -40,6 +39,10 @@ export class MenuPage {
 
   openPagePendingRequest(){
     this.navCtrl.push(PendingRequestPage);
+  }
+
+  openPage(page: any): void {
+    this.navCtrl.push(page);
   }
 
   exit(){
