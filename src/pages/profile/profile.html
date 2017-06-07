@@ -1,58 +1,158 @@
 <ion-header>
-  
+
   <header-content title="Profil" ></header-content>
-  
+
 </ion-header>
 
 
 <ion-content padding>
-  <ion-item *ngFor="let profil of profil">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-12>AVATAR</ion-col>
-      </ion-row>
+  <!-- INFOS PERSO -->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <div *ngIf="!profile.picture; else userPicture"><ion-img src="assets/blanc.png" class="profile-img"></ion-img></div>
+        <template #userPicture><ion-img [src]=profile.picture class="profile-img"></ion-img></template>
+      </ion-col>
+    </ion-row>
 
-      <ion-row>
-        <ion-col col-12>{{profil.lastname}} {{profil.firstname}}</ion-col>
-      </ion-row>
+    <ion-row>
+      <ion-col col-12 text-center class="name-style">{{profile.lastname}} {{profile.firstname}}</ion-col>
+    </ion-row>
 
-      <ion-row>
-        <ion-col col-12>{{profil.birthdate}}</ion-col>
-      </ion-row>
-    </ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center class="birthdate-role-style">{{profile.birthdate}}</ion-col>
+    </ion-row>
 
-    <ion-card>
-      <ion-card-header class="header">
-        Compétences
-      </ion-card-header>
+    <ion-row>
+      <ion-col col-12 text-center class="birthdate-role-style">{{profile.role}} {{profile.roleTitle}}</ion-col>
+    </ion-row>
+  </ion-grid>
 
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col col-3>
-              HTML
-            </ion-col>
+  <!-- COMPETENCES -->
+  <ion-card>
+    <ion-card-header class="header">
+      Compétences
+    </ion-card-header>
 
-            <ion-col col-8>
-              <ion-item>
-                <ion-range value="55" step="2"></ion-range>
-              </ion-item>
-            </ion-col>
-          </ion-row>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row *ngFor="let competence of profile.competences">
+          <ion-col col-4 class="no-padding">
+            <ion-item class="middle">{{ competence.name }}</ion-item>
+          </ion-col>
 
-          <ion-row>
-            <ion-col col-3>
-              JavaScript
-            </ion-col>
+          <ion-col col-8>
+            <ion-item>
+              <ion-range min="0" max="100" step="1" pin="true" disabled [(ngModel)]="competence.value" class="no-padding"></ion-range>
+            </ion-item>
+          </ion-col>
+        </ion-row>
 
-            <ion-col col-8>
-              <ion-item>
-                <ion-range value="55" step="2"></ion-range>
-              </ion-item>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
+        <ion-row>
+          <ion-col col-12 text-right>
+            <ion-icon name="add-circle" color="secondary" class="icon-size" (click)="addCompetences()"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- NOTATION -->
+  <ion-item text-center>
+    <!-- Etoile 1 -->
+    <span [ngSwitch]="profile.stars[0]">
+      <span *ngSwitchCase="1">
+        <ion-icon name="star" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchCase="0.5">
+        <ion-icon name="star-half" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchDefault>
+        <ion-icon name="star-outline" class="icon-size"></ion-icon>
+      </span>
+    </span>
+
+    <!-- Etoile 2 -->
+    <span [ngSwitch]="profile.stars[1]">
+      <span *ngSwitchCase="1">
+        <ion-icon name="star" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchCase="0.5">
+        <ion-icon name="star-half" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchDefault>
+        <ion-icon name="star-outline" class="icon-size"></ion-icon>
+      </span>
+    </span>
+
+    <!-- Etoile 3 -->
+    <span [ngSwitch]="profile.stars[2]">
+      <span *ngSwitchCase="1">
+        <ion-icon name="star" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchCase="0.5">
+        <ion-icon name="star-half" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchDefault>
+        <ion-icon name="star-outline" class="icon-size"></ion-icon>
+      </span>
+    </span>
+
+    <!-- Etoile 4 -->
+    <span [ngSwitch]="profile.stars[3]">
+      <span *ngSwitchCase="1">
+        <ion-icon name="star" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchCase="0.5">
+        <ion-icon name="star-half" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchDefault>
+        <ion-icon name="star-outline" class="icon-size"></ion-icon>
+      </span>
+    </span>
+
+    <!-- Etoile 5 -->
+    <span [ngSwitch]="profile.stars[4]">
+      <span *ngSwitchCase="1">
+        <ion-icon name="star" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchCase="0.5">
+        <ion-icon name="star-half" class="icon-size"></ion-icon>
+      </span>
+
+      <span *ngSwitchDefault>
+        <ion-icon name="star-outline" class="icon-size"></ion-icon>
+      </span>
+    </span>
   </ion-item>
+
+  <!-- AVIS -->
+  <ion-card>
+    <ion-card-header class="header">
+      Avis
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row *ngFor="let comment of profile.comments">
+          <ion-col col-2>
+            {{ comment.mark }}
+          </ion-col>
+
+          <ion-col col-10>
+            {{ comment.comment }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
