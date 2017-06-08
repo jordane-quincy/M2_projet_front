@@ -94,7 +94,7 @@ export class OfferService {
 
   getOffersByFilters(body: any): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/offer/filter`;
-    return this.http.get(httpAddress, JSON.stringify(body))
+    return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
   }
