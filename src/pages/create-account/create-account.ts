@@ -69,7 +69,7 @@ export class CreateAccountPage {
     }
     this.validatePasswordCtrl = fb.control('', validatorsForValidatePassword)
 
-    this.formationList = ["L3-Info", "M2 TNSI-FA", "M2-TNSI-FI"];
+    this.formationList = [{id: 1, label: "L3-Info"}, {id: 2, label: "M2-TNSI-FA"}, {id: 3, label: "M2-TNSI-FI"}];
 
 
     // defin create account form
@@ -95,7 +95,9 @@ export class CreateAccountPage {
     user.password = user.passwordForm.password;
     user.birthdate = +new Date(user.birthdate);
     let validatePassword = user.validatePassword;
+    user.formationId = user.formation;
     delete(user.validatePassword);
+    delete(user.formation);
     delete(user.passwordForm);
     if (this.isUpdating) {
       // update the account

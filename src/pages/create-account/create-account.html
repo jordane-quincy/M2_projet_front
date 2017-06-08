@@ -79,7 +79,7 @@
                 <ion-item>
                   <ion-label>Formation</ion-label>
                   <ion-select submitText="Okay" cancelText="Cancel" formControlName="formation">
-                    <ion-option *ngFor="let form of formationList" [value]="form">{{form}}</ion-option>
+                    <ion-option *ngFor="let form of formationList" [value]="form.id">{{form.label}}</ion-option>
                   </ion-select>
                 </ion-item>
               </ion-col>

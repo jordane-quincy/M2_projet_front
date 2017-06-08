@@ -23,9 +23,8 @@ export class CreateAccountSkillsPage {
   }
 
   createAccount() {
-    this.user.skills = _.cloneDeep(this.selectedSkills);
-    (this.user.skills || []).forEach(element => {
-      delete(element.customSkill);
+    this.user.skills = (_.cloneDeep(this.selectedSkills) || []).map(element => {
+      return element.skillLabel;
     });
     this.userService.createAccount(this.user).subscribe(
       res => {
