@@ -15,7 +15,7 @@ export class OffersListPage {
   offersList: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private offerservice: OfferService, public toastService: ToastService) {
-    
+
   }
 
   ionViewDidLoad() {
@@ -25,7 +25,8 @@ export class OffersListPage {
   getOfferList(){
     this.offerservice.getAllOffers().subscribe(
       result => {
-        this.offersList = result;        
+        this.offersList = result;
+        console.log(result);
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
