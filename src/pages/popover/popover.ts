@@ -29,11 +29,11 @@ export class PopoverPage {
       {
         connectedUser: {
           "id": 123,
-          "lastname":"Duriez",
-          "firstname":"Jean-Baptiste",
-          "birthdate":781401600000,
+          "userName":"Duriez",
+          "userfirstName":"Jean-Baptiste",
+          "birthday":781401600000,
           "phoneNumber":"0668554964",
-          "email":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
+          "userMail":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
           "question":"Nom de la mère",
           "answer":"Lemaire",
           "formation":{"id":2,"level":"L2","name":"Licence Arts"},

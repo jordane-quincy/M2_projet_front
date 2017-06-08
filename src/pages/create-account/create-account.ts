@@ -13,11 +13,11 @@ import { ProfilePage } from '../profile/profile';
 
 export class CreateAccountPage {
   createAccountForm: FormGroup;
-  lastnameCtrl: FormControl;
-  firstnameCtrl: FormControl;
-  birthdateCtrl: FormControl;
+  userNameCtrl: FormControl;
+  userfirstNameCtrl: FormControl;
+  birthdayCtrl: FormControl;
   phoneNumberCtrl: FormControl;
-  emailCtrl: FormControl;
+  userMailCtrl: FormControl;
   passwordCtrl: FormControl;
   repeatPasswordCtrl: FormControl;
   validatePasswordCtrl: FormControl;
@@ -42,18 +42,18 @@ export class CreateAccountPage {
     this.connectedUser = _.cloneDeep(user);
     this.isUpdating = !!user;
     // Define control
-    this.lastnameCtrl = fb.control(_.get(user, "lastname", ""), Validators.required);
-    this.firstnameCtrl = fb.control(_.get(user, "firstname", ""), Validators.required);
-    let userBirthDateTimestamp = _.get(user, "birthdate", false);
-    let userBirthDateObject = !!userBirthDateTimestamp ? new Date(userBirthDateTimestamp) : false;
-    this.birthdateCtrl = fb.control(
-      !!userBirthDateObject ?
-        userBirthDateObject.toISOString()
+    this.userNameCtrl = fb.control(_.get(user, "userName", ""), Validators.required);
+    this.userfirstNameCtrl = fb.control(_.get(user, "userfirstName", ""), Validators.required);
+    let userbirthdayTimestamp = _.get(user, "birthday", false);
+    let userbirthdayObject = !!userbirthdayTimestamp ? new Date(userbirthdayTimestamp) : false;
+    this.birthdayCtrl = fb.control(
+      !!userbirthdayObject ?
+        userbirthdayObject.toISOString()
         :
         ""
     );
     this.phoneNumberCtrl = fb.control(_.get(user, "phoneNumber", ""));
-    this.emailCtrl =  fb.control(_.get(user, "email", ""), [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]);
+    this.userMailCtrl = fb.control({value: _.get(user, "userMail", ""), disabled: this.isUpdating}, [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]);
     let validatorsForPassword = [];
     if (!this.isUpdating) {
       validatorsForPassword = [Validators.required];
@@ -78,11 +78,11 @@ export class CreateAccountPage {
 
     // defin create account form
     this.createAccountForm = fb.group({
-      lastname: this.lastnameCtrl,
-      firstname: this.firstnameCtrl,
-      birthdate: this.birthdateCtrl,
+      userName: this.userNameCtrl,
+      userfirstName: this.userfirstNameCtrl,
+      birthday: this.birthdayCtrl,
       phoneNumber: this.phoneNumberCtrl,
-      email: this.emailCtrl,
+      userMail: this.userMailCtrl,
       passwordForm: this.passwordForm,
       question: this.questionCtrl,
       answer: this.answerCtrl,
@@ -118,7 +118,7 @@ export class CreateAccountPage {
   createAccount() {
     let user = _.cloneDeep(this.createAccountForm.value);
     user.password = user.passwordForm.password;
-    user.birthdate = +new Date(user.birthdate);
+    user.birthday = +new Date(user.birthday);
     let validatePassword = user.validatePassword;
     user.formationId = user.formation;
     delete(user.validatePassword);
@@ -128,7 +128,7 @@ export class CreateAccountPage {
       // update the account
       user.id = this.connectedUser.id;
       if (!user.password) {
-        delete(user.password);
+        //delete(user.password);
       }
       user.skills = (this.connectedUser.skills || []).map(skill => {
         return skill.label;
