@@ -102,12 +102,7 @@ export class CreateAccountPage {
     this.formationService.getFormations().subscribe(
       res => {
         // initiate this.formationList with the response
-        this.formationList = (_.cloneDeep(res) || []).map(formation => {
-          return {
-            id: formation.id,
-            label: formation.level + " - " + formation.name
-          };
-        });
+        this.formationList = (_.cloneDeep(res) || []);
       },
       err => {
         this.toastService.presentToast((err || {}).message, "alert");
