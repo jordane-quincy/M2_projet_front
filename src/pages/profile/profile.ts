@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PopoverController, NavController, NavParams } from 'ionic-angular';
-
+import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills';
 import { PopoverPage } from '../popover/popover';
 
 @Component({
@@ -14,9 +14,9 @@ export class ProfilePage {
     // Initialisation du profil
     this.profile = {
       picture: "",
-      firstname: "",
-      lastname: "",
-      birthdate: "",
+      userfirstName: "",
+      userName: "",
+      birthday: "",
       role: "",
       roleTitle: "",
       skills: [
@@ -44,9 +44,9 @@ export class ProfilePage {
 
     // Définition du profil
     this.profile.picture = "assets/logo.png";
-    this.profile.firstname = "Clément";
-    this.profile.lastname = "DELPECH";
-    this.profile.birthdate = "14/02/1993";
+    this.profile.userfirstName = "Clément";
+    this.profile.userName = "DELPECH";
+    this.profile.birthday = "14/02/1993";
     this.profile.role = "Etudiant";
     this.profile.roleTitle = "M1 TNSI";
 
