@@ -7,3 +7,4 @@ export * from './auth-service';
 export * from './formation-service';
 export * from './offer-service';
 export * from './skill-service';
+export * from './domains-service';

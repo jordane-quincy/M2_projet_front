@@ -14,29 +14,26 @@
 
     <ion-item>
       <ion-label>Domaines</ion-label>
-      <ion-select multiple="true" cancelText="Annuler" okText="Ok" formControlName="domaines">
-        <ion-option value="informatique">Informatique</ion-option>
-        <ion-option value="mathematiques">Mathématiques</ion-option>
-        <ion-option value="francais">Français</ion-option>
-        <ion-option value="sciences">Sciences</ion-option>
+      <ion-select multiple="true" cancelText="Annuler" okText="Ok" formControlName="domains">
+        <ion-option *ngFor="let domain of domainsList" [value]="domain.id">{{domain.domainName}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" formControlName="duration" onChange="changeLabel()">
+      <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" formControlName="duration">
         <ion-label range-left>Durée | {{searchFilters.value.duration.lower}}h </ion-label>
         <ion-label range-right> {{searchFilters.value.duration.upper}}h</ion-label>
       </ion-range>
     </ion-item>
 
     <ion-item>
-      <ion-label>Enseignant</ion-label>
-      <ion-toggle checked="true" formControlName="teacher"></ion-toggle>
+      <ion-label>Enseignant </ion-label>
+      <ion-toggle checked="true" formControlName="teacher" (ionChange)="changeRoles()"></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-label>Etudiant</ion-label>
-      <ion-toggle checked="true" formControlName="studient"></ion-toggle>
+      <ion-toggle checked="true" formControlName="studient" (ionChange)="changeRoles()"></ion-toggle>
     </ion-item>
 
     <button ion-button full type="submit">Rechercher</button>
