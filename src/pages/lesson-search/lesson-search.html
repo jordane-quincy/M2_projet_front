@@ -14,7 +14,7 @@
 
     <ion-item>
       <ion-label>Domaines</ion-label>
-      <ion-select [(ngModel)]="domaines" multiple="true" cancelText="Annuler" okText="Ok">>
+      <ion-select multiple="true" cancelText="Annuler" okText="Ok" formControlName="domaines">
         <ion-option value="informatique">Informatique</ion-option>
         <ion-option value="mathematiques">Mathématiques</ion-option>
         <ion-option value="francais">Français</ion-option>
@@ -23,9 +23,11 @@
     </ion-item>
 
     <ion-item>
-      <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" [(ngModel)]="structure">
-        <ion-label range-left>Durée | {{structure.lower}}h </ion-label>
-        <ion-label range-right> {{structure.upper}}h</ion-label>
+      <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" formControlName="duration">
+        <!-- <ion-label range-left>Durée | {{duration.lower}}h </ion-label>
+        <ion-label range-right> {{duration.upper}}h</ion-label> -->
+        <ion-label range-left>Durée</ion-label>
+        <ion-label range-right></ion-label>
       </ion-range>
     </ion-item>
 
@@ -39,6 +41,6 @@
       <ion-toggle checked="true"></ion-toggle>
     </ion-item>
 
-    <button ion-button full>Rechercher</button>
+    <button ion-button full type="submit">Rechercher</button>
   </form>
 </ion-content>
