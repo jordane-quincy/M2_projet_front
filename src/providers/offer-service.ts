@@ -14,9 +14,44 @@ export class OfferService {
 
   }
 
-  getOffers(): Observable<any> {
+  getUserOffers(): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/offer/list`;
     return this.http.get(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  getAllOffers(): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/offer/list`;
+    return this.http.get(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  getDomaines(): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/domain/list`
+    return this.http.get(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  getAppointment(): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/sub/subscriptions`
+    return this.http.get(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+   deleteOffer(id: number): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/offer/delete/`+id;
+    return this.http.delete(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  createOffer(body: any): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/offer/create`;
+    return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
   }

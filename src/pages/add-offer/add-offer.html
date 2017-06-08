@@ -7,9 +7,9 @@
 <ion-content padding>
   <ion-grid>
 		<form (ngSubmit)="add()" [formGroup]="form">
-			<ion-row align-items-center justify-content-center>
+			<!-- <ion-row align-items-center justify-content-center>
 				<button ion-button round col-6 type="button" (click)="getPic()">Ajouter une image</button>
-			</ion-row>
+			</ion-row> -->
 			<ion-row align-items-center>
 				<ion-col>
 					<ion-item>
@@ -33,6 +33,17 @@
 					<ion-item>
 						<ion-label color="primary" stacked>Durée : {{form.get('duration').value}} heure(s)</ion-label>
 						<ion-range value="1" step="1" max="5" formControlName="duration" snaps="true"></ion-range>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+
+			<ion-row align-items-center>
+				<ion-col>
+					<ion-item>
+						<ion-label color="primary" stacked>Domaine</ion-label>
+						<ion-select submitText="Ok" cancelText="Annuler" formControlName="domainId">
+					                    <ion-option *ngFor="let domaine of domaineList" [value]="domaine.id">{{domaine.label}}</ion-option>
+					            </ion-select>
 					</ion-item>
 				</ion-col>
 			</ion-row>
