@@ -23,11 +23,9 @@ export class CreateAccountSkillsPage {
   }
 
   createAccount() {
-    this.user.skills = _.cloneDeep(this.selectedSkills);
-    (this.user.skills || []).forEach(element => {
-      delete(element.customSkill);
+    this.user.skills = (_.cloneDeep(this.selectedSkills) || []).map(element => {
+      return element.skillLabel;
     });
-    console.log(this.user);
     this.userService.createAccount(this.user).subscribe(
       res => {
         console.log("success");
@@ -36,7 +34,7 @@ export class CreateAccountSkillsPage {
         this.navCtrl.push(LoginPage);
       },
       err => {
-        console.log("err");
+        console.log(err);
         this.toastService.presentToast((err || {}).message, "alert");
       }
     );

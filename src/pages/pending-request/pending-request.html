@@ -5,28 +5,12 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
-    <ion-item-sliding>
-      <ion-item>Penelope Fillon - Finance</ion-item>
+    <ion-item-sliding *ngFor='let request of pendingRequests'>
+      <ion-item>{{request.title}}</ion-item>
       <ion-item-options class="options">
-        <button ion-button color="danger" icon-left (click)="showConfirm()">
-          <ion-icon name="trash" large></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <ion-item>Bill Gates - HTML/CSS/JS</ion-item>
-      <ion-item-options class="options">
-        <button ion-button color="danger" icon-left (click)="showConfirm()">
-          <ion-icon name="trash" large></ion-icon>
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <ion-item>Google Chrome - AngularJS</ion-item>
-      <ion-item-options class="options">
-        <button ion-button color="danger" icon-left (click)="showConfirm()">
+        <button ion-button color="danger" icon-left (click)="showConfirm(request.id)">
           <ion-icon name="trash" large></ion-icon>
         </button>
       </ion-item-options>
