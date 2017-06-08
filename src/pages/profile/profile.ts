@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PopoverController, NavController, NavParams } from 'ionic-angular';
-
+import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills';
 import { PopoverPage } from '../popover/popover';
 
 @Component({

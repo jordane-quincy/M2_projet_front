@@ -61,7 +61,7 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Email</ion-label>
-                            <ion-input type="email" formControlName="email"></ion-input>
+                            <ion-input disabled={{isUpdating}} type="email" formControlName="email"></ion-input>
                         </ion-item>
                         <div class="input-error" *ngIf="emailCtrl.touched && emailCtrl.hasError('required')">
                             L'email est requis

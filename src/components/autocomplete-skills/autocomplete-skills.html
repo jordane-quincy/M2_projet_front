@@ -22,7 +22,7 @@
           <ion-col col-12 col-md-6>
             <ion-item>
               <ion-label color="primary" stacked>Compétence {{i + 1}}</ion-label>
-              <ion-input readonly="{{!selectedSkill.customSkill}}" type="text" (ngModelChange)="emitUpdateEvent()" [(ngModel)]="selectedSkill.skillLabel"></ion-input>
+              <ion-input readonly="{{!selectedSkill.customSkill}}" type="text" (ngModelChange)="emitUpdateEvent()" [(ngModel)]="selectedSkill.label"></ion-input>
             </ion-item>
           </ion-col>
           <ion-icon (click)="deleteSkillFromList(i)" class="delete-icon" name="close"></ion-icon>
