@@ -138,7 +138,7 @@
               <br/>
               <ion-item>
                 <ion-label color="primary" stacked>Donnez votre mot de passe pour validation</ion-label>
-                <ion-input type="text" formControlName="validatePassword"></ion-input>
+                <ion-input type="password" formControlName="validatePassword"></ion-input>
               </ion-item>
               <div class="input-error" *ngIf="validatePasswordCtrl.touched && validatePasswordCtrl.hasError('required')">
                 Le mot de passe pour valider la modification de compte est requise
