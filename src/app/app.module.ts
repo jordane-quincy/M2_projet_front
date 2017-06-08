@@ -17,7 +17,6 @@ import { NotificationPage } from '../pages/notification/notification';
 import { TabsPage } from '../pages/tabs/tabs';
 import { MenuPage } from '../pages/menu/menu';
 import { LoginPage } from '../pages/login/login';
-import { OffersListPage } from '../pages/offers-list/offers-list';
 import { OfferDetailsPage } from '../pages/offer-details/offer-details';
 import { UserOffersPage } from '../pages/user-offers/user-offers';
 import { PendingRequestPage } from '../pages/pending-request/pending-request';
@@ -54,7 +53,6 @@ import { DomainsService } from '../providers/domains-service';
     CreateAccountSkillsPage,
     ForgottenPasswordPage,
     ResetPasswordPage,
-    OffersListPage,
     UserOffersPage,
     AddOfferPage,
     OfferDetailsPage,
@@ -84,7 +82,6 @@ import { DomainsService } from '../providers/domains-service';
     CreateAccountSkillsPage,
     ForgottenPasswordPage,
     ResetPasswordPage,
-    OffersListPage,
     UserOffersPage,
     AddOfferPage,
     ProfilePage,

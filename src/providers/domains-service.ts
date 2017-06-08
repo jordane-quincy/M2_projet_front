@@ -7,12 +7,6 @@ import 'rxjs/add/operator/catch';;
 
 import { environment } from '../constants/constants';
 
-/*
-  Generated class for the DomainsServiceProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
 @Injectable()
 export class DomainsService {
 

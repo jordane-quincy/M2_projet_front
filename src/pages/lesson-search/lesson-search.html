@@ -46,4 +46,25 @@
 
     <button ion-button full type="submit" [disabled]="!searchFilters.value.teacher && !searchFilters.value.student">Rechercher</button>
   </form>
+
+  <ion-row *ngIf="offersList?.length > 0; else emptyMessage">
+    <ion-col col-xs-12 col-sm-6 col-md-4 col-12 *ngFor="let offer of offersList" (click)="handleOfferClick(offer)">
+    <ion-card class="offers-list-item">
+      <ion-card-header>
+        <ion-item class="no-padding">
+          {{offer.title}}
+          <ion-badge item-end>{{offer.duration}} h</ion-badge>
+        </ion-item>
+      </ion-card-header>
+      <ion-card-content text-nowrap>
+        {{offer.description}}
+      </ion-card-content>
+    </ion-card>
+    </ion-col>
+  </ion-row>
+
+  <ng-template #emptyMessage>
+    Aucune offre ne correspond à vos critères de recherche.
+  </ng-template>
+
 </ion-content>
