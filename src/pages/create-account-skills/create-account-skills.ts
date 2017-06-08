@@ -51,6 +51,7 @@ export class CreateAccountSkillsPage {
         res => {
           this.toastService.presentToast("Votre compte a été mis à jour", "success");
           this.loaderService.dismissLoader();
+          this.userService.setUser(res);
           this.navCtrl.pop();
         },
         err => {
