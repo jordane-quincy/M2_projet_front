@@ -20,7 +20,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" formControlName="duration">
+      <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" formControlName="duration" class="no-padding">
         <ion-label range-left>Durée | {{searchFilters.value.duration.lower}}h </ion-label>
         <ion-label range-right> {{searchFilters.value.duration.upper}}h</ion-label>
       </ion-range>
@@ -28,14 +28,16 @@
 
     <ion-item>
       <ion-label>Enseignant </ion-label>
-      <ion-toggle checked="true" formControlName="teacher" (ionChange)="changeRoles()"></ion-toggle>
+      <ion-toggle checked="true" formControlName="teacher"></ion-toggle>
     </ion-item>
 
     <ion-item>
       <ion-label>Etudiant</ion-label>
-      <ion-toggle checked="true" formControlName="studient" (ionChange)="changeRoles()"></ion-toggle>
+      <ion-toggle checked="true" formControlName="student"></ion-toggle>
     </ion-item>
 
-    <button ion-button full type="submit">Rechercher</button>
+    <ion-label *ngIf="!searchFilters.value.teacher && !searchFilters.value.student" color="danger" text-center>Merci de choisir étudiant, professeur ou les deux</ion-label>
+
+    <button ion-button full type="submit" [disabled]="!searchFilters.value.teacher && !searchFilters.value.student">Rechercher</button>
   </form>
 </ion-content>

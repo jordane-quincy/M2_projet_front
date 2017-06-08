@@ -21,7 +21,8 @@ export class LessonSearchPage {
       domains: fb.control(this.domainsList),
       duration: fb.control({ lower: 1, upper: 5 }),
       teacher: fb.control(true),
-      studient: fb.control(true),
+      student: fb.control(true),
+      minavggrade: 0
     });
 
     this.domainsService.getDomainsList().subscribe(
@@ -36,7 +37,8 @@ export class LessonSearchPage {
           domains: fb.control(this.domainsListChecked),
           duration: fb.control({ lower: 1, upper: 5 }),
           teacher: fb.control(true),
-          studient: fb.control(true),
+          student: fb.control(true),
+          minavggrade: 0
         });
       },
       error => {
@@ -48,11 +50,5 @@ export class LessonSearchPage {
 
   startSearch(): void {
     console.log(this.searchFilters.value);
-  }
-
-  changeRoles(): void {
-    if(this.searchFilters.value.teacher == false && this.searchFilters.value.student == false){
-      this.searchFilters.value.teacher = true;
-    }
   }
 }
