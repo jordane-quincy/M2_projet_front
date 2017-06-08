@@ -10,10 +10,10 @@ export class OfferDetailsPage {
 
   offer: any;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              private offerService: OfferService, 
-              private toastService: ToastService, 
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private offerService: OfferService,
+              private toastService: ToastService,
               private userService: UserService,
               private loaderService: LoaderService,
               private alertCtrl: AlertController) {
@@ -22,7 +22,6 @@ export class OfferDetailsPage {
     }
   }
 
-<<<<<<< HEAD
   ionViewDidLoad() {
 
   }
@@ -68,17 +67,6 @@ export class OfferDetailsPage {
     return stars;
   }
 
-  subscribe(id: number){
-    var body = {"IdOffer": id};
-    this.offerService.subscribeOffer(body).subscribe(
-      res => {
-        this.toastService.presentToast("Demande envoyée", "success");
-      },
-      err => {
-        this.toastService.presentToast((err || {}).message, "alert");
-      }
-    );
-=======
   subscribe(id: number) {
     let body: any = {"IdOffer": id};
     let alert = this.alertCtrl.create({
@@ -104,13 +92,13 @@ export class OfferDetailsPage {
                 this.loaderService.dismissLoader();
               }
             );
-            
+
           }
         }
       ]
     });
     alert.present();
->>>>>>> d0c0f759377ee026eda143ab65ea3129d2fa7895
+
   }
 
 }
