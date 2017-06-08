@@ -22,3 +22,7 @@
 .toast-success .toast-wrapper{
   background-color: color($colors, secondary);
 }
+
+.platform-ios.platform-cordova:not(.fullscreen) .search-bar {
+     margin-top: 20px;
+}
