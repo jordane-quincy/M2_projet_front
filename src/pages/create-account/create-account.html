@@ -18,7 +18,7 @@
             <ion-row align-items-center justify-content-center>
                   <ion-col>
                         <ion-item>
-                            <ion-label color="primary" stacked>Nom</ion-label>
+                            <ion-label color="primary" stacked>Nom *</ion-label>
                             <ion-input type="text" formControlName="userName"></ion-input>
                         </ion-item>
                         <div class="input-error" *ngIf="userNameCtrl.touched && userNameCtrl.hasError('required')">
@@ -30,7 +30,7 @@
             <ion-row align-items-center justify-content-center>
                   <ion-col>
                         <ion-item>
-                            <ion-label color="primary" stacked>Prénom</ion-label>
+                            <ion-label color="primary" stacked>Prénom *</ion-label>
                             <ion-input type="text" formControlName="userfirstName"></ion-input>
                         </ion-item>
                         <div class="input-error" *ngIf="userfirstNameCtrl.touched && userfirstNameCtrl.hasError('required')">
@@ -42,7 +42,7 @@
             <ion-row align-items-center justify-content-center>
                   <ion-col>
                         <ion-item>
-                            <ion-label color="primary" stacked>Date de naissance</ion-label>
+                            <ion-label color="primary" stacked>Date de naissance *</ion-label>
                             <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthday"></ion-datetime>
                         </ion-item>
                   </ion-col>
@@ -60,7 +60,7 @@
             <ion-row align-items-center justify-content-center>
                   <ion-col>
                         <ion-item>
-                            <ion-label color="primary" stacked>Email</ion-label>
+                            <ion-label color="primary" stacked>Email *</ion-label>
                             <ion-input type="email" formControlName="userMail"></ion-input>
                         </ion-item>
                         <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('required')">
@@ -77,9 +77,9 @@
             <ion-row align-items-center justify-content-center>
               <ion-col>
                 <ion-item>
-                  <ion-label>Formation</ion-label>
+                  <ion-label>Formation *</ion-label>
                   <ion-select submitText="Okay" cancelText="Cancel" formControlName="formation">
-                    <ion-option *ngFor="let form of formationList" [value]="form.id">{{form.label}}</ion-option>
+                    <ion-option *ngFor="let form of formationList" [value]="form.id">{{form.level}} - {{form.name}}</ion-option>
                   </ion-select>
                 </ion-item>
               </ion-col>
@@ -88,7 +88,7 @@
                   <ion-row align-items-center justify-content-center>
                         <ion-col>
                               <ion-item>
-                                  <ion-label color="primary" stacked>{{isUpdating ? "Nouveau mot de passe" : "Mot de passe"}}</ion-label>
+                                  <ion-label color="primary" stacked>{{isUpdating ? "Nouveau mot de passe" : "Mot de passe *"}}</ion-label>
                                   <ion-input type="password" formControlName="password"></ion-input>
                               </ion-item>
                               <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
@@ -99,7 +99,7 @@
                   <ion-row align-items-center justify-content-center>
                         <ion-col>
                               <ion-item>
-                                    <ion-label color="primary" stacked>Répeter {{isUpdating ? "nouveau" : ""}} mot de passe</ion-label>
+                                    <ion-label color="primary" stacked>Répeter {{isUpdating ? "nouveau" : ""}} mot de passe {{isUpdating ? "" : "*"}}</ion-label>
                                     <ion-input type="password" formControlName="repeatPassword"></ion-input>
                               </ion-item>
                               <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
@@ -120,14 +120,14 @@
                 Questions de récupération de mot de passe
               </h5>
               <ion-item>
-                <ion-label color="primary" stacked>Intitulé question</ion-label>
+                <ion-label color="primary" stacked>Intitulé question *</ion-label>
                 <ion-input type="text" formControlName="question"></ion-input>
               </ion-item>
               <div class="input-error" *ngIf="questionCtrl.touched && questionCtrl.hasError('required')">
                   L' intitulé de la question est requis
               </div>
               <ion-item>
-                <ion-label color="primary" stacked>Réponse question</ion-label>
+                <ion-label color="primary" stacked>Réponse question *</ion-label>
                 <ion-input type="text" formControlName="answer"></ion-input>
               </ion-item>
               <div class="input-error" *ngIf="answerCtrl.touched && answerCtrl.hasError('required')">
@@ -139,7 +139,7 @@
               <br/>
               <br/>
               <ion-item>
-                <ion-label color="primary" stacked>Donnez votre mot de passe pour validation</ion-label>
+                <ion-label color="primary" stacked>Donnez votre mot de passe pour validation *</ion-label>
                 <ion-input type="password" formControlName="validatePassword"></ion-input>
               </ion-item>
               <div class="input-error" *ngIf="validatePasswordCtrl.touched && validatePasswordCtrl.hasError('required')">
