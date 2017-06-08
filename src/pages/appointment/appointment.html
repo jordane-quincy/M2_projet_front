@@ -10,14 +10,14 @@
    <ion-list-header>
     Cours à donner
    </ion-list-header>
-   <ion-item-sliding class="sliding" *ngFor="let appointment of appointmentList">
+   <ion-item-sliding class="sliding" *ngFor="let appointment of curseList">
      <ion-item>
        <ion-avatar item-start>
           <img src="data:image/jpeg;base64,{{appointment.picture}}"/>
         </ion-avatar>
        <h2>{{appointment.title}}</h2>
        <ion-icon name="calendar" class="icon-calendar"></ion-icon>
-        {{appointment.date}}
+        {{appointment.date | date: 'dd/MM/y'}}
      </ion-item>
      <ion-item-options class="options">
        <button ion-button color="danger" icon-left (click)="showConfirmDelete(apointment.id)">

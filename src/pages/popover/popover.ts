@@ -27,8 +27,6 @@ export class PopoverPage {
           "birthday":781401600000,
           "phoneNumber":"0668554964",
           "userMail":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
-          "question":"Nom de la mère",
-          "answer":"Lemaire",
           "formation":{"id":2,"level":"L2","name":"Licence Arts"},
           "skills":[
             {
@@ -64,8 +62,6 @@ export class PopoverPage {
           "birthday":781401600000,
           "phoneNumber":"0668554964",
           "userMail":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
-          "question":"Nom de la mère",
-          "answer":"Lemaire",
           "formation":{"id":2,"level":"L2","name":"Licence Arts"},
           "skills":[
             {

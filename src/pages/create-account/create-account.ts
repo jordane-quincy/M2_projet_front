@@ -64,8 +64,8 @@ export class CreateAccountPage {
       {password: this.passwordCtrl, repeatPassword: this.repeatPasswordCtrl},
       {validator: CreateAccountPage.passwordMatch}
     )
-    this.questionCtrl = fb.control(_.get(user, "question", ""), [Validators.required]);
-    this.answerCtrl = fb.control(_.get(user, "answer", ""), [Validators.required]);
+    this.questionCtrl = fb.control("", this.isUpdating ? [] : [Validators.required]);
+    this.answerCtrl = fb.control("", this.isUpdating ? [] : [Validators.required]);
     this.formationCtrl = fb.control(_.get(user, "formation.id", ""), [Validators.required]);
     let validatorsForValidatePassword = [];
     if (this.isUpdating) {
@@ -128,7 +128,7 @@ export class CreateAccountPage {
       // update the account
       user.id = this.connectedUser.id;
       if (!user.password) {
-        //delete(user.password);
+        delete(user.password);
       }
       user.skills = (this.connectedUser.skills || []).map(skill => {
         return skill.label;
@@ -138,7 +138,7 @@ export class CreateAccountPage {
         res => {
           this.toastService.presentToast("Votre compte a été mis à jour", "success");
           // redirect to profile page
-          this.navCtrl.push(ProfilePage);
+          this.navCtrl.pop();
         },
         err => {
           this.toastService.presentToast((err || {}).message, "alert");
