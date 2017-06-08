@@ -11,18 +11,30 @@
             <ion-row align-items-center justify-content-center>
                 <ion-col col-xs-12 col-sm-6 col-md-4>
                     <ion-item>
-                        <ion-label color="primary" stacked>Email universitaire</ion-label>
+                        <ion-label color="primary" stacked>Email universitaire *</ion-label>
                         <ion-input type="email" placeholder="" formControlName="email" required></ion-input>
                     </ion-item>
+                    <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('required')">
+                        L'email est requis
+                    </div>
+                    <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+                        Mauvais format d'email
+                    </div>
+                    <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('pattern') && !form.controls['email'].hasError('required')">
+                        L' email doit finir par @etu.univ-valenciennes.fr ou @univ-valenciennes.fr
+                    </div>
                 </ion-col>
             </ion-row>
 
             <ion-row align-items-center justify-content-center>
                 <ion-col col-xs-12 col-sm-6 col-md-4>
                       <ion-item>
-                        <ion-label color="primary" stacked>Mot de passe</ion-label>
+                        <ion-label color="primary" stacked>Mot de passe *</ion-label>
                         <ion-input type="password" placeholder="" formControlName="password" required></ion-input>
                       </ion-item>
+                      <div class="input-error" *ngIf="form.controls['password'].touched && form.controls['password'].hasError('required')">
+                          Le mot de passe est requis
+                      </div>
               </ion-col>
             </ion-row>
 

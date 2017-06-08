@@ -24,15 +24,15 @@
     </ion-row>
 
     <ion-row>
-      <ion-col col-12 text-center class="name-style">{{profile.lastname}} {{profile.firstname}}</ion-col>
+      <ion-col col-12 text-center class="name-style">{{profile.userName}} {{profile.userfirstName}}</ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-12 text-center class="birthdate-role-style">{{profile.birthdate}}</ion-col>
+      <ion-col col-12 text-center class="birthdate-role-style">{{profile.birthday | date:'dd/MM/y'}}</ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col col-12 text-center class="birthdate-role-style">{{profile.role}} {{profile.roleTitle}}</ion-col>
+      <ion-col col-12 text-center class="birthdate-role-style">{{profile.role === "STUDENT" ? "Etudiant" : "Professeur"}} {{(profile.formation || {}).level}} - {{(profile.formation || {}).name}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -46,11 +46,11 @@
       <ion-grid>
         <ion-row *ngFor="let skill of profile.skills">
           <ion-col col-8 class="no-padding">
-            <ion-item>{{ skill.name }}</ion-item>
+            <ion-item>{{ skill.label }}</ion-item>
           </ion-col>
 
           <ion-col col-4 class="no-padding">
-            <ion-item *ngIf="skill.validate == 'true'" class="icon-validate"><ion-icon name="checkmark-circle" color="secondary" class="icon-size"></ion-icon></ion-item>
+            <ion-item *ngIf="skill.validated == 'true'" class="icon-validate"><ion-icon name="checkmark-circle" color="secondary" class="icon-size"></ion-icon></ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>

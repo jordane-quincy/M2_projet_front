@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { PopoverController, NavController, NavParams } from 'ionic-angular';
-
+import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills';
 import { PopoverPage } from '../popover/popover';
+import { UserService } from '../../providers/index';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-profil',
@@ -10,51 +12,14 @@ import { PopoverPage } from '../popover/popover';
 export class ProfilePage {
   private profile: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private userService: UserService) {
     // Initialisation du profil
-    this.profile = {
-      picture: "",
-      firstname: "",
-      lastname: "",
-      birthdate: "",
-      role: "",
-      roleTitle: "",
-      skills: [
-        {
-          name: "",
-          validate: ""
-        },
-        {
-          name: "",
-          validate: ""
-        }
-      ],
-      comments: [
-        {
-          mark: "",
-          comment: ""
-        },
-        {
-          mark: "",
-          comment: ""
-        }
-      ],
-      stars: [ 0, 0, 0, 0, 0 ]
-    }
+    this.profile = _.cloneDeep(userService.getUser());
+    this.profile.comments = [{}, {}];
+    this.profile.stars = [0,0,0,0,0];
 
     // Définition du profil
     this.profile.picture = "assets/logo.png";
-    this.profile.firstname = "Clément";
-    this.profile.lastname = "DELPECH";
-    this.profile.birthdate = "14/02/1993";
-    this.profile.role = "Etudiant";
-    this.profile.roleTitle = "M1 TNSI";
-
-    this.profile.skills[0].name = "HTML";
-    this.profile.skills[0].validate = "false";
-
-    this.profile.skills[1].name = "JavaScript";
-    this.profile.skills[1].validate = "true";
 
     this.profile.comments[0].mark = "5/5";
     this.profile.comments[0].text = "Très bon cours. Avec beaucoup de contenu. prof ponctuel";
@@ -63,6 +28,7 @@ export class ProfilePage {
     this.profile.comments[1].text = "Cours de merde";
 
     this.starsDefinition(2.75);
+    console.log(this.profile);
   }
 
   starsDefinition(mark: any): void {

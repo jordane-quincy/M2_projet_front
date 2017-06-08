@@ -37,7 +37,8 @@ import {
   AuthService,
   FormationService,
   SkillService,
-  OfferService
+  OfferService,
+  LoaderService
 } from '../providers/index';
 
 import { AutocompleteSkillsComponent } from '../components/autocomplete-skills/autocomplete-skills';
@@ -109,6 +110,7 @@ import { DomainsService } from '../providers/domains-service';
     FormationService,
     OfferService,
     SkillService,
+    LoaderService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {
       provide: Http,
