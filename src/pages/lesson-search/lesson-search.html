@@ -27,6 +27,12 @@
     </ion-item>
 
     <ion-item>
+      <ion-range min="0" max="5" step="1" pin="true" formControlName="minavggrade" class="no-padding">
+        <ion-label range-left>Note | {{searchFilters.value.minavggrade}} étoiles</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
       <ion-label>Enseignant </ion-label>
       <ion-toggle checked="true" formControlName="teacher"></ion-toggle>
     </ion-item>

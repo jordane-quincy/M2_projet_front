@@ -49,15 +49,18 @@ export class LessonSearchPage {
   }
 
   startSearch(): void {
-    console.log(this.searchFilters.value);
+    if(!(!this.searchFilters.value.teacher && !this.searchFilters.value.student))
+    {
+      console.log(this.searchFilters.value);
 
-    this.offerService.getOffersByFilters(this.searchFilters.value).subscribe(
-      result => {
-        console.log(result);
-      },
-      error => {
-        console.log(error);
-      }
-    )
+      this.offerService.getOffersByFilters(this.searchFilters.value).subscribe(
+        result => {
+          console.log(result);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 }
