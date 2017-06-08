@@ -138,7 +138,7 @@ export class CreateAccountPage {
         res => {
           this.toastService.presentToast("Votre compte a été mis à jour", "success");
           // redirect to profile page
-          this.navCtrl.push(ProfilePage);
+          this.navCtrl.pop();
         },
         err => {
           this.toastService.presentToast((err || {}).message, "alert");
