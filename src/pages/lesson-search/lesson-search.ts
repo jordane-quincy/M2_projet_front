@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { DomainsService } from '../../providers/index';
 
 @Component({
   selector: 'page-lesson-search',
@@ -8,20 +9,46 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 })
 export class LessonSearchPage {
   searchFilters: FormGroup;
+  private domainsList: any[];
+  private domainsListChecked: any[];
 
-  // keywordsCtrl: FormControl;
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, public domainsService: DomainsService) {
+    this.domainsList = [];
+    this.domainsListChecked = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder) {
     this.searchFilters = fb.group({
       keywords: fb.control(""),
-      domaines: fb.control(""),
+      domains: fb.control(this.domainsList),
       duration: fb.control({ lower: 1, upper: 5 }),
       teacher: fb.control(true),
-      studient: fb.control(true),
+      student: fb.control(true),
+      minavggrade: 0
     });
+
+    this.domainsService.getDomainsList().subscribe(
+      result => {
+        this.domainsList = [...this.domainsList, ...result];
+
+        for(var i = 0; i < this.domainsList.length; i++)
+          this.domainsListChecked.push(this.domainsList[i].id);
+
+        this.searchFilters = fb.group({
+          keywords: fb.control(""),
+          domains: fb.control(this.domainsListChecked),
+          duration: fb.control({ lower: 1, upper: 5 }),
+          teacher: fb.control(true),
+          student: fb.control(true),
+          minavggrade: 0
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
   }
 
-  startSearch(){
+  startSearch(): void {
     console.log(this.searchFilters.value);
   }
 }

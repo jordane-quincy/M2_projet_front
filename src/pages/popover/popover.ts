@@ -11,9 +11,11 @@ import { UserService, ToastService } from '../../providers/index';
 })
 export class PopoverPage {
   private navControllerOfProfilePage: NavController;
+  connectedUser: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public viewCtrl: ViewController, private userService: UserService, private toastService: ToastService) {
     this.navControllerOfProfilePage = navParams.get('navCtrlData');
+    this.connectedUser = navParams.get('connectedUser');
   }
 
   goToUpdateSkills() {
@@ -22,32 +24,7 @@ export class PopoverPage {
     this.navControllerOfProfilePage.push(
       CreateAccountSkillsPage,
       {
-        connectedUser: {
-          "id": 123,
-          "userName":"Duriez",
-          "userfirstName":"Jean-Baptiste",
-          "birthday":781401600000,
-          "phoneNumber":"0668554964",
-          "userMail":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
-          "formation":{"id":2,"level":"L2","name":"Licence Arts"},
-          "skills":[
-            {
-            "label":"JS",
-            "id":1,
-            "customSkill":false
-            },
-            {
-            "label":"React",
-            "id":2,
-            "customSkill":false
-            },
-            {
-            "label":"Custom competence",
-            "id":3,
-            "customSkill":false
-            }
-          ]
-        }
+        connectedUser: this.connectedUser
       }
     );
   }
@@ -57,32 +34,7 @@ export class PopoverPage {
     this.navControllerOfProfilePage.push(
       CreateAccountPage,
       {
-        user: {
-          "id": 123,
-          "userName":"Duriez",
-          "userfirstName":"Jean-Baptiste",
-          "birthday":781401600000,
-          "phoneNumber":"0668554964",
-          "userMail":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
-          "formation":{"id":2,"level":"L2","name":"Licence Arts"},
-          "skills":[
-            {
-            "label":"JS",
-            "id":1,
-            "customSkill":false
-            },
-            {
-            "label":"React",
-            "id":2,
-            "customSkill":false
-            },
-            {
-            "label":"Custom competence",
-            "id":3,
-            "customSkill":false
-            }
-          ]
-        }
+        user: this.connectedUser
       }
     );
   }
