@@ -79,4 +79,11 @@ export class OfferService {
     .catch((error: any) => Observable.throw(error.json()));
   }
 
+  getAllAppointments(): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/subscribe/subscriptions`
+    return this.http.get(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
 }

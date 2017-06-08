@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
+import { AddStudentPage } from '../add-student/add-student';
+
+import { OfferService, ToastService } from '../../providers/index';
+import * as _ from 'lodash';
+
 @Component({
   selector: 'page-pending-request',
   templateUrl: 'pending-request.html',
@@ -9,21 +14,34 @@ export class PendingRequestPage {
 
   pendingRequests: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-    this.pendingRequests = [{
-      title: 'Penelope Fillon - Finance',
-      id : 1
-    }, {
-      title: 'Bill Gates - HTML/CSS/JS',
-      id : 2
-    }, {
-      title: 'Google Chrome - AngularJS',
-      id : 3
-    }];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerservice: OfferService, private toastService: ToastService) {
+
   }
 
   ionViewDidLoad() {
+    this.getAllAppointments();
+  }
 
+  getAllAppointments(){
+    this.offerservice.getAllAppointments().subscribe(
+      result => {
+        this.pendingRequests = (_.cloneDeep(result) || []).map(offer => {
+          return {
+            id: offer.id,
+            date: offer.date,
+            offer: offer.offer,
+            duration: offer.duration,
+            status : offer.status,
+            firstName: offer.FirstName,
+            lastName: offer.lastName,
+          };
+        });
+        console.log(result);
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
   }
 
   showConfirm(index: number): void {
@@ -48,4 +66,9 @@ export class PendingRequestPage {
     });
     confirm.present();
   }
+
+  addStudent(){
+    this.navCtrl.push(AddStudentPage);
+  }
+
 }
