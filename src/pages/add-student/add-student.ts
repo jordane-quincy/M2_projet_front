@@ -13,7 +13,6 @@ export class AddStudentPage {
 
   form: FormGroup;
   date: Date;
-  time: Date;
   student: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private offerservice: OfferService, private toastService: ToastService) {
@@ -21,8 +20,7 @@ export class AddStudentPage {
       this.student = this.navParams.data.student;
     }
     this.form = fb.group({
-      date: fb.control(this.date, [Validators.required]),
-      time: fb.control(this.time, [Validators.required])
+      date: fb.control(this.date, [Validators.required])
     });
   }
 
@@ -32,16 +30,14 @@ export class AddStudentPage {
 
   addStudent() {
     let body = {
-      "id": this.student.id,
-      "date": this.form.value,
-      "offer": this.student.offer,
+      "IdOffer": this.student.id,
+      "date": new Date(this.form.value.date).getTime(),
       "duration": this.student.duration,
-      "status": "VALIDATED",
-      "firstName": this.student.firstName,
-      "lastName": this.student.lastName
+      "status": "VALIDATED"
 
     };
-    this.offerservice.updateAppointments(body).subscribe(
+    console.log(body);
+    this.offerservice.updateAppointment(body).subscribe(
       result => {
         this.toastService.presentToast("Votre rendez-vous a bien été enregistré", "success");
         this.navCtrl.pop(PendingRequestPage);
