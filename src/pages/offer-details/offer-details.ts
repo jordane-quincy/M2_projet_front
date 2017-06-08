@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { OfferService, ToastService } from '../../providers/index';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'page-offer-details',
@@ -14,6 +13,7 @@ export class OfferDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private offerService: OfferService, private toastService: ToastService) {
     if(this.navParams.data) {
       this.offer = this.navParams.data.offer;
+      console.log(this.offer);
     }
   }
 

@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import * as _ from 'lodash';
 import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills'
 import { UserService, ToastService, FormationService } from '../../providers/index';
-import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-create-account',
@@ -14,7 +13,7 @@ import { ProfilePage } from '../profile/profile';
 export class CreateAccountPage {
   createAccountForm: FormGroup;
   userNameCtrl: FormControl;
-  userfirstNameCtrl: FormControl;
+  userFirstNameCtrl: FormControl;
   birthdayCtrl: FormControl;
   phoneNumberCtrl: FormControl;
   userMailCtrl: FormControl;
@@ -43,7 +42,7 @@ export class CreateAccountPage {
     this.isUpdating = !!user;
     // Define control
     this.userNameCtrl = fb.control(_.get(user, "userName", ""), Validators.required);
-    this.userfirstNameCtrl = fb.control(_.get(user, "userfirstName", ""), Validators.required);
+    this.userFirstNameCtrl = fb.control(_.get(user, "userFirstName", ""), Validators.required);
     let userbirthdayTimestamp = _.get(user, "birthday", false);
     let userbirthdayObject = !!userbirthdayTimestamp ? new Date(userbirthdayTimestamp) : false;
     this.birthdayCtrl = fb.control(
@@ -79,7 +78,7 @@ export class CreateAccountPage {
     // defin create account form
     this.createAccountForm = fb.group({
       userName: this.userNameCtrl,
-      userfirstName: this.userfirstNameCtrl,
+      userFirstName: this.userFirstNameCtrl,
       birthday: this.birthdayCtrl,
       phoneNumber: this.phoneNumberCtrl,
       userMail: this.userMailCtrl,
@@ -132,6 +131,7 @@ export class CreateAccountPage {
       this.userService.updateAccount(user).subscribe(
         res => {
           this.toastService.presentToast("Votre compte a été mis à jour", "success");
+          this.userService.setUser(res);
           // redirect to profile page
           this.navCtrl.pop();
         },
