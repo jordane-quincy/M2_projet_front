@@ -43,6 +43,13 @@ export class UserService {
     .catch((error: any) => Observable.throw(error.json()));
   }
 
+  deleteAccount(body: any): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/user/delete`
+    return this.http.delete(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
   // Ask if we can go to reset password screen, check if user exists with the email
   askForResetPassword(body: any): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/user/askResetPassword`
