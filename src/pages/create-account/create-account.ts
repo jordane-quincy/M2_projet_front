@@ -69,7 +69,7 @@ export class CreateAccountPage {
     }
     this.validatePasswordCtrl = fb.control('', validatorsForValidatePassword)
 
-    this.formationList = ["L3-Info", "M2 TNSI-FA", "M2-TNSI-FI"];
+    this.formationList = ["L3-Info", "M2 TNSI-FA", "M2-TNSI-FI","L3-Info", "M2 TNSI-FA", "M2-TNSI-FI","L3-Info", "M2 TNSI-FA", "M2-TNSI-FI"];
 
 
     // defin create account form
