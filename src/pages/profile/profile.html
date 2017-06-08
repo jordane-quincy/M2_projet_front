@@ -15,11 +15,11 @@
 
       <ion-col col-10 text-center>
         <div *ngIf="!profile.picture; else userPicture"><ion-img src="assets/blanc.png" class="profile-img"></ion-img></div>
-        <template #userPicture><ion-img [src]=profile.picture class="profile-img"></ion-img></template>
+        <ng-template #userPicture><ion-img [src]=profile.picture class="profile-img"></ion-img></ng-template>
       </ion-col>
 
       <ion-col col-1 text-right>
-        <ion-icon name="settings" class="icon-size"></ion-icon>
+        <ion-icon name="settings" class="icon-size clickable" (click)="goToUpdateProfile()"></ion-icon>
       </ion-col>
     </ion-row>
 
@@ -44,99 +44,34 @@
 
     <ion-card-content>
       <ion-grid>
-        <ion-row *ngFor="let competence of profile.competences">
+        <ion-row *ngFor="let skill of profile.skills">
+          <ion-col col-8 class="no-padding">
+            <ion-item>{{ skill.name }}</ion-item>
+          </ion-col>
+
           <ion-col col-4 class="no-padding">
-            <ion-item class="middle">{{ competence.name }}</ion-item>
-          </ion-col>
-
-          <ion-col col-7>
-            <ion-item>
-              <ion-range min="0" max="5" step="1" pin="true" disabled [(ngModel)]="competence.value" class="no-padding"></ion-range>
-            </ion-item>
-          </ion-col>
-
-          <ion-col col-1>
-            <ion-item class="middle">{{ competence.value }}/5</ion-item>
+            <ion-item *ngIf="skill.validate == 'true'" class="icon-validate"><ion-icon name="checkmark-circle" color="secondary" class="icon-size"></ion-icon></ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
 
-  <!-- NOTATION -->
+  <!-- ETOILES -->
   <ion-item text-center>
-    <!-- Etoile 1 -->
-    <span [ngSwitch]="profile.stars[0]">
-      <span *ngSwitchCase="1">
-        <ion-icon name="star" class="icon-size"></ion-icon>
-      </span>
+    <span *ngFor="let star of profile.stars">
+      <span [ngSwitch]="star">
+        <span *ngSwitchCase="1">
+          <ion-icon name="star" class="icon-size"></ion-icon>
+        </span>
 
-      <span *ngSwitchCase="0.5">
-        <ion-icon name="star-half" class="icon-size"></ion-icon>
-      </span>
+        <span *ngSwitchCase="0.5">
+          <ion-icon name="star-half" class="icon-size"></ion-icon>
+        </span>
 
-      <span *ngSwitchDefault>
-        <ion-icon name="star-outline" class="icon-size"></ion-icon>
-      </span>
-    </span>
-
-    <!-- Etoile 2 -->
-    <span [ngSwitch]="profile.stars[1]">
-      <span *ngSwitchCase="1">
-        <ion-icon name="star" class="icon-size"></ion-icon>
-      </span>
-
-      <span *ngSwitchCase="0.5">
-        <ion-icon name="star-half" class="icon-size"></ion-icon>
-      </span>
-
-      <span *ngSwitchDefault>
-        <ion-icon name="star-outline" class="icon-size"></ion-icon>
-      </span>
-    </span>
-
-    <!-- Etoile 3 -->
-    <span [ngSwitch]="profile.stars[2]">
-      <span *ngSwitchCase="1">
-        <ion-icon name="star" class="icon-size"></ion-icon>
-      </span>
-
-      <span *ngSwitchCase="0.5">
-        <ion-icon name="star-half" class="icon-size"></ion-icon>
-      </span>
-
-      <span *ngSwitchDefault>
-        <ion-icon name="star-outline" class="icon-size"></ion-icon>
-      </span>
-    </span>
-
-    <!-- Etoile 4 -->
-    <span [ngSwitch]="profile.stars[3]">
-      <span *ngSwitchCase="1">
-        <ion-icon name="star" class="icon-size"></ion-icon>
-      </span>
-
-      <span *ngSwitchCase="0.5">
-        <ion-icon name="star-half" class="icon-size"></ion-icon>
-      </span>
-
-      <span *ngSwitchDefault>
-        <ion-icon name="star-outline" class="icon-size"></ion-icon>
-      </span>
-    </span>
-
-    <!-- Etoile 5 -->
-    <span [ngSwitch]="profile.stars[4]">
-      <span *ngSwitchCase="1">
-        <ion-icon name="star" class="icon-size"></ion-icon>
-      </span>
-
-      <span *ngSwitchCase="0.5">
-        <ion-icon name="star-half" class="icon-size"></ion-icon>
-      </span>
-
-      <span *ngSwitchDefault>
-        <ion-icon name="star-outline" class="icon-size"></ion-icon>
+        <span *ngSwitchDefault>
+          <ion-icon name="star-outline" class="icon-size"></ion-icon>
+        </span>
       </span>
     </span>
   </ion-item>
@@ -155,7 +90,7 @@
           </ion-col>
 
           <ion-col col-10>
-            {{ comment.comment }}
+            {{ comment.text }}
           </ion-col>
         </ion-row>
       </ion-grid>

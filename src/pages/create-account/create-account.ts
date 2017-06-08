@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import * as _ from 'lodash';
 import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills'
+import { UserService, ToastService, FormationService } from '../../providers/index';
+import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-create-account',
@@ -11,18 +13,21 @@ import { CreateAccountSkillsPage } from '../create-account-skills/create-account
 
 export class CreateAccountPage {
   createAccountForm: FormGroup;
-  lastNameCtrl: FormControl;
-  firstNameCtrl: FormControl;
-  birthDateCtrl: FormControl;
+  lastnameCtrl: FormControl;
+  firstnameCtrl: FormControl;
+  birthdateCtrl: FormControl;
   phoneNumberCtrl: FormControl;
   emailCtrl: FormControl;
   passwordCtrl: FormControl;
   repeatPasswordCtrl: FormControl;
+  validatePasswordCtrl: FormControl;
   passwordForm: FormGroup;
   questionCtrl: FormControl;
   answerCtrl: FormControl;
   formationCtrl: FormControl;
   formationList: any[];
+  isUpdating: boolean;
+  connectedUser: any;
 
   static passwordMatch(group: FormGroup) {
     const password = group.get('password').value;
@@ -30,49 +35,108 @@ export class CreateAccountPage {
     return password === repeatPassword ? null : { matchingError: true };
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private userService: UserService, public toastService: ToastService, public formationService: FormationService) {
+    // Check if we are updating user or creating one
+    // TODO maybe get the user witht he fact that he's connected
+    let user = navParams.get('user');
+    this.connectedUser = _.cloneDeep(user);
+    this.isUpdating = !!user;
     // Define control
-    this.lastNameCtrl = fb.control('', Validators.required);
-    this.firstNameCtrl = fb.control('', Validators.required);
-    this.birthDateCtrl = fb.control('');
-    this.phoneNumberCtrl = fb.control('');
-    this.emailCtrl =  fb.control('', [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]);
+    this.lastnameCtrl = fb.control(_.get(user, "lastname", ""), Validators.required);
+    this.firstnameCtrl = fb.control(_.get(user, "firstname", ""), Validators.required);
+    let userBirthDateTimestamp = _.get(user, "birthdate", false);
+    let userBirthDateObject = !!userBirthDateTimestamp ? new Date(userBirthDateTimestamp) : false;
+    this.birthdateCtrl = fb.control(
+      !!userBirthDateObject ?
+        userBirthDateObject.toISOString()
+        :
+        ""
+    );
+    this.phoneNumberCtrl = fb.control(_.get(user, "phoneNumber", ""));
+    this.emailCtrl =  fb.control(_.get(user, "email", ""), [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]);
     this.passwordCtrl = fb.control('', [Validators.required]);
     this.repeatPasswordCtrl = fb.control('', [Validators.required]);
     this.passwordForm = fb.group(
       {password: this.passwordCtrl, repeatPassword: this.repeatPasswordCtrl},
       {validator: CreateAccountPage.passwordMatch}
     )
-    this.questionCtrl = fb.control('', [Validators.required]);
-    this.answerCtrl = fb.control('', [Validators.required]);
-    this.formationCtrl = fb.control('', [Validators.required]);
+    this.questionCtrl = fb.control(_.get(user, "question", ""), [Validators.required]);
+    this.answerCtrl = fb.control(_.get(user, "answer", ""), [Validators.required]);
+    this.formationCtrl = fb.control(_.get(user, "formation", ""), [Validators.required]);
+    let validatorsForValidatePassword = [];
+    if (this.isUpdating) {
+      validatorsForValidatePassword = [Validators.required];
+    }
+    this.validatePasswordCtrl = fb.control('', validatorsForValidatePassword)
 
-    this.formationList = ["L3-Info", "M2 TNSI-FA", "M2-TNSI-FI"];
+    // this.formationList = [{id: 1, label: "L3-Info"}, {id: 2, label: "M2-TNSI-FA"}, {id: 3, label: "M2-TNSI-FI"}];
 
 
     // defin create account form
     this.createAccountForm = fb.group({
-      lastName: this.lastNameCtrl,
-      firstName: this.firstNameCtrl,
-      birthDate: this.birthDateCtrl,
+      lastname: this.lastnameCtrl,
+      firstname: this.firstnameCtrl,
+      birthdate: this.birthdateCtrl,
       phoneNumber: this.phoneNumberCtrl,
       email: this.emailCtrl,
       passwordForm: this.passwordForm,
       question: this.questionCtrl,
       answer: this.answerCtrl,
-      formation: this.formationCtrl
+      formation: this.formationCtrl,
+      validatePassword: this.validatePasswordCtrl
     });
   }
 
+
+
   ionViewDidLoad() {
+    // Get formation from back
+    this.getFormationsFromBack();
+  }
+
+  getFormationsFromBack() {
+    this.formationService.getFormations().subscribe(
+      res => {
+        // initiate this.formationList with the response
+        this.formationList = (_.cloneDeep(res) || []).map(formation => {
+          return {
+            id: formation.id,
+            label: formation.level + " - " + formation.name
+          };
+        });
+      },
+      err => {
+        this.toastService.presentToast((err || {}).message, "alert");
+      }
+    );
   }
 
   createAccount() {
-    // Formatting body
     let user = _.cloneDeep(this.createAccountForm.value);
     user.password = user.passwordForm.password;
-    user.birthDate = +new Date(user.birthDate);
+    user.birthdate = +new Date(user.birthdate);
+    let validatePassword = user.validatePassword;
+    user.formationId = user.formation;
+    delete(user.validatePassword);
+    delete(user.formation);
     delete(user.passwordForm);
-    this.navCtrl.push(CreateAccountSkillsPage, {user: user});
+    if (this.isUpdating) {
+      // update the account
+      user.id = this.connectedUser.id;
+      this.userService.updateAccount(user).subscribe(
+        res => {
+          this.toastService.presentToast("Votre compte a été mis à jour", "success");
+          // redirect to profile page
+          this.navCtrl.push(ProfilePage);
+        },
+        err => {
+          this.toastService.presentToast((err || {}).message, "alert");
+        }
+      );
+    }
+    else {
+      // create the account
+      this.navCtrl.push(CreateAccountSkillsPage, {user: user});
+    }
   }
 }

@@ -4,7 +4,7 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-list>
    <ion-item-sliding class="sliding" *ngFor="let offer of userOffersList">
      <ion-item>
@@ -20,7 +20,7 @@
        <button ion-button color="primary" icon-left>
          <ion-icon name="create" large></ion-icon>
        </button>
-       <button ion-button color="danger" icon-left (click)="showConfirm()">
+       <button ion-button color="danger" icon-left (click)="showConfirm(offer.id)">
          <ion-icon name="trash" large></ion-icon>
        </button>
      </ion-item-options>

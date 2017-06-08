@@ -7,17 +7,29 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 })
 export class PendingRequestPage {
 
+  pendingRequests: any[];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+    this.pendingRequests = [{
+      title: 'Penelope Fillon - Finance',
+      id : 1
+    }, {
+      title: 'Bill Gates - HTML/CSS/JS',
+      id : 2
+    }, {
+      title: 'Google Chrome - AngularJS',
+      id : 3
+    }];
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PendingRequestPage');
+
   }
 
-  showConfirm(){
+  showConfirm(index: number): void {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de suppression',
-      message: 'Etes vous sur de vouloir supprimer ce contact en attente ?',
+      message: 'Etes vous sûr de vouloir supprimer cette demande en attente ?',
       buttons: [
         {
           text: 'Annuler',
@@ -28,6 +40,7 @@ export class PendingRequestPage {
         {
           text:'Supprimer',
           handler: () => {
+            this.pendingRequests = this.pendingRequests.filter(element => element.id !== index);
             console.log('Suppression');
           }
         }
