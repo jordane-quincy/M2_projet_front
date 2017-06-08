@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, App } from 'ionic-angular';
+import { NavController, AlertController, NavParams, App } from 'ionic-angular';
 
 import { ProfilePage } from '../profile/profile';
 import { UserOffersPage } from '../user-offers/user-offers';
@@ -23,7 +23,9 @@ export class MenuPage {
               private toastService: ToastService, 
               private loaderService: LoaderService,
               private tokenService: TokenService,
-              private userService: UserService) {
+              private userService: UserService,
+              private alertCtrl: AlertController
+              ) {
 
   }
 
@@ -48,20 +50,43 @@ export class MenuPage {
     this.navCtrl.push(PendingRequestPage);
   }
 
+  presentConfirm() {
+    
+  }
+
   disconnect(): void {
-    this.loaderService.presentLoaderDefault('Déconnexion en cours');
-    this.authService.disconnect().subscribe(
-      res => {
-        this.tokenService.setToken(null);
-        this.userService.setUser(null);
-        this.loaderService.dismissLoader();
-        this.app.getRootNav().setRoot(LoginPage);
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-        this.loaderService.dismissLoader();
-      }
-    );
+    let alert = this.alertCtrl.create({
+      title: 'Confirmation de déconnexion',
+      message: 'Êtes-vous sûr de vouloir vous déconnecter ?',
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => {
+
+          }
+        },
+        {
+          text: 'Se déconnecter',
+          handler: () => {
+            this.loaderService.presentLoaderDefault('Déconnexion en cours');
+            this.authService.disconnect().subscribe(
+              res => {
+                this.tokenService.setToken(null);
+                this.userService.setUser(null);
+                this.loaderService.dismissLoader();
+                this.app.getRootNav().setRoot(LoginPage);
+              },
+              error => {
+                this.toastService.presentToast((error || {}).message, "alert");
+                this.loaderService.dismissLoader();
+              }
+            );
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 }

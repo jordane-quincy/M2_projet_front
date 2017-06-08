@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import * as _ from 'lodash';
 import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills'
 import { UserService, ToastService, FormationService } from '../../providers/index';
-import { ProfilePage } from '../profile/profile';
 
 @Component({
   selector: 'page-create-account',
