@@ -32,8 +32,9 @@ export class UserService {
     this.user.credit = credit;
   }
 
-  login(body: any): Observable<any> {
-    return this.http.post("http://httpbin.org/post", JSON.stringify(body))
+  getUserById(id: number): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/user/get/${id}`;
+    return this.http.get(httpAddress)
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
   }
@@ -73,4 +74,5 @@ export class UserService {
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
   }
+
 }

@@ -34,8 +34,11 @@
         <ion-row>
           <ion-col col-12>
             <ion-icon name="book" class="padding-right"></ion-icon>
-            {{offer.domain.domainName}}
+            {{offer.domain?.domainName}}
           </ion-col>
+        </ion-row>
+        <ion-row>
+          <button *ngIf="userService.getUser()?.userMail !== offer.user?.userMail" ion-button round (click)="goToProfilePage(offer.user?.id)">Voir le profil utilisateur</button>
         </ion-row>
       </ion-grid>
     </ion-card-content>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { OfferService, ToastService, UserService, LoaderService } from '../../providers/index';
+import { ProfilePage } from '../../pages/profile/profile';
 
 @Component({
   selector: 'page-offer-details',
@@ -61,9 +62,6 @@ export class OfferDetailsPage {
 
       i++;
     }
-
-    console.log(stars);
-
     return stars;
   }
 
@@ -99,6 +97,10 @@ export class OfferDetailsPage {
     });
     alert.present();
 
+  }
+
+  goToProfilePage(id: number): void {
+    this.navCtrl.push(ProfilePage, {userId: id});
   }
 
 }
