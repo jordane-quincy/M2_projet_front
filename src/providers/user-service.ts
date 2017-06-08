@@ -9,8 +9,18 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class UserService {
 
+  user: any;
+
   constructor(public http: Http) {
 
+  }
+
+  getUser(): any {
+    return this.user;
+  }
+
+  setUser(user: any): void {
+    this.user = user;
   }
 
   login(body: any): Observable<any> {

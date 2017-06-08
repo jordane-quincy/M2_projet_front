@@ -13,10 +13,27 @@
             <autocomplete-skills [(selectedSkills)]="selectedSkills" ></autocomplete-skills>
         </ion-col>
     </ion-row>
-
     <ion-row align-items-center justify-content-center>
-            <ion-col col-xs-12 col-sm-6 col-md-4>
-                <button ion-button col-12 (click)="createAccount()">Créer compte</button>
-            </ion-col>
+        <ion-col col-xs-12 col-sm-6 col-md-4>
+          <form [formGroup]="updateSkillsAccount">
+            <div *ngIf="isUpdating">
+              <br/>
+              <br/>
+              <br/>
+              <ion-item>
+                <ion-label color="primary" stacked>Donnez votre mot de passe pour validation</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+              </ion-item>
+              <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
+                Le mot de passe pour valider la modification de compte est requise
+              </div>
+            </div>
+            <ion-row align-items-center justify-content-center>
+                <ion-col col-xs-12 col-sm-6 col-md-4>
+                    <button [(disabled)]="isUpdating && updateSkillsAccount.invalid" ion-button col-12 (click)="createAccount()">{{isUpdating ? "Mettre à jour" : "Créer compte"}}</button>
+                </ion-col>
+            </ion-row>
+          </form>
+        </ion-col>
     </ion-row>
 </ion-content>

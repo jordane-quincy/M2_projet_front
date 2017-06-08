@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-grid>
-		<form (ngSubmit)="add()" [formGroup]="form">
+		<form [formGroup]="form">
 			<!-- <ion-row align-items-center justify-content-center>
 				<button ion-button round col-6 type="button" (click)="getPic()">Ajouter une image</button>
 			</ion-row> -->
@@ -14,7 +14,7 @@
 				<ion-col>
 					<ion-item>
 						<ion-label color="primary" stacked>Titre</ion-label>
-						<ion-input type="text" placeholder="" formControlName="title" required></ion-input>
+						<ion-input type="text" placeholder="" formControlName="title" required ></ion-input>
 					</ion-item>
 				</ion-col>
 			</ion-row>
@@ -23,7 +23,7 @@
 				<ion-col>
 					<ion-item>
 						<ion-label color="primary" stacked>Description</ion-label>
-						<ion-textarea type="text" placeholder="" formControlName="description" required></ion-textarea>
+						<ion-textarea type="text" placeholder="" formControlName="description" required ></ion-textarea>
 					</ion-item>
 				</ion-col>
 			</ion-row>
@@ -42,14 +42,15 @@
 					<ion-item>
 						<ion-label color="primary" stacked>Domaine</ion-label>
 						<ion-select submitText="Ok" cancelText="Annuler" formControlName="domainId">
-					                    <ion-option *ngFor="let domaine of domaineList" [value]="domaine.id">{{domaine.label}}</ion-option>
-					            </ion-select>
+              <ion-option *ngFor="let domaine of domaineList" [value]="domaine.id">{{domaine.label}}</ion-option>
+            </ion-select>
 					</ion-item>
 				</ion-col>
 			</ion-row>
 
 			<ion-row align-items-center justify-content-center>
-				<button ion-button round col-6 type="submit" [disabled]="form.invalid">Créer</button>
+				<button *ngIf="updateMode === false"  ion-button round col-6 type="submit" [disabled]="form.invalid" (click)="add()">Créer</button>
+        <button *ngIf="updateMode === true"  ion-button round col-6 type="submit" [disabled]="form.invalid" (click)="modify()">Modifier</button>
 			</ion-row>
 		</form>
   </ion-grid>

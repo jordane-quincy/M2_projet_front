@@ -63,8 +63,17 @@ export class OfferService {
     .catch((error: any) => Observable.throw(error.json()));
   }
 
+
   subscribeOffer(body: any): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/subscribe/sub`;
+     return this.http.post(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  updateOffer(body: any, id: number): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/offer/update/`+id;
+
     return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
