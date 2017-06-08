@@ -26,6 +26,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { AppointmentPage } from '../pages/appointment/appointment';
 import { AddStudentPage } from '../pages/add-student/add-student';
 import { LessonSearchPage } from '../pages/lesson-search/lesson-search';
+import { PopoverPage } from '../pages/popover/popover';
 
 import { UserService } from '../providers/user-service';
 import { CreditService } from '../providers/credit-service';
@@ -58,7 +59,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     ProfilePage,
     PendingRequestPage,
     AddStudentPage,
-    LessonSearchPage
+    LessonSearchPage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     NotificationPage,
     PendingRequestPage,
     AddStudentPage,
-    LessonSearchPage
+    LessonSearchPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,
