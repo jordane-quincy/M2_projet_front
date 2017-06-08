@@ -4,7 +4,6 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AddStudentPage } from '../add-student/add-student';
 
 import { OfferService, ToastService } from '../../providers/index';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'page-pending-request',

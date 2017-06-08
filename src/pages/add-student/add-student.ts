@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OfferService, ToastService } from '../../providers/index';
 import { PendingRequestPage } from '../pending-request/pending-request';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'page-add-student',

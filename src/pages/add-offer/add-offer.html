@@ -7,9 +7,6 @@
 <ion-content padding>
   <ion-grid>
 		<form [formGroup]="form">
-			<!-- <ion-row align-items-center justify-content-center>
-				<button ion-button round col-6 type="button" (click)="getPic()">Ajouter une image</button>
-			</ion-row> -->
 			<ion-row align-items-center>
 				<ion-col>
 					<ion-item>
@@ -42,7 +39,7 @@
 					<ion-item>
 						<ion-label color="primary" stacked>Domaine</ion-label>
 						<ion-select submitText="Ok" cancelText="Annuler" formControlName="domainId">
-              <ion-option *ngFor="let domaine of domaineList" [value]="domaine.id">{{domaine.label}}</ion-option>
+              <ion-option *ngFor="let domaine of domaineList" [value]="domaine.id">{{domaine.domainName}}</ion-option>
             </ion-select>
 					</ion-item>
 				</ion-col>

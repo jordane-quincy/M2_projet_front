@@ -4,7 +4,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { OfferDetailsPage } from '../offer-details/offer-details';
 
 import { OfferService, ToastService } from '../../providers/index';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'page-offers-list',

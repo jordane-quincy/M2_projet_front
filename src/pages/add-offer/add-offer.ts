@@ -4,7 +4,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { OfferService, ToastService } from '../../providers/index';
 import { UserOffersPage } from '../user-offers/user-offers';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'page-add-offer',
@@ -34,20 +33,13 @@ export class AddOfferPage {
   }
 
   ionViewDidLoad() {
-    // Get formation from back
     this.getDomainesFromBack();
   }
 
   getDomainesFromBack() {
     this.offerService.getDomaines().subscribe(
       res => {
-        // initiate this.formationList with the response
-        this.domaineList = (_.cloneDeep(res) || []).map(domaine => {
-          return {
-            id: domaine.id,
-            label: domaine.domainName
-          };
-        });
+        this.domaineList = res;
       },
       err => {
         this.toastService.presentToast((err || {}).message, "alert");
@@ -55,38 +47,8 @@ export class AddOfferPage {
     );
   }
 
-  getPic() {
-    // this.imagePicker.getPictures(null).then(
-    //   results => {
-    //     for (var i = 0; i < results.length; i++) {
-    //         console.log('Image URI: ' + results[i]);
-    //     }
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // );
-    this.imagePicker.hasReadPermission().then(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-    this.imagePicker.requestReadPermission().then(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
-
   add() {
-      this.offerService.createOffer(this.form.value).subscribe(
+    this.offerService.createOffer(this.form.value).subscribe(
       result => {
         this.toastService.presentToast("Votre offre a été ajoutée", "success");
         this.navCtrl.pop(UserOffersPage);
