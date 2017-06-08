@@ -26,6 +26,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { AppointmentPage } from '../pages/appointment/appointment';
 import { AddStudentPage } from '../pages/add-student/add-student';
 import { LessonSearchPage } from '../pages/lesson-search/lesson-search';
+import { PopoverPage } from '../pages/popover/popover';
 
 import {
   UserService,
@@ -33,11 +34,15 @@ import {
   HttpService,
   TokenService,
   ToastService,
-  AuthService
+  AuthService,
+  FormationService,
+  SkillService
 } from '../providers/index';
 
 import { AutocompleteSkillsComponent } from '../components/autocomplete-skills/autocomplete-skills';
 import { HeaderContentComponent } from '../components/header-content/header-content';
+
+
 
 @NgModule({
   declarations: [
@@ -61,7 +66,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     ProfilePage,
     PendingRequestPage,
     AddStudentPage,
-    LessonSearchPage
+    LessonSearchPage,
+    PopoverPage
   ],
   imports: [
     BrowserModule,
@@ -87,7 +93,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     NotificationPage,
     PendingRequestPage,
     AddStudentPage,
-    LessonSearchPage
+    LessonSearchPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,
@@ -99,6 +106,8 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     TokenService,
     ToastService,
     AuthService,
+    FormationService,
+    SkillService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {
       provide: Http,
@@ -106,8 +115,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
         return new HttpService(backend, options, tokenService);
       },
       deps: [XHRBackend, RequestOptions, TokenService]
-    }
-
+    },
   ]
 })
 export class AppModule {}

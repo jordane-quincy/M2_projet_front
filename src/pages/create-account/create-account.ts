@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import * as _ from 'lodash';
 import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills'
-import { UserService, ToastService } from '../../providers/index';
+import { UserService, ToastService, FormationService } from '../../providers/index';
 import { ProfilePage } from '../profile/profile';
 
 @Component({
@@ -35,7 +35,7 @@ export class CreateAccountPage {
     return password === repeatPassword ? null : { matchingError: true };
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private userService: UserService, public toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private userService: UserService, public toastService: ToastService, public formationService: FormationService) {
     // Check if we are updating user or creating one
     // TODO maybe get the user witht he fact that he's connected
     let user = navParams.get('user');
@@ -69,7 +69,7 @@ export class CreateAccountPage {
     }
     this.validatePasswordCtrl = fb.control('', validatorsForValidatePassword)
 
-    this.formationList = [{id: 1, label: "L3-Info"}, {id: 2, label: "M2-TNSI-FA"}, {id: 3, label: "M2-TNSI-FI"}];
+    // this.formationList = [{id: 1, label: "L3-Info"}, {id: 2, label: "M2-TNSI-FA"}, {id: 3, label: "M2-TNSI-FI"}];
 
 
     // defin create account form
@@ -87,7 +87,28 @@ export class CreateAccountPage {
     });
   }
 
+
+
   ionViewDidLoad() {
+    // Get formation from back
+    this.getFormationsFromBack();
+  }
+
+  getFormationsFromBack() {
+    this.formationService.getFormations().subscribe(
+      res => {
+        // initiate this.formationList with the response
+        this.formationList = (_.cloneDeep(res) || []).map(formation => {
+          return {
+            id: formation.id,
+            label: formation.level + " - " + formation.name
+          };
+        });
+      },
+      err => {
+        this.toastService.presentToast((err || {}).message, "alert");
+      }
+    );
   }
 
   createAccount() {
@@ -104,13 +125,11 @@ export class CreateAccountPage {
       user.id = this.connectedUser.id;
       this.userService.updateAccount(user).subscribe(
         res => {
-          console.log("success");
           this.toastService.presentToast("Votre compte a été mis à jour", "success");
           // redirect to profile page
           this.navCtrl.push(ProfilePage);
         },
         err => {
-          console.log(err);
           this.toastService.presentToast((err || {}).message, "alert");
         }
       );
