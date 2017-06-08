@@ -36,7 +36,8 @@ import {
   ToastService,
   AuthService,
   FormationService,
-  SkillService
+  SkillService,
+  OfferService
 } from '../providers/index';
 
 import { AutocompleteSkillsComponent } from '../components/autocomplete-skills/autocomplete-skills';
@@ -107,6 +108,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     ToastService,
     AuthService,
     FormationService,
+    OfferService,
     SkillService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {

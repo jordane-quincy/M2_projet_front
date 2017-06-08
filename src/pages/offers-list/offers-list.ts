@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { OfferDetailsPage } from '../offer-details/offer-details';
 
+import { OfferService, ToastService } from '../../providers/index';
+
 @Component({
   selector: 'page-offers-list',
   templateUrl: 'offers-list.html',
@@ -11,7 +13,7 @@ export class OffersListPage {
 
   offersList: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private offerservice: OfferService, public toastService: ToastService) {
     this.offersList = [{
       title: 'title',
       description: 'description description description description description description description description description description description description description description description description description description description description description',
@@ -55,6 +57,22 @@ export class OffersListPage {
     this.navCtrl.push(OfferDetailsPage, {
       offer: offer
     });
+  }
+
+  ionViewDidLoad() {
+    this.getOfferList();
+  }
+
+  getOfferList(){
+    this.offerservice.getOffers().subscribe(
+      result => {
+        console.log(result);
+      },
+      error => {
+        console.log(error);
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
   }
 
 }
