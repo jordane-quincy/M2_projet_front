@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ToastController, NavController, NavParams } from 'ionic-angular';
-import { UserService } from '../../providers/user-service';
+import { NavController, NavParams } from 'ionic-angular';
+import { UserService, ToastService } from '../../providers/index';
 import { LoginPage } from '../login/login';
 import * as _ from 'lodash';
 
@@ -14,7 +14,7 @@ export class CreateAccountSkillsPage {
 
   selectedSkills: Object[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, public toastService: ToastService) {
     this.user = _.cloneDeep(navParams.get('user'));
     this.selectedSkills = [];
   }
@@ -22,26 +22,21 @@ export class CreateAccountSkillsPage {
   ionViewDidLoad() {
   }
 
-  presentToast(message: string) {
-    let toast = this.toastCtrl.create({
-      message: message,
-      duration: 3000,
-      position: "top"
-    });
-    toast.present();
-  }
-
   createAccount() {
     this.user.skills = _.cloneDeep(this.selectedSkills);
+    (this.user.skills || []).forEach(element => {
+      delete(element.customSkill);
+    });
     this.userService.createAccount(this.user).subscribe(
       res => {
         console.log("success");
-        this.presentToast("Votre compte a été créé, validez-le avec le lien dans l'email qui vous a été envoyé");
+        this.toastService.presentToast("Votre compte a été créé, validez-le avec le lien dans l'email qui vous a été envoyé", "success");
         // redirect to login page
         this.navCtrl.push(LoginPage);
       },
       err => {
-        console.log("err");
+        console.log(err);
+        this.toastService.presentToast((err || {}).message, "alert");
       }
     );
   }

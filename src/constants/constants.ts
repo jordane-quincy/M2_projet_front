@@ -1,3 +1,3 @@
 export const environment: any = {
-    backendUrl: 'toto'
+    backendUrl: 'http://localhost:8080'
 }
