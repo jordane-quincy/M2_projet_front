@@ -21,4 +21,18 @@ export class OfferService {
     .catch((error: any) => Observable.throw(error.json()));
   }
 
+  getDomaines(): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/domaine/list`
+    return this.http.get(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  createOffer(body: any): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/offer/create`;
+    return this.http.post(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
 }
