@@ -16,6 +16,7 @@ export class ResetPasswordPage {
   newPasswordCtrl: FormControl;
   newPasswordRepeatCtrl: FormControl;
   passwordForm: FormGroup;
+  userEmail: string;
 
   static passwordMatch(group: FormGroup) {
     const password = group.get('newPassword').value;
@@ -26,6 +27,7 @@ export class ResetPasswordPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private userService: UserService, public toastCtrl: ToastController) {
     // Get question label for navParams
     this.questionLabel = navParams.get('questionLabel');
+    this.userEmail = navParams.get('email');
     // Setup Form
     this.answerCtrl =  fb.control('', [Validators.required]);
     this.newPasswordCtrl = fb.control('', [Validators.required]);
@@ -67,7 +69,8 @@ export class ResetPasswordPage {
   resetPassword() {
     // remove useless repeatPassword
     let body = _.cloneDeep(this.resetPasswordForm.value);
-    body.newPassword = body.passwordForm.newPassword;
+    body.password = body.passwordForm.newPassword;
+    body.email = this.userEmail;
     delete(body.passwordForm);
     // send the new password to the back
     this.userService.resetPassword(body).subscribe(

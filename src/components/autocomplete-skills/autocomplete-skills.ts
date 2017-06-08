@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SkillService, ToastService } from '../../providers/index';
 import * as _ from 'lodash';
 
 
@@ -6,29 +7,32 @@ import * as _ from 'lodash';
   selector: 'autocomplete-skills',
   templateUrl: 'autocomplete-skills.html'
 })
-export class AutocompleteSkillsComponent {
+export class AutocompleteSkillsComponent implements OnInit {
 
   text: string;
 
-  completeSkills: string[];
+  completeSkills: any[];
 
-  skills: string[];
+  skills: any[];
 
   @Input() selectedSkills: Object[];
 
   @Output() selectedSkillsChange = new EventEmitter<Object>();
 
-  constructor() {
+  ngOnInit(): void {
+    this.getSkillsFromBack();
+  }
+
+  constructor(private skillService: SkillService, private toastService: ToastService) {
     this.text = 'Hello World';
-    this.completeSkills = [
-      "JS",
-      "CSS",
-      "HTML",
-      "Anglais",
-      "React",
-      "Ionic"
-    ]
-    this.skills = _.cloneDeep(this.completeSkills);
+    // this.completeSkills = [
+    //   "JS",
+    //   "CSS",
+    //   "HTML",
+    //   "Anglais",
+    //   "React",
+    //   "Ionic"
+    // ]
     this.selectedSkills = [];
   }
 
@@ -45,7 +49,7 @@ export class AutocompleteSkillsComponent {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.skills = this.skills.filter((skill) => {
-        return (skill.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (skill.label.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -71,6 +75,19 @@ export class AutocompleteSkillsComponent {
   deleteSkillFromList(index: number) {
     this.selectedSkills.splice(index, 1);
     this.emitUpdateEvent();
+  }
+
+  getSkillsFromBack() {
+    this.skillService.getSkills().subscribe(
+      res => {
+        // initiate this.formationList with the response
+        this.completeSkills = (_.cloneDeep(res) || []);
+        this.skills = _.cloneDeep(this.completeSkills);
+      },
+      err => {
+        this.toastService.presentToast((err || {}).message, "alert");
+      }
+    );
   }
 
 }
