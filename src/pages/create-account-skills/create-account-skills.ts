@@ -30,8 +30,6 @@ export class CreateAccountSkillsPage {
       res => {
         console.log("success");
         this.toastService.presentToast("Votre compte a été créé, validez-le avec le lien dans l'email qui vous a été envoyé", "success");
-        // redirect to login page
-        this.navCtrl.push(LoginPage);
       },
       err => {
         console.log(err);

@@ -6,9 +6,40 @@
 
 
 <ion-content padding>
-
-    <h2>{{ offer.title }} <span>{{offer.duration}} h</span></h2>
-    <p>{{ offer.description }}</p>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center class="title-style">{{offer.title}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            {{ offer.description }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-icon name="contact" class="padding-right"></ion-icon>
+            {{ offer.firstname }} {{offer.lastname}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-icon name="timer" class="padding-right"></ion-icon>
+            {{ offer.duration }} h
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-icon name="book" class="padding-right"></ion-icon>
+            {{offer.domain.domainName}}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
 
     <button ion-button round class="subscribe">Je m'inscris</button>
 </ion-content>
