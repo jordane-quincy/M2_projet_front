@@ -27,7 +27,7 @@ export class UserService {
   }
 
   updateAccount(body: any): Observable<any> {
-    let httpAddress: string = `${environment.backendUrl}/user/update/${body.id}`
+    let httpAddress: string = `${environment.backendUrl}/user/update}`
     return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));

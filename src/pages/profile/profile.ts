@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { PopoverController, NavController, NavParams } from 'ionic-angular';
 import { CreateAccountPage } from '../create-account/create-account';
+
+import { PopoverPage } from '../popover/popover';
 
 @Component({
   selector: 'page-profile',
@@ -9,7 +11,7 @@ import { CreateAccountPage } from '../create-account/create-account';
 export class ProfilePage {
   private profile: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController ) {
     // Initialisation du profil
     this.profile = {
       picture: "",
@@ -100,13 +102,18 @@ export class ProfilePage {
     }
   }
 
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({ ev: myEvent });
+  }
+
   goToUpdateProfile() {
     this.navCtrl.push(CreateAccountPage, {user:
       {
         "id": 123,
-        "lastName":"Duriez",
-        "firstName":"Jean-Baptiste",
-        "birthDate":781401600000,
+        "lastname":"Duriez",
+        "firstname":"Jean-Baptiste",
+        "birthdate":781401600000,
         "phoneNumber":"0668554964",
         "email":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
         "question":"Nom de la mère",
