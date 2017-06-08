@@ -40,6 +40,7 @@ export class OfferDetailsPage {
               res => {
                 this.toastService.presentToast("Inscription envoyée !", "success");
                 this.loaderService.dismissLoader();
+                this.navCtrl.pop();
               },
               err => {
                 this.toastService.presentToast((err || {}).message, "alert");
