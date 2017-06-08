@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { AddStudentPage } from '../add-student/add-student';
 import { AddOfferPage } from '../add-offer/add-offer';
 
 import { OfferService, ToastService } from '../../providers/index';
@@ -74,10 +73,6 @@ export class UserOffersPage {
       ]
     });
     confirm.present();
-  }
-
-  addStudent(){
-    this.navCtrl.push(AddStudentPage);
   }
 
   modifyOffer(offer: any){

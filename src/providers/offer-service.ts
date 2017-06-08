@@ -73,10 +73,22 @@ export class OfferService {
 
   updateOffer(body: any, id: number): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/offer/update/`+id;
-
     return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
   }
 
+  getAllAppointments(): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/subscribe/participants`;
+    return this.http.get(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  updateAppointments(body: any): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/subscribe/update`;
+    return this.http.post(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
 }

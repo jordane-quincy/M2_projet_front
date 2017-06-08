@@ -11,9 +11,9 @@ import * as _ from 'lodash';
 export class ProfilePage {
   private profile: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private userService: UserService) {
-    // Initialisation du profil
-    this.profile = _.cloneDeep(userService.getUser());
+  ionViewWillEnter() {
+    // get connected user
+    this.profile = _.cloneDeep(this.userService.getUser());
     this.profile.comments = [{}, {}];
     this.profile.stars = [0,0,0,0,0];
 
@@ -25,9 +25,24 @@ export class ProfilePage {
 
     this.profile.comments[1].mark = "1/5";
     this.profile.comments[1].text = "Cours de merde";
-
     this.starsDefinition(2.75);
-    console.log(this.profile);
+  }
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController, private userService: UserService) {
+    // get connected user
+    this.profile = _.cloneDeep(this.userService.getUser());
+    this.profile.comments = [{}, {}];
+    this.profile.stars = [0,0,0,0,0];
+
+    // Définition du profil
+    this.profile.picture = "assets/logo.png";
+
+    this.profile.comments[0].mark = "5/5";
+    this.profile.comments[0].text = "Très bon cours. Avec beaucoup de contenu. prof ponctuel";
+
+    this.profile.comments[1].mark = "1/5";
+    this.profile.comments[1].text = "Cours de merde";
+    this.starsDefinition(2.75);
   }
 
   starsDefinition(mark: any): void {
@@ -67,7 +82,7 @@ export class ProfilePage {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage, {navCtrlData: this.navCtrl});
+    let popover = this.popoverCtrl.create(PopoverPage, {navCtrlData: this.navCtrl, connectedUser: _.cloneDeep(this.profile)});
     popover.present({ ev: myEvent });
   }
 }
