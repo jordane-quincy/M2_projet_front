@@ -13,20 +13,10 @@
       <ion-col>
         <ion-item>
           <ion-label color="primary" stacked>Date</ion-label>
-          <ion-datetime displayFormat="DD MMM YYYY" formControlName="date"></ion-datetime>
+          <ion-datetime displayFormat="DD MMM YY hh:mm A" formControlName="date"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>
-
-    <ion-row align-items-center justify-content-center>
-      <ion-col>
-        <ion-item>
-          <ion-label color="primary" stacked>Heure début</ion-label>
-          <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A" formControlName="time"></ion-datetime>
-        </ion-item>
-    </ion-col>
-    </ion-row>
-
     <ion-row align-items-center justify-content-center>
       <button ion-button round col-6 type="submit" [disabled]="form.invalid">Ajouter</button>
     </ion-row>

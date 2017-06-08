@@ -4,7 +4,6 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AddStudentPage } from '../add-student/add-student';
 
 import { OfferService, ToastService } from '../../providers/index';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'page-pending-request',
@@ -25,18 +24,7 @@ export class PendingRequestPage {
   getAllAppointments(){
     this.offerservice.getAllAppointments().subscribe(
       result => {
-        this.pendingRequests = (_.cloneDeep(result) || []).map(offer => {
-          return {
-            id: offer.id,
-            date: offer.date,
-            offer: offer.offer,
-            duration: offer.duration,
-            status : offer.status,
-            firstName: offer.firstName,
-            lastName: offer.lastName,
-          };
-        });
-        console.log(this.pendingRequests);
+        this.pendingRequests = result;
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
@@ -59,7 +47,6 @@ export class PendingRequestPage {
           text:'Supprimer',
           handler: () => {
             this.pendingRequests = this.pendingRequests.filter(element => element.id !== index);
-            console.log('Suppression');
           }
         }
       ]

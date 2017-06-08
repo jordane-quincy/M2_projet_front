@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { DomainsService } from '../../providers/index';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { DomainsService, OfferService } from '../../providers/index';
 
 @Component({
   selector: 'page-lesson-search',
@@ -12,7 +12,7 @@ export class LessonSearchPage {
   private domainsList: any[];
   private domainsListChecked: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, public domainsService: DomainsService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, public domainsService: DomainsService, public offerService: OfferService) {
     this.domainsList = [];
     this.domainsListChecked = [];
 
@@ -49,6 +49,18 @@ export class LessonSearchPage {
   }
 
   startSearch(): void {
-    console.log(this.searchFilters.value);
+    if(!(!this.searchFilters.value.teacher && !this.searchFilters.value.student))
+    {
+      console.log(this.searchFilters.value);
+
+      this.offerService.getOffersByFilters(this.searchFilters.value).subscribe(
+        result => {
+          console.log(result);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 }

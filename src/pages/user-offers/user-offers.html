@@ -8,10 +8,11 @@
   <ion-list>
    <ion-item-sliding class="sliding" *ngFor="let offer of userOffersList">
      <ion-item>
-       <ion-avatar item-start>
+       <!--<ion-avatar item-start>
           <img src="data:image/jpeg;base64,{{offer.picture}}"/>
-        </ion-avatar>
+        </ion-avatar>-->
        <h2>{{offer.title}}</h2>
+       <p>{{offer.description}}</p>
      </ion-item>
      <ion-item-options class="options">
        <button ion-button color="primary" icon-left (click)="modifyOffer(offer)">
