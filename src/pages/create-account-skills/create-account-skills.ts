@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { UserService, ToastService } from '../../providers/index';
+import { UserService, ToastService, LoaderService } from '../../providers/index';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { LoginPage } from '../login/login';
-import { ProfilePage } from '../profile/profile';
 import * as _ from 'lodash';
 
 @Component({
@@ -19,7 +17,7 @@ export class CreateAccountSkillsPage {
   passwordCtrl: FormControl;
   connectedUser: any;
 
-  constructor(public navCtrl: NavController, private fb: FormBuilder, public navParams: NavParams, private userService: UserService, public toastService: ToastService) {
+  constructor(public navCtrl: NavController, private fb: FormBuilder, public navParams: NavParams, private userService: UserService, public toastService: ToastService, private loaderService: LoaderService) {
     this.user = _.cloneDeep(navParams.get('user'));
     // get user info if we are updating
     this.connectedUser = _.cloneDeep(navParams.get('connectedUser'));
@@ -37,9 +35,6 @@ export class CreateAccountSkillsPage {
     });
   }
 
-  ionViewDidLoad() {
-  }
-
   createAccount() {
     // check if we are updating user or creating one
     if (this.isUpdating) {
@@ -51,14 +46,16 @@ export class CreateAccountSkillsPage {
       body.formationId = body.formation.id;
       delete(body.formation);
       body.validatePassword = this.updateSkillsAccount.value.password;
+      this.loaderService.presentLoaderDefault('Modification en cours');
       this.userService.updateAccount(body).subscribe(
         res => {
           this.toastService.presentToast("Votre compte a été mis à jour", "success");
-          // redirect to profile page
-          this.navCtrl.push(ProfilePage);
+          this.loaderService.dismissLoader();
+          this.navCtrl.pop();
         },
         err => {
           this.toastService.presentToast((err || {}).message, "alert");
+          this.loaderService.dismissLoader();
         }
       );
     }
@@ -66,12 +63,16 @@ export class CreateAccountSkillsPage {
       this.user.skills = (_.cloneDeep(this.selectedSkills) || []).map(element => {
         return element.label;
       });
+      this.loaderService.presentLoaderDefault('Création en cours');
       this.userService.createAccount(this.user).subscribe(
         res => {
           this.toastService.presentToast("Votre compte a été créé, validez-le avec le lien dans l'email qui vous a été envoyé", "success");
+          this.loaderService.dismissLoader();
+          this.navCtrl.popToRoot();
         },
         err => {
           this.toastService.presentToast((err || {}).message, "alert");
+          this.loaderService.dismissLoader();
         }
       );
     }

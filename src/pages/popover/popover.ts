@@ -5,20 +5,13 @@ import { CreateAccountPage } from '../create-account/create-account';
 import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills';
 
 @Component({
-  template: `
-    <ion-list>
-      <ion-list-header>Modifier</ion-list-header>
-      <button ion-item (click)="goToUpdateProfile()">Profil</button>
-      <button ion-item (click)="goToUpdateSkills()">Compétences</button>
-    </ion-list>
-  `
+  templateUrl: 'popover.html'
 })
 export class PopoverPage {
   private navControllerOfProfilePage: NavController;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
     this.navControllerOfProfilePage = navParams.get('navCtrlData');
-    console.log(this.navControllerOfProfilePage);
   }
 
   goToUpdateSkills() {

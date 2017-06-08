@@ -33,6 +33,7 @@ export class LoginPage {
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
       }
     );
   }
