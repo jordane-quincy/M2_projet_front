@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { OfferService, ToastService } from '../../providers/index';
+import { UserOffersPage } from '../user-offers/user-offers';
 import * as _ from 'lodash';
 
 @Component({
@@ -80,7 +81,8 @@ export class AddOfferPage {
       this.offerService.createOffer(this.form.value).subscribe(
       result => {
         console.log(result);
-        // this.navCtrl.push(OffersListPage);
+        this.toastService.presentToast("Votre offre a été ajoutée", "success");
+        this.navCtrl.push(UserOffersPage);
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");

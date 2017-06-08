@@ -69,7 +69,7 @@ export class OffersListPage {
   }
 
   getOfferList(){
-    this.offerservice.getOffers().subscribe(
+    this.offerservice.getAllOffers().subscribe(
       result => {
         console.log(result);
       },
