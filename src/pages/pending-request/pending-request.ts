@@ -39,9 +39,7 @@ export class PendingRequestPage {
       buttons: [
         {
           text: 'Annuler',
-          handler:() => {
-            console.log('annulation');
-          }
+          role: 'cancel'
         },
         {
           text:'Supprimer',

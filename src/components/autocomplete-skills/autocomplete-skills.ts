@@ -24,7 +24,6 @@ export class AutocompleteSkillsComponent implements OnInit {
   }
 
   constructor(private skillService: SkillService, private toastService: ToastService) {
-    this.text = 'Hello World';
     // this.completeSkills = [
     //   "JS",
     //   "CSS",

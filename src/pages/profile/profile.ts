@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { PopoverController, NavController, NavParams } from 'ionic-angular';
+import { PopoverController, NavController, NavParams, AlertController } from 'ionic-angular';
 import { PopoverPage } from '../popover/popover';
-import { UserService, ToastService, LoaderService } from '../../providers/index';
+import { UserService, ToastService, LoaderService, SkillService } from '../../providers/index';
 import * as _ from 'lodash';
 
 @Component({
@@ -12,17 +12,22 @@ export class ProfilePage {
 
   private profile: any;
   private id: any;
+  private currentUser: any;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               public popoverCtrl: PopoverController, 
               private userService: UserService,
               private toastService: ToastService,
-              private loaderService: LoaderService) {
+              private loaderService: LoaderService,
+              private skillService: SkillService,
+              private alertCtrl: AlertController) {
     this.profile = {};
   }
 
   ionViewDidLoad() {
+    // get connected user
+    this.currentUser = this.userService.getUser();
     if(this.navParams.data.userId) {
       this.id = this.navParams.data.userId
       this.loaderService.presentLoaderDefault('Chargement du profil');
@@ -37,8 +42,7 @@ export class ProfilePage {
         }
       )
     } else {
-      // get connected user
-      this.initProfile(this.userService.getUser())
+      this.initProfile(this.currentUser);
     }
   }
 
@@ -53,7 +57,6 @@ export class ProfilePage {
 
     this.profile.stars = [0,0,0,0,0];
     this.starsDefinition(2.75);
-    console.log(this.profile);
   }
 
   starsDefinition(mark: any): void {
@@ -90,6 +93,50 @@ export class ProfilePage {
 
       i++;
     }
+  }
+
+  confirmSkillValidation(skill: any): void {
+    let confirm = this.alertCtrl.create({
+      title: 'Confirmation de validation',
+      message:  `Êtes-vous sûr de vouloir valider la compétence ${skill.label} pour ${this.profile.userFirstName} ${this.profile.userName} ?`,
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel'
+        },
+        {
+          text:'Valider',
+          handler: () => {
+            this.validateSkill(skill.id);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  validateSkill(skillId: number): void {
+    let body: any = {
+      userId: (this.id ? this.id : this.currentUser.id),
+      skillId: skillId
+    };
+    this.loaderService.presentLoaderDefault('Validation en cours');
+    this.skillService.validateSkill(body).subscribe(
+      result => {
+        /* Change the value for the IHM, to avoid refreshing the page */
+        for(let i: number = 0; i < this.profile.skills.length; i++) {
+          if(this.profile.skills[i].id === skillId) {
+            this.profile.skills[i].validated = true;
+          }
+        }
+        this.toastService.presentToast('Validation effectuée avec succès !', 'success');
+        this.loaderService.dismissLoader();
+      }, 
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
+      }
+    );
   }
 
   presentPopover(myEvent) {
