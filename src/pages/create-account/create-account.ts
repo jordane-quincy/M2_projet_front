@@ -13,9 +13,9 @@ import { ProfilePage } from '../profile/profile';
 
 export class CreateAccountPage {
   createAccountForm: FormGroup;
-  lastNameCtrl: FormControl;
-  firstNameCtrl: FormControl;
-  birthDateCtrl: FormControl;
+  lastnameCtrl: FormControl;
+  firstnameCtrl: FormControl;
+  birthdateCtrl: FormControl;
   phoneNumberCtrl: FormControl;
   emailCtrl: FormControl;
   passwordCtrl: FormControl;
@@ -42,11 +42,11 @@ export class CreateAccountPage {
     this.connectedUser = _.cloneDeep(user);
     this.isUpdating = !!user;
     // Define control
-    this.lastNameCtrl = fb.control(_.get(user, "lastName", ""), Validators.required);
-    this.firstNameCtrl = fb.control(_.get(user, "firstName", ""), Validators.required);
-    let userBirthDateTimestamp = _.get(user, "birthDate", false);
+    this.lastnameCtrl = fb.control(_.get(user, "lastname", ""), Validators.required);
+    this.firstnameCtrl = fb.control(_.get(user, "firstname", ""), Validators.required);
+    let userBirthDateTimestamp = _.get(user, "birthdate", false);
     let userBirthDateObject = !!userBirthDateTimestamp ? new Date(userBirthDateTimestamp) : false;
-    this.birthDateCtrl = fb.control(
+    this.birthdateCtrl = fb.control(
       !!userBirthDateObject ?
         userBirthDateObject.toISOString()
         :
@@ -69,14 +69,14 @@ export class CreateAccountPage {
     }
     this.validatePasswordCtrl = fb.control('', validatorsForValidatePassword)
 
-    this.formationList = ["L3-Info", "M2 TNSI-FA", "M2-TNSI-FI"];
+    this.formationList = [{id: 1, label: "L3-Info"}, {id: 2, label: "M2-TNSI-FA"}, {id: 3, label: "M2-TNSI-FI"}];
 
 
     // defin create account form
     this.createAccountForm = fb.group({
-      lastName: this.lastNameCtrl,
-      firstName: this.firstNameCtrl,
-      birthDate: this.birthDateCtrl,
+      lastname: this.lastnameCtrl,
+      firstname: this.firstnameCtrl,
+      birthdate: this.birthdateCtrl,
       phoneNumber: this.phoneNumberCtrl,
       email: this.emailCtrl,
       passwordForm: this.passwordForm,
@@ -93,9 +93,11 @@ export class CreateAccountPage {
   createAccount() {
     let user = _.cloneDeep(this.createAccountForm.value);
     user.password = user.passwordForm.password;
-    user.birthDate = +new Date(user.birthDate);
+    user.birthdate = +new Date(user.birthdate);
     let validatePassword = user.validatePassword;
+    user.formationId = user.formation;
     delete(user.validatePassword);
+    delete(user.formation);
     delete(user.passwordForm);
     if (this.isUpdating) {
       // update the account
