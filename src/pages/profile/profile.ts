@@ -104,9 +104,9 @@ export class ProfilePage {
     this.navCtrl.push(CreateAccountPage, {user:
       {
         "id": 123,
-        "lastName":"Duriez",
-        "firstName":"Jean-Baptiste",
-        "birthDate":781401600000,
+        "lastname":"Duriez",
+        "firstname":"Jean-Baptiste",
+        "birthdate":781401600000,
         "phoneNumber":"0668554964",
         "email":"duriez.jeanbaptiste@etu.univ-valenciennes.fr",
         "question":"Nom de la mère",

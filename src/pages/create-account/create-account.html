@@ -19,9 +19,9 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Nom</ion-label>
-                            <ion-input type="text" formControlName="lastName"></ion-input>
+                            <ion-input type="text" formControlName="lastname"></ion-input>
                         </ion-item>
-                        <div class="input-error" *ngIf="lastNameCtrl.touched && lastNameCtrl.hasError('required')">
+                        <div class="input-error" *ngIf="lastnameCtrl.touched && lastnameCtrl.hasError('required')">
                             Le nom est requis
                         </div>
                   </ion-col>
@@ -31,9 +31,9 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Prénom</ion-label>
-                            <ion-input type="text" formControlName="firstName"></ion-input>
+                            <ion-input type="text" formControlName="firstname"></ion-input>
                         </ion-item>
-                        <div class="input-error" *ngIf="firstNameCtrl.touched && firstNameCtrl.hasError('required')">
+                        <div class="input-error" *ngIf="firstnameCtrl.touched && firstnameCtrl.hasError('required')">
                           Le prénom est requis
                         </div>
                   </ion-col>
@@ -43,7 +43,7 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Date de naissance</ion-label>
-                            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthDate"></ion-datetime>
+                            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthdate"></ion-datetime>
                         </ion-item>
                   </ion-col>
             </ion-row>
