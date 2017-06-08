@@ -31,12 +31,10 @@ export class AddStudentPage {
   addStudent() {
     let body = {
       "IdOffer": this.student.id,
-      "date": new Date(this.form.value.date).getTime(),
+      "date": new Date(this.form.value.date).valueOf(),
       "duration": this.student.duration,
       "status": "VALIDATED"
-
     };
-    console.log(body);
     this.offerservice.updateAppointment(body).subscribe(
       result => {
         this.toastService.presentToast("Votre rendez-vous a bien été enregistré", "success");
