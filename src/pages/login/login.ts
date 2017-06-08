@@ -31,6 +31,7 @@ export class LoginPage {
         this.tokenService.setToken(result.token);
         this.loaderService.dismissLoader();
         this.userService.setUser(_.cloneDeep(result.user));
+        console.log(this.userService.getUser());
         this.navCtrl.push(TabsPage);
       },
       error => {

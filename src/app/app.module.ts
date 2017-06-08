@@ -30,7 +30,6 @@ import { PopoverPage } from '../pages/popover/popover';
 
 import {
   UserService,
-  CreditService,
   HttpService,
   TokenService,
   ToastService,
@@ -102,7 +101,6 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     StatusBar,
     SplashScreen,
     UserService,
-    CreditService,
     ImagePicker,
     HttpService,
     TokenService,

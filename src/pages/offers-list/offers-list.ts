@@ -25,7 +25,6 @@ export class OffersListPage {
   getOfferList(){
     this.offerservice.getAllOffers().subscribe(
       result => {
-        console.log(result);
         this.offersList = result;        
       },
       error => {

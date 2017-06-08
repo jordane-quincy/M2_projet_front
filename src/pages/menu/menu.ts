@@ -61,10 +61,7 @@ export class MenuPage {
       buttons: [
         {
           text: 'Annuler',
-          role: 'cancel',
-          handler: () => {
-
-          }
+          role: 'cancel'
         },
         {
           text: 'Se déconnecter',

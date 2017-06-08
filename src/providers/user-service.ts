@@ -5,6 +5,7 @@ import { environment } from '../constants/constants';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import * as _ from 'lodash';
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,14 @@ export class UserService {
 
   setUser(user: any): void {
     this.user = user;
+  }
+
+  getUserCredit(): any {
+    return _.get(this.user, 'credit', 0);
+  }
+
+  setUserCredit(credit: number): any {
+    this.user.credit = credit;
   }
 
   login(body: any): Observable<any> {
