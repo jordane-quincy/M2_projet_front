@@ -56,16 +56,16 @@ export class AutocompleteSkillsComponent implements OnInit {
 
   addSkill() {
     this.selectedSkills.push({
-      skillLabel: "",
+      label: "",
       customSkill: true
     });
     this.emitUpdateEvent();
   }
 
   onClickSkill(skill: string) {
-    if (!_.find(this.selectedSkills, {skillLabel: skill})) {
+    if (!_.find(this.selectedSkills, {label: skill})) {
       this.selectedSkills.push({
-        skillLabel: skill,
+        label: skill,
         customSkill: false
       });
       this.emitUpdateEvent();
