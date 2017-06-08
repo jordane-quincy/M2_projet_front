@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, App } from 'ionic-angular';
 
 import { ProfilePage } from '../profile/profile';
 import { UserOffersPage } from '../user-offers/user-offers';
 import { PendingRequestPage } from '../pending-request/pending-request';
 import { AddOfferPage } from '../add-offer/add-offer';
 import { AppointmentPage } from '../appointment/appointment';
+import { LoginPage } from '../login/login';
+
+import { AuthService, ToastService, LoaderService, TokenService, UserService } from '../../providers/index';
 
 @Component({
   selector: 'page-menu',
@@ -13,40 +16,52 @@ import { AppointmentPage } from '../appointment/appointment';
 })
 export class MenuPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private app: App,
+              private authService: AuthService, 
+              private toastService: ToastService, 
+              private loaderService: LoaderService,
+              private tokenService: TokenService,
+              private userService: UserService) {
 
   }
 
-  openPageProfil()
-  {
+  openPageProfil(): void {
     this.navCtrl.push(ProfilePage);
   }
 
-  openPageUserOffers()
-  {
+  openPageUserOffers(): void {
     this.navCtrl.push(UserOffersPage);
   }
 
 
-  openPageAddOffer()
-  {
+  openPageAddOffer(): void {
     this.navCtrl.push(AddOfferPage);
   }
 
-  openPageAppointment(){
+  openPageAppointment(): void {
     this.navCtrl.push(AppointmentPage);
   }
 
-  openPagePendingRequest(){
+  openPagePendingRequest(): void {
     this.navCtrl.push(PendingRequestPage);
   }
 
-  openPage(page: any): void {
-    this.navCtrl.push(page);
-  }
-
-  exit(){
-
+  disconnect(): void {
+    this.loaderService.presentLoaderDefault('Déconnexion en cours');
+    this.authService.disconnect().subscribe(
+      res => {
+        this.tokenService.setToken(null);
+        this.userService.setUser(null);
+        this.loaderService.dismissLoader();
+        this.app.getRootNav().setRoot(LoginPage);
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
+      }
+    );
   }
 
 }
