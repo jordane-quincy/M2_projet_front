@@ -4,7 +4,7 @@ import { PopoverController, NavController, NavParams } from 'ionic-angular';
 import { PopoverPage } from '../popover/popover';
 
 @Component({
-  selector: 'page-profile',
+  selector: 'page-profil',
   templateUrl: 'profile.html',
 })
 export class ProfilePage {

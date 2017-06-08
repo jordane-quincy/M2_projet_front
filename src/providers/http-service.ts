@@ -17,7 +17,6 @@ export class HttpService extends Http {
 
   request(request: Request, options?: RequestOptionsArgs): Observable<Response> {
     let token = this.tokenService.getToken();
-    console.log(token);
     if (!request.headers) {
       request.headers = new Headers([]);
     }
@@ -28,7 +27,6 @@ export class HttpService extends Http {
 
   private catchAuthError (self: HttpService) {
     return (res: Response) => {
-      console.log(res);
       if (res.status === 401 || res.status === 403) {
         console.log("Erreur 401 ou 403");
       }

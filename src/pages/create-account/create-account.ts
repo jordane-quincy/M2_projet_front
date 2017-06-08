@@ -54,8 +54,12 @@ export class CreateAccountPage {
     );
     this.phoneNumberCtrl = fb.control(_.get(user, "phoneNumber", ""));
     this.emailCtrl =  fb.control(_.get(user, "email", ""), [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]);
-    this.passwordCtrl = fb.control('', [Validators.required]);
-    this.repeatPasswordCtrl = fb.control('', [Validators.required]);
+    let validatorsForPassword = [];
+    if (!this.isUpdating) {
+      validatorsForPassword = [Validators.required];
+    }
+    this.passwordCtrl = fb.control('', validatorsForPassword);
+    this.repeatPasswordCtrl = fb.control('', validatorsForPassword);
     this.passwordForm = fb.group(
       {password: this.passwordCtrl, repeatPassword: this.repeatPasswordCtrl},
       {validator: CreateAccountPage.passwordMatch}

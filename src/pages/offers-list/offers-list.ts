@@ -17,7 +17,12 @@ export class OffersListPage {
     this.offersList = [{
       title: 'title',
       description: 'description description description description description description description description description description description description description description description description description description description description description',
-      duration: 1
+      duration: 1,
+      lastname:'Dupont',
+      firstname: 'michelle',
+      domain:{"id":2,
+              "domainName":"Arts"
+             }
     },
     {
       title: "autre title",
@@ -69,7 +74,6 @@ export class OffersListPage {
         console.log(result);
       },
       error => {
-        console.log(error);
         this.toastService.presentToast((error || {}).message, "alert");
       }
     );
