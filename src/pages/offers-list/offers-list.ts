@@ -69,7 +69,6 @@ export class OffersListPage {
         console.log(result);
       },
       error => {
-        console.log(error);
         this.toastService.presentToast((error || {}).message, "alert");
       }
     );
