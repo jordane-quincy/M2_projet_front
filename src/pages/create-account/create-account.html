@@ -19,9 +19,9 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Nom</ion-label>
-                            <ion-input type="text" formControlName="lastname"></ion-input>
+                            <ion-input type="text" formControlName="userName"></ion-input>
                         </ion-item>
-                        <div class="input-error" *ngIf="lastnameCtrl.touched && lastnameCtrl.hasError('required')">
+                        <div class="input-error" *ngIf="userNameCtrl.touched && userNameCtrl.hasError('required')">
                             Le nom est requis
                         </div>
                   </ion-col>
@@ -31,9 +31,9 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Prénom</ion-label>
-                            <ion-input type="text" formControlName="firstname"></ion-input>
+                            <ion-input type="text" formControlName="userfirstName"></ion-input>
                         </ion-item>
-                        <div class="input-error" *ngIf="firstnameCtrl.touched && firstnameCtrl.hasError('required')">
+                        <div class="input-error" *ngIf="userfirstNameCtrl.touched && userfirstNameCtrl.hasError('required')">
                           Le prénom est requis
                         </div>
                   </ion-col>
@@ -43,7 +43,7 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Date de naissance</ion-label>
-                            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthdate"></ion-datetime>
+                            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthday"></ion-datetime>
                         </ion-item>
                   </ion-col>
             </ion-row>
@@ -61,15 +61,15 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Email</ion-label>
-                            <ion-input disabled={{isUpdating}} type="email" formControlName="email"></ion-input>
+                            <ion-input type="email" formControlName="userMail"></ion-input>
                         </ion-item>
-                        <div class="input-error" *ngIf="emailCtrl.touched && emailCtrl.hasError('required')">
+                        <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('required')">
                             L'email est requis
                         </div>
-                        <div class="input-error" *ngIf="emailCtrl.touched && emailCtrl.hasError('email') && !emailCtrl.hasError('required')">
+                        <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('email') && !userMailCtrl.hasError('required')">
                             Mauvais format d'email
                         </div>
-                        <div class="input-error" *ngIf="emailCtrl.touched && emailCtrl.hasError('pattern') && !emailCtrl.hasError('required')">
+                        <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('pattern') && !userMailCtrl.hasError('required')">
                             L' email doit finir par @etu.univ-valenciennes.fr ou @univ-valenciennes.fr
                         </div>
                   </ion-col>
