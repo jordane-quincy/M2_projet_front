@@ -138,14 +138,14 @@
               <br/>
               <ion-item>
                 <ion-label color="primary" stacked>Donnez votre mot de passe pour validation</ion-label>
-                <ion-input type="text" formControlName="validatePassword"></ion-input>
+                <ion-input type="password" formControlName="validatePassword"></ion-input>
               </ion-item>
               <div class="input-error" *ngIf="validatePasswordCtrl.touched && validatePasswordCtrl.hasError('required')">
                 Le mot de passe pour valider la modification de compte est requise
               </div>
             </div>
             <br/>
-            <button ion-button type="submit" >{{isUpdating ? "Mettre à jour" : "Suivant"}} <ion-icon *ngIf="!isUpdating" name="arrow-forward"></ion-icon></button>
+            <button ion-button type="submit" [disabled]="createAccountForm.invalid">{{isUpdating ? "Mettre à jour" : "Suivant"}} <ion-icon *ngIf="!isUpdating" name="arrow-forward"></ion-icon></button>
         </form>
       </ion-col>
     </ion-row>

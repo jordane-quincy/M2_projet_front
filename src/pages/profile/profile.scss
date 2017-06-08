@@ -1,47 +1,46 @@
-page-profil {
+page-profil
+{
+  .profile-img{
+    width: 200px;
+    height: 200px;
+  }
 
-}
+  .name-style{
+    font-size: 18px;
+    font-weight: bold;
+  }
 
-.profile-img{
-  width: 200px;
-  height: 200px;
-}
+  .birthdate-role-style{
+    font-style: italic;
+    font-size: 16px;
+  }
 
-.name-style{
-  font-size: 18px;
-  font-weight: bold;
-}
+  .header{
+    background-color: #f8f8f8;
+    font-weight: bold;
+  }
 
-.birthdate-role-style{
-  font-style: italic;
-  font-size: 16px;
-}
+  .no-padding{
+    padding: 0px !important;
+  }
 
-.header{
-  background-color: #f8f8f8;
-  font-weight: bold;
-}
+  .middle{
+    font-size: 13px;
+    height: 100%;
+    padding: 0px;
+    vertical-align: middle;
+    width: 100%;
+  }
 
-.no-padding{
-  padding: 0px !important;
-}
+  .icon-size{
+    font-size: 30px;
+  }
 
-.middle{
-  font-size: 13px;
-  height: 100%;
-  padding: 0px;
-  vertical-align: middle;
-  width: 100%;
-}
+  .icon-validate{
+    text-align: right;
+  }
 
-.icon-size{
-  font-size: 30px;
-}
-
-.icon-validate{
-  text-align: right;
-}
-
-.clickable {
-  cursor: pointer;
+  .clickable {
+    cursor: pointer;
+  }
 }
