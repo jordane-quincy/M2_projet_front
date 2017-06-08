@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { UserService, ToastService } from '../../providers/index';
-import { LoginPage } from '../login/login';
+import { UserService, ToastService, LoaderService } from '../../providers/index';
 import * as _ from 'lodash';
 
 @Component({
@@ -14,7 +13,7 @@ export class CreateAccountSkillsPage {
 
   selectedSkills: Object[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, public toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private toastService: ToastService, private loaderService: LoaderService) {
     this.user = _.cloneDeep(navParams.get('user'));
     this.selectedSkills = [];
   }
@@ -26,14 +25,16 @@ export class CreateAccountSkillsPage {
     this.user.skills = (_.cloneDeep(this.selectedSkills) || []).map(element => {
       return element.skillLabel;
     });
+    this.loaderService.presentLoaderDefault('Création en cours');
     this.userService.createAccount(this.user).subscribe(
       res => {
-        console.log("success");
         this.toastService.presentToast("Votre compte a été créé, validez-le avec le lien dans l'email qui vous a été envoyé", "success");
+        this.loaderService.dismissLoader();
+        this.navCtrl.popToRoot();
       },
       err => {
-        console.log(err);
         this.toastService.presentToast((err || {}).message, "alert");
+        this.loaderService.dismissLoader();
       }
     );
   }
