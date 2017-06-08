@@ -6,8 +6,8 @@
     placeholder="Rechercher une compétence">
   </ion-searchbar>
   <ion-list>
-    <ion-item class="selectionnable_item" (click)="onClickSkill(skill)" *ngFor="let skill of skills">
-      {{ skill }}
+    <ion-item class="selectionnable_item" (click)="onClickSkill(skill.label)" *ngFor="let skill of skills">
+      {{ skill.label }}
     </ion-item>
   </ion-list>
   <ion-grid>
