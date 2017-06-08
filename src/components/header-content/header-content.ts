@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CreditService } from '../../providers/credit-service';
+import { UserService } from '../../providers/index';
 
 @Component({
   selector: 'header-content',
@@ -9,7 +9,7 @@ export class HeaderContentComponent {
 
   @Input() title: string;
 
-  constructor(private creditService: CreditService) {
+  constructor(private userService: UserService) {
     
   }
 

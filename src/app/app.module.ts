@@ -30,7 +30,6 @@ import { PopoverPage } from '../pages/popover/popover';
 
 import {
   UserService,
-  CreditService,
   HttpService,
   TokenService,
   ToastService,
@@ -43,8 +42,7 @@ import {
 
 import { AutocompleteSkillsComponent } from '../components/autocomplete-skills/autocomplete-skills';
 import { HeaderContentComponent } from '../components/header-content/header-content';
-
-
+import { DomainsService } from '../providers/domains-service';
 
 @NgModule({
   declarations: [
@@ -102,7 +100,6 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     StatusBar,
     SplashScreen,
     UserService,
-    CreditService,
     ImagePicker,
     HttpService,
     TokenService,
@@ -120,6 +117,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
       },
       deps: [XHRBackend, RequestOptions, TokenService]
     },
+    DomainsService,
   ]
 })
 export class AppModule {}
