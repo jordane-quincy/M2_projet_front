@@ -41,5 +41,38 @@
     </ion-card-content>
   </ion-card>
 
+    <ion-card *ngFor="let mark of offer.remarks">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            {{ mark.text }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <ion-item text-center>
+            <span *ngFor="let star of starsDefinition(mark.grade)">
+              <span [ngSwitch]="star">
+                <span *ngSwitchCase="1">
+                  <ion-icon name="star" class="icon-size"></ion-icon>
+                </span>
+
+                <span *ngSwitchCase="0.5">
+                  <ion-icon name="star-half" class="icon-size"></ion-icon>
+                </span>
+
+                <span *ngSwitchDefault>
+                  <ion-icon name="star-outline" class="icon-size"></ion-icon>
+                </span>
+              </span>
+            </span>
+          </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
     <button ion-button round class="subscribe" icon-left (click)="subscribe(offer.id)" [disabled]="userService.getUser()?.userMail === offer.user?.userMail">Je m'inscris</button>
 </ion-content>
