@@ -10,12 +10,12 @@
     <ion-col col-xs-12 col-sm-6 col-md-4 col-12 *ngFor="let offer of offersList" (click)="handleOfferClick(offer)">
     <ion-card class="offers-list-item">
       <ion-card-header>
-        {{offer.title}}
+        <ion-item class="no-padding">
+          {{offer.title}}
+          <ion-badge item-end>{{offer.duration}} h</ion-badge>
+        </ion-item>
       </ion-card-header>
       <ion-card-content text-nowrap>
-        <!--<ion-avatar item-start>
-          <img padding src="data:image/png;base64,{{offer.icon}}"/>
-        </ion-avatar>-->
         {{offer.description}}
       </ion-card-content>
     </ion-card>
