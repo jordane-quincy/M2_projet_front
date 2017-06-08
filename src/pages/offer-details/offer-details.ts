@@ -22,7 +22,6 @@ export class OfferDetailsPage {
   }
 
   subscribe(id: number){
-    console.log(id);
     var body = {"IdOffer": id};
     this.offerService.subscribeOffer(body).subscribe(
       res => {

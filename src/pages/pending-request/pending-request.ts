@@ -32,11 +32,11 @@ export class PendingRequestPage {
             offer: offer.offer,
             duration: offer.duration,
             status : offer.status,
-            firstName: offer.FirstName,
+            firstName: offer.firstName,
             lastName: offer.lastName,
           };
         });
-        console.log(result);
+        console.log(this.pendingRequests);
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
@@ -67,8 +67,10 @@ export class PendingRequestPage {
     confirm.present();
   }
 
-  addStudent(){
-    this.navCtrl.push(AddStudentPage);
+  addStudent(student: any){
+    this.navCtrl.push(AddStudentPage, {
+      student: student
+    });
   }
 
 }
