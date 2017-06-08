@@ -22,7 +22,7 @@ export class OfferService {
   }
 
   getAllOffers(): Observable<any> {
-    let httpAddress: string = `${environment.backendUrl}/offer/list`;
+    let httpAddress: string = `${environment.backendUrl}/offer/search`;
     return this.http.get(httpAddress)
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
@@ -56,4 +56,10 @@ export class OfferService {
     .catch((error: any) => Observable.throw(error.json()));
   }
 
+  updateOffer(body: any, id: number): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/offer/update/`+id;
+    return this.http.post(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
 }
