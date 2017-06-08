@@ -25,12 +25,10 @@ export class ForgottenPasswordPage {
   }
   askForResetPassword() {
     // Send to the back the email to see if it exists, if yes, then redirect to the reset password page with secret questionCtrl
-    this.userService.createAccount(this.forgottenPasswordForm.value).subscribe(
+    this.userService.askForResetPassword(this.forgottenPasswordForm.value).subscribe(
       res => {
-        // TODO Success, get the question in the response
-
         //redirect to the resetPassword view with the question
-        this.navCtrl.push(ResetPasswordPage, {questionLabel: "Quel est le nom de jeune fille de ta mère"});
+        this.navCtrl.push(ResetPasswordPage, {questionLabel: res.question, email: this.forgottenPasswordForm.value.email});
       },
       err => {
         // Error, the email doesn't correspond to a user or server error
