@@ -27,7 +27,7 @@ import { AppointmentPage } from '../pages/appointment/appointment';
 import { AddStudentPage } from '../pages/add-student/add-student';
 import { LessonSearchPage } from '../pages/lesson-search/lesson-search';
 
-import { UserService, CreditService, HttpService, TokenService, ToastService, FormationService } from '../providers/index';
+import { UserService, CreditService, HttpService, TokenService, ToastService, FormationService, SkillService } from '../providers/index';
 
 import { AutocompleteSkillsComponent } from '../components/autocomplete-skills/autocomplete-skills';
 import { HeaderContentComponent } from '../components/header-content/header-content';
@@ -92,6 +92,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
     TokenService,
     ToastService,
     FormationService,
+    SkillService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {
       provide: Http,
@@ -99,7 +100,7 @@ import { HeaderContentComponent } from '../components/header-content/header-cont
         return new HttpService(backend, options, tokenService);
       },
       deps: [XHRBackend, RequestOptions, TokenService]
-    }
+    },
   ]
 })
 export class AppModule {}
