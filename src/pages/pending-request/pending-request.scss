@@ -1,3 +1,13 @@
 page-pending-request {
+    .item-md {
+        padding-left: 0;
+    }
 
+    .list-md .item-block .item-inner {
+        padding-left: 16px;
+    }
+
+    ion-item {
+        cursor: pointer;
+    }
 }
