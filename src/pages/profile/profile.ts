@@ -61,11 +61,6 @@ export class ProfilePage {
         this.loaderService.dismissLoader();
       }
     )
-
-    // Définition du profil
-    this.profile.picture = "assets/logo.png";
-
-
   }
 
   starsDefinition(mark: any): void {
