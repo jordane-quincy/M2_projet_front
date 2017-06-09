@@ -98,7 +98,12 @@
             {{ remark.offerTitle }}
           </ion-col>
           <ion-col col-9>
-            {{ remark.remark }}
+            {{ !!remark.remark ? remark.remark : "Aucun commentaire" }}
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="(profile.remarks || []).length === 0">
+          <ion-col col-12>
+            Aucun avis
           </ion-col>
         </ion-row>
       </ion-grid>
