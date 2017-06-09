@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { OfferService, ToastService } from '../../providers/index';
+import { AddStudentPage } from '../add-student/add-student';
 
 @Component({
   selector: 'page-pending-request',
@@ -12,7 +13,7 @@ export class PendingRequestPage {
   pendingRequests: any[];
   myPendingRequests: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerservice: OfferService, private toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerservice: OfferService, private toastService: ToastService, private AddStudentPage: AddStudentPage) {
 
   }
 
