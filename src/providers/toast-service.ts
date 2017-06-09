@@ -19,8 +19,8 @@ export class ToastService {
       message: message,
       duration: type === "alert" ? null : 3000,
       position: "top",
-      showCloseButton: type === "alert",
-      closeButtonText: type === "alert" ? "OK" : "",
+      showCloseButton: true,
+      closeButtonText: 'Ok',
       cssClass: `toast-${type}`
     });
     toast.present();
