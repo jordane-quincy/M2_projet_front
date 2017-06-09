@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DomainsService, OfferService, ToastService, LoaderService } from '../../providers/index';
+import { DomainsService, OfferService, ToastService, LoaderService, UserService } from '../../providers/index';
 import { OfferDetailsPage } from '../offer-details/offer-details';
 
 @Component({
@@ -14,14 +14,16 @@ export class LessonSearchPage {
   private domainsList: any[];
   private domainsListChecked: any[];
   offersList: any[];
+  isAvandcedSearch = false;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              private fb: FormBuilder, 
-              public domainsService: DomainsService, 
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private fb: FormBuilder,
+              public domainsService: DomainsService,
               public offerService: OfferService,
               private toastService: ToastService,
-              private loaderService: LoaderService
+              private loaderService: LoaderService,
+    private userService: UserService
               ) {
     this.domainsList = [];
     this.domainsListChecked = [];
@@ -40,6 +42,32 @@ export class LessonSearchPage {
   ionViewDidEnter(): void {
     this.initDomainsList();
     this.getOffersList();
+    this.refreshCredit();
+  }
+
+    refreshCredit(){
+      this.userService.getUserCreditFromBack().subscribe(
+        result => {
+          this.userService.setUserCredit(result.credit);
+        },
+        error => {
+          this.toastService.presentToast((error || {}).message, "alert");
+        }
+      );
+  }
+
+  retrieveData(refresher): void {
+    this.initDomainsList();
+    this.offerService.getAllOffers().subscribe(
+      result => {
+        this.offersList = result;
+        refresher.complete();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
+
   }
 
   initDomainsList(): void {
@@ -68,7 +96,7 @@ export class LessonSearchPage {
   getOffersList(){
     this.offerService.getAllOffers().subscribe(
       result => {
-        this.offersList = result;        
+        this.offersList = result;
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
@@ -98,4 +126,9 @@ export class LessonSearchPage {
       )
     }
   }
+
+  showAdvanceSearch(): void {
+    this.isAvandcedSearch = !this.isAvandcedSearch;
+  }
+
 }

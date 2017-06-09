@@ -6,6 +6,11 @@
 
 
 <ion-content>
+    <ion-refresher (ionRefresh)="retrieveData($event)">
+    <ion-refresher-content>
+
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
     <ion-list-header>
     Demandes à approuver
@@ -13,11 +18,11 @@
     <ion-item-sliding *ngFor='let request of pendingRequests'>
       <ion-item>{{request.firstName}} {{request.lastName}} - {{request.offer}}</ion-item>
       <ion-item-options class="options">
-        <button ion-button color="secondary" icon-left (click)="approve(request)">
+        <button ion-button color="secondary" icon-left (click)="addStudent(request)">
           <ion-icon name="checkmark" large></ion-icon>
         </button>
         <button ion-button color="danger" icon-left (click)="showConfirm(request)">
-          <ion-icon name="trash" large></ion-icon>
+          <ion-icon name="close" large></ion-icon>
         </button>
       </ion-item-options>
     </ion-item-sliding>

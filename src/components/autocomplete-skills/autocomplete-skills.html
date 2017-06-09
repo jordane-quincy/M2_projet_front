@@ -19,7 +19,7 @@
     <ion-list>
       <div *ngFor="let selectedSkill of selectedSkills; let i = index">
         <ion-row class="row">
-          <ion-col col-12 col-md-6>
+          <ion-col col-12>
             <ion-item>
               <ion-label color="primary" stacked>Compétence {{i + 1}}</ion-label>
               <ion-input readonly="{{!selectedSkill.customSkill}}" type="text" (ngModelChange)="emitUpdateEvent()" [(ngModel)]="selectedSkill.label"></ion-input>

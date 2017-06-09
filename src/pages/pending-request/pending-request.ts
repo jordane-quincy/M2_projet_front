@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { OfferService, ToastService } from '../../providers/index';
+import { OfferService, ToastService, UserService } from '../../providers/index';
+import { AddStudentPage } from '../add-student/add-student';
 
 @Component({
   selector: 'page-pending-request',
@@ -12,17 +13,50 @@ export class PendingRequestPage {
   pendingRequests: any[];
   myPendingRequests: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerservice: OfferService, private toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerservice: OfferService, private toastService: ToastService, private userservice: UserService) {
 
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.getAllAppointments();
     this.getAllRequests();
   }
 
+  ionViewDidLoad() {
+  }
+
+   retrieveData(refresher): void {
+     let body = {
+      "status": "PENDING"
+    }
+    this.offerservice.getAllAppointments(body).subscribe(
+      result => {
+        this.pendingRequests = result;
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        refresher.complete();
+      }
+    );
+
+     this.offerservice.getAllRequests().subscribe(
+      result => {
+        this.myPendingRequests = result;
+        refresher.complete();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        refresher.complete();
+      }
+    );
+
+  }
+
   getAllAppointments(){
-    this.offerservice.getAllAppointments().subscribe(
+    let body = {
+      "status": "PENDING"
+    }
+    this.offerservice.getAllAppointments(body).subscribe(
       result => {
         this.pendingRequests = result;
       },
@@ -36,7 +70,6 @@ export class PendingRequestPage {
   getAllRequests(){
     this.offerservice.getAllRequests().subscribe(
       result => {
-        console.log(result);
         this.myPendingRequests = result;
       },
       error => {
@@ -45,24 +78,9 @@ export class PendingRequestPage {
     );
   }
 
-  approve(request: any): void {
-    request.status = 'VALIDATED';
-    request.IdOffer = request.id;
-    delete(request.id);
-    console.log(request);
-    this.offerservice.updateAppointment(request).subscribe(
-      result => {
-        this.myPendingRequests = this.myPendingRequests.filter(element => element.id !== request.IdOffer);
-        this.toastService.presentToast("Demande de cours approuvé !", "success");
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-      }
-    );
-  }
 
   showConfirm(request: any): void {
-    request.status = 'CANCELLED';
+    request.status = 'REFUSED';
     request.IdOffer = request.id;
     delete(request.id);
     let confirm = this.alertCtrl.create({
@@ -78,7 +96,7 @@ export class PendingRequestPage {
           handler: () => {
             this.offerservice.updateAppointment(request).subscribe(
               result => {
-                 this.toastService.presentToast("Cette demande de rendez-vous a bien été supprimée", "success");
+                this.toastService.presentToast("Cette demande de rendez-vous a bien été supprimée", "success");
                 this.pendingRequests = this.pendingRequests.filter(element => element.id !== request.id);
               },
               error => {
@@ -106,7 +124,9 @@ export class PendingRequestPage {
           handler: () => {
             this.offerservice.unsubscribeOffer({'IdOffer' : index}).subscribe(
               result => {
+                this.userservice.setUserCredit(result.user);
                 this.myPendingRequests = this.myPendingRequests.filter(element => element.id !== index);
+                this.toastService.presentToast("Demande supprimée !", "success");
               },
               error => {
                 this.toastService.presentToast((error || {}).message, "alert");
@@ -118,6 +138,12 @@ export class PendingRequestPage {
       ]
     });
     confirm.present();
+  }
+
+  addStudent(student: any){
+    this.navCtrl.push(AddStudentPage, {
+      student: student
+    });
   }
 
 }

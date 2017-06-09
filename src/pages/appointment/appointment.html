@@ -5,7 +5,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="retrieveData($event)">
+    <ion-refresher-content>
 
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-list>
    <ion-list-header>
     Cours à donner
@@ -20,7 +24,7 @@
         {{appointment.date | date: 'dd/MM/y à HH:mm'}}
      </ion-item>
      <ion-item-options class="options">
-       <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment.id, 'courseList')">
+       <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment, 'courseList')">
          <ion-icon name="trash" large></ion-icon>
        </button>
      </ion-item-options>
@@ -32,7 +36,7 @@
      Cours à suivre
     </ion-list-header>
     <ion-item-sliding class="sliding" *ngFor="let appointment of appointmentList">
-      <ion-item>
+      <ion-item *ngIf="appointment.status == 'VALIDATED'">
         <!--<ion-avatar item-start>
            <img src="data:image/jpeg;base64,{{appointment.picture}}"/>
          </ion-avatar>-->
@@ -41,10 +45,10 @@
          {{appointment.date | date: 'dd/MM/y à HH:mm'}}
       </ion-item>
       <ion-item-options class="options">
-        <button ion-button color="secondary" icon-left (click)="showConfirmValid(appointment.offer?.duration)">
+        <button ion-button color="secondary" icon-left (click)="showConfirmValid(appointment)">
           <ion-icon name="checkmark" large></ion-icon>
         </button>
-        <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment.id, 'appointmentList')">
+        <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment, 'appointmentList')">
           <ion-icon name="trash" large></ion-icon>
         </button>
       </ion-item-options>

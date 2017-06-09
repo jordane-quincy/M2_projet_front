@@ -1,16 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      {{isUpdating ? "Modification du compte" : "Création d'un compte"}}
-    </ion-title>
+  <ion-navbar *ngIf="!isUpdating; else creation">
+      <ion-title>
+        Création de compte
+      </ion-title>
   </ion-navbar>
+
+  <ng-template #creation>
+    <header-content></header-content>
+  </ng-template>
+  
 </ion-header>
 
 
 <ion-content>
   <ion-grid>
     <ion-row align-items-center justify-content-center>
-      <ion-col col-xs-12 col-sm-6 col-md-4>
+      <ion-col col-sm-12 col-md-8>
         <form (ngSubmit)="createAccount()" [formGroup]="createAccountForm">
             <h5 class="align-with-ion-item no-margin-bottom">
                 Informations
@@ -43,7 +48,7 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Date de naissance *</ion-label>
-                            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthday"></ion-datetime>
+                            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthday" doneText="Ok" cancelText="Annuler"></ion-datetime>
                         </ion-item>
                   </ion-col>
             </ion-row>
@@ -52,7 +57,7 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Téléphone</ion-label>
-                            <ion-input type="text" formControlName="phoneNumber"></ion-input>
+                            <ion-input type="tel" formControlName="phoneNumber"></ion-input>
                         </ion-item>
                   </ion-col>
             </ion-row>

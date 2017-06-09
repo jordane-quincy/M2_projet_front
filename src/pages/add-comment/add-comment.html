@@ -1,0 +1,23 @@
+<ion-header>
+
+  <header-content title="Ajouter un commentaire" ></header-content>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="commentForm">
+    <ion-item>
+      <ion-range min="0" max="5" step="1" pin="true" formControlName="grade" required>
+        <ion-label range-left>Note | {{commentForm.value.grade}} étoiles</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Avis</ion-label>
+      <ion-textarea formControlName="comment" required></ion-textarea>
+    </ion-item>
+
+    <button ion-button full type="submit" [disabled]="commentForm.invalid" (click)="addComment()">Commenter</button>
+  </form>
+</ion-content>

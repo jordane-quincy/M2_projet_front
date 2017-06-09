@@ -90,9 +90,9 @@ export class OfferService {
     .catch((error: any) => Observable.throw(error.json()));
   }
 
-  getAllAppointments(): Observable<any> {
+  getAllAppointments(body: any): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/subscribe/participants`;
-    return this.http.post(httpAddress, JSON.stringify({'status' : 'PENDING'}))
+    return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
@@ -106,6 +106,13 @@ export class OfferService {
 
   getOffersByFilters(body: any): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/offer/filter`;
+    return this.http.post(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  addUserComment(body: any, id: number): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/offer/comment/` + id;
     return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));

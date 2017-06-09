@@ -1,20 +1,25 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Sélection des compétences</ion-title>
+  <ion-navbar *ngIf="!isUpdating; else creation">
+      <ion-title>
+        Création des compétences
+      </ion-title>
   </ion-navbar>
+
+  <ng-template #creation>
+    <header-content></header-content>
+  </ng-template>
 
 </ion-header>
 
 
 <ion-content padding>
     <ion-row align-items-center justify-content-center>
-        <ion-col col-xs-12 col-sm-6 col-md-4>
+        <ion-col col-sm-12 col-md-8>
             <autocomplete-skills [(selectedSkills)]="selectedSkills" ></autocomplete-skills>
         </ion-col>
     </ion-row>
     <ion-row align-items-center justify-content-center>
-        <ion-col col-xs-12 col-sm-6 col-md-4>
+        <ion-col col-sm-12 col-md-8>
           <form [formGroup]="updateSkillsAccount">
             <div *ngIf="isUpdating">
               <br/>
@@ -29,7 +34,7 @@
               </div>
             </div>
             <ion-row align-items-center justify-content-center>
-                <ion-col col-xs-12 col-sm-6 col-md-4>
+                <ion-col col-sm-12 col-md-8>
                     <button [(disabled)]="isUpdating && updateSkillsAccount.invalid" ion-button col-12 (click)="createAccount()">{{isUpdating ? "Mettre à jour" : "Créer compte"}}</button>
                 </ion-col>
             </ion-row>
