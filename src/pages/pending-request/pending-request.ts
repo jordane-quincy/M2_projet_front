@@ -38,7 +38,6 @@ export class PendingRequestPage {
   getAllRequests(){
     this.offerservice.getAllRequests().subscribe(
       result => {
-        console.log(result);
         this.myPendingRequests = result;
       },
       error => {
@@ -47,24 +46,9 @@ export class PendingRequestPage {
     );
   }
 
-  approve(request: any): void {
-    request.status = 'VALIDATED';
-    request.IdOffer = request.id;
-    delete(request.id);
-    console.log(request);
-    this.offerservice.updateAppointment(request).subscribe(
-      result => {
-        this.myPendingRequests = this.myPendingRequests.filter(element => element.id !== request.IdOffer);
-        this.toastService.presentToast("Demande de cours approuvé !", "success");
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-      }
-    );
-  }
 
   showConfirm(request: any): void {
-    request.status = 'CANCELLED';
+    request.status = 'REFUSED';
     request.IdOffer = request.id;
     delete(request.id);
     let confirm = this.alertCtrl.create({
@@ -109,6 +93,7 @@ export class PendingRequestPage {
             this.offerservice.unsubscribeOffer({'IdOffer' : index}).subscribe(
               result => {
                 this.myPendingRequests = this.myPendingRequests.filter(element => element.id !== index);
+                this.toastService.presentToast("Demande supprimée !", "success");
               },
               error => {
                 this.toastService.presentToast((error || {}).message, "alert");
@@ -120,6 +105,12 @@ export class PendingRequestPage {
       ]
     });
     confirm.present();
+  }
+
+    addStudent(student: any){
+    this.navCtrl.push(AddStudentPage, {
+      student: student
+    });
   }
 
 }
