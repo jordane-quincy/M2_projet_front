@@ -25,7 +25,7 @@ export class ProfilePage {
     this.profile = {};
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     // get connected user
     this.currentUser = this.userService.getUser();
     if(this.navParams.data.userId) {

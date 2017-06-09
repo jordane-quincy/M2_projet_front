@@ -37,7 +37,7 @@ export class LessonSearchPage {
 
   }
 
-  ionViewDidLoad(): void {
+  ionViewDidEnter(): void {
     this.initDomainsList();
     this.getOffersList();
   }
