@@ -16,11 +16,11 @@ import { AuthService, ToastService, LoaderService, TokenService, UserService } f
 })
 export class MenuPage {
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
               private app: App,
-              private authService: AuthService, 
-              private toastService: ToastService, 
+              private authService: AuthService,
+              private toastService: ToastService,
               private loaderService: LoaderService,
               private tokenService: TokenService,
               private userService: UserService,
@@ -28,6 +28,21 @@ export class MenuPage {
               ) {
 
   }
+
+    ionViewDidEnter(): void {
+      this.refreshCredit();
+    }
+
+    refreshCredit(){
+        this.userService.getUserCreditFromBack().subscribe(
+          result => {
+            this.userService.setUserCredit(result.credit);
+          },
+          error => {
+            this.toastService.presentToast((error || {}).message, "alert");
+          }
+        );
+    }
 
   openPageProfil(): void {
     this.navCtrl.push(ProfilePage);
@@ -51,7 +66,7 @@ export class MenuPage {
   }
 
   presentConfirm() {
-    
+
   }
 
   disconnect(): void {

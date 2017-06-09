@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { NotificationService, LoaderService, ToastService } from '../../providers/index';
+import { NotificationService, LoaderService, ToastService, UserService } from '../../providers/index';
 import * as _ from 'lodash';
 
 @Component({
@@ -15,7 +15,8 @@ export class NotificationPage {
     public navParams: NavParams,
     private notificationService: NotificationService,
     private toastService: ToastService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private userService: UserService
   ) {
   }
 
@@ -38,12 +39,45 @@ export class NotificationPage {
     );
   }
 
+
+
   ionViewDidEnter() {
     this.refreshNotificationList();
+    this.refreshCredit();
+  }
+
+    retrieveData(refresher){
+    this.notificationService.getNotifications().subscribe(
+      result => {
+        //devise notif with status READ and status NOTREAD
+        this.notifList = _.cloneDeep((result || []).filter(notif => {
+          return notif.status === "NOTREAD";
+        }));
+        this.oldNotifList = _.cloneDeep((result || []).filter(notif => {
+          return notif.status === "READ";
+        }));
+        refresher.complete();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        refresher.complete();
+      }
+    );
+
+  }
+
+  refreshCredit(){
+    this.userService.getUserCreditFromBack().subscribe(
+      result => {
+        this.userService.setUserCredit(result.credit);
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
   }
 
   validateNotification(id: number): void {
-    console.log(id);
     this.notificationService.markAsRead(id).subscribe(
       result => {
         this.refreshNotificationList();
