@@ -7,7 +7,17 @@ page-notification {
         padding-left: 16px;
     }
 
-    ion-item {
-        cursor: pointer;
+    .float-right {
+      float: right;
+    }
+
+    ion-label {
+      margin-top: 5px !important;
+      margin-bottom: 0 !important;
+    }
+
+    ion-list-header {
+      border: 0 !important;
+      margin-bottom: 5px !important;
     }
 }

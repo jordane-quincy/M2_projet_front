@@ -36,6 +36,7 @@ import {
   FormationService,
   SkillService,
   OfferService,
+  NotificationService,
   LoaderService
 } from '../providers/index';
 
@@ -106,6 +107,7 @@ import { DomainsService } from '../providers/domains-service';
     OfferService,
     SkillService,
     LoaderService,
+    NotificationService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {
       provide: Http,
@@ -114,7 +116,7 @@ import { DomainsService } from '../providers/domains-service';
       },
       deps: [XHRBackend, RequestOptions, TokenService]
     },
-    DomainsService,
+    DomainsService
   ]
 })
 export class AppModule {}
