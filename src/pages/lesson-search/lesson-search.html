@@ -56,7 +56,9 @@
             <ion-toggle checked="true" formControlName="student"></ion-toggle>
           </ion-item>
 
-          <ion-label *ngIf="!searchFilters.value.teacher && !searchFilters.value.student" color="danger" text-center>Merci de choisir étudiant, professeur ou les deux</ion-label>
+          <ion-item *ngIf="!searchFilters.value.teacher && !searchFilters.value.student">
+            <ion-label color="danger" text-center>Merci de choisir étudiant, professeur ou les deux</ion-label>
+          </ion-item>
         </div>
         <button ion-button full type="submit" [disabled]="!searchFilters.value.teacher && !searchFilters.value.student">Rechercher</button>
 

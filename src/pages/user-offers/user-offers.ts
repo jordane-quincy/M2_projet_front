@@ -32,6 +32,19 @@ export class UserOffersPage {
       );
     }
 
+    retrieveData(refresher){
+    this.offerService.getUserOffers().subscribe(
+        res => {
+          this.userOffersList = res;
+          refresher.complete();
+        },
+        err => {
+          this.toastService.presentToast((err || {}).message, "alert");
+          refresher.complete();
+        }
+      );
+  }
+
   showConfirm(id: number): void {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de suppression',
