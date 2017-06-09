@@ -14,8 +14,7 @@
       </ion-col>
 
       <ion-col col-10 text-center>
-        <div *ngIf="!profile.picture; else userPicture"><ion-img src="assets/blanc.png" class="profile-img"></ion-img></div>
-        <ng-template #userPicture><ion-img [src]="profile.picture" class="profile-img"></ion-img></ng-template>
+        <ion-img src="assets/logo.png" class="profile-img"></ion-img>
       </ion-col>
 
       <ion-col col-1 text-right>
@@ -25,6 +24,10 @@
 
     <ion-row>
       <ion-col col-12 text-center class="name-style">{{profile.userName}} {{profile.userFirstName}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-12 text-center class="birthdate-role-style">{{profile.userMail}}</ion-col>
     </ion-row>
 
     <ion-row>
@@ -44,6 +47,11 @@
 
     <ion-card-content>
       <ion-grid>
+        <ion-row *ngIf="(profile.skills || []).length === 0">
+          <ion-col col-12>
+            Aucune compétence
+          </ion-col>
+        </ion-row>
         <ion-row *ngFor="let skill of profile.skills">
           <ion-col col-8 class="no-padding">
             <ion-item>{{ skill.label }}</ion-item>
@@ -98,7 +106,12 @@
             {{ remark.offerTitle }}
           </ion-col>
           <ion-col col-9>
-            {{ remark.remark }}
+            {{ !!remark.remark ? remark.remark : "Aucun commentaire" }}
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="(profile.remarks || []).length === 0">
+          <ion-col col-12>
+            Aucun avis
           </ion-col>
         </ion-row>
       </ion-grid>

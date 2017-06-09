@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { NotificationService, LoaderService, ToastService } from '../../providers/index';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'page-notification',
@@ -7,25 +9,50 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class NotificationPage {
 
-    notifList: any[];
+  notifList: any[];
+  oldNotifList: any[];
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private notificationService: NotificationService,
+    private toastService: ToastService,
+    private loaderService: LoaderService
+  ) {
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-      this.notifList = [{
-      title: 'title',
-      description: 'description'
-    },
-    {
-      title: "autre title",
-      description: 'autre description'
-    }];
+  refreshNotificationList() {
+    this.notificationService.getNotifications().subscribe(
+      result => {
+        //devise notif with status READ and status NOTREAD
+        this.notifList = _.cloneDeep((result || []).filter(notif => {
+          return notif.status === "NOTREAD";
+        }));
+        this.oldNotifList = _.cloneDeep((result || []).filter(notif => {
+          return notif.status === "READ";
+        }));
+        this.loaderService.dismissLoader();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
+      }
+    );
   }
 
   ionViewDidLoad() {
-
+    this.refreshNotificationList();
   }
 
-  handleNotifClick(): void {
-    console.log('click');
+  validateNotification(id: number): void {
+    console.log(id);
+    this.notificationService.markAsRead(id).subscribe(
+      result => {
+        this.refreshNotificationList();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
+      }
+    );
   }
 
 }

@@ -35,15 +35,22 @@ export class OfferService {
   }
 
   getAppointment(): Observable<any> {
-    let httpAddress: string = `${environment.backendUrl}/subscribe/subscriptions`
-    return this.http.get(httpAddress)
+    let httpAddress: string = `${environment.backendUrl}/subscribe/attemptSubscriptions`
+    return this.http.post(httpAddress, JSON.stringify({'status' : 'VALIDATED'}))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  getAllRequests(): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/subscribe/attemptSubscriptions`
+    return this.http.post(httpAddress, JSON.stringify({'status' : 'PENDING'}))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
 
   getCoursesToGive(): Observable<any> {
-    let httpAddress: string = `${environment.backendUrl}/subscribe/courses`
-    return this.http.get(httpAddress)
+    let httpAddress: string = `${environment.backendUrl}/subscribe/participants`;
+    return this.http.post(httpAddress, JSON.stringify({'status' : 'VALIDATED'}))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
@@ -62,9 +69,15 @@ export class OfferService {
     .catch((error: any) => Observable.throw(error.json()));
   }
 
-
   subscribeOffer(body: any): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/subscribe/sub`;
+     return this.http.post(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
+  unsubscribeOffer(body: any): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/subscribe/unsub`;
      return this.http.post(httpAddress, JSON.stringify(body))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
@@ -79,7 +92,7 @@ export class OfferService {
 
   getAllAppointments(): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/subscribe/participants`;
-    return this.http.get(httpAddress)
+    return this.http.post(httpAddress, JSON.stringify({'status' : 'PENDING'}))
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json() || 'Server error'));
   }
