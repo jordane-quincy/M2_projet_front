@@ -43,6 +43,21 @@ export class LessonSearchPage {
     this.getOffersList();
   }
 
+  retrieveData(refresher): void {
+    console.log('toto');
+    this.initDomainsList();
+    this.offerService.getAllOffers().subscribe(
+      result => {
+        this.offersList = result;
+        refresher.complete();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
+
+  }
+
   initDomainsList(): void {
     this.domainsService.getDomainsList().subscribe(
       result => {

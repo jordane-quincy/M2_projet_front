@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { OfferService, ToastService } from '../../providers/index';
+import { OfferService, ToastService, UserService } from '../../providers/index';
 import { AddCommentPage } from '../add-comment/add-comment';
 
 @Component({
@@ -12,7 +12,7 @@ export class AppointmentPage {
   appointmentList: any[];
   courseList: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService, private userService: UserService) {
   }
 
     ionViewDidLoad() {
@@ -58,6 +58,7 @@ export class AppointmentPage {
               let body = {'IdOffer' : appointment.id, 'status' : 'CANCELLED', 'date': appointment.date ,'duration': appointment.duration};
               this.offerService.updateAppointment(body).subscribe(
                 result => {
+                  this.userService.setUserCredit(result.user);
                   this.toastService.presentToast("Cours à donner supprimé !", "success");
                   this.courseList = this.courseList.filter(element => element.id !== appointment.id);
                 },
