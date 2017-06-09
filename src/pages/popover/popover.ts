@@ -38,7 +38,7 @@ export class PopoverPage {
       }
     );
   }
-
+/*
   deleteAccount(id: number): void {
     let prompt = this.alertCtrl.create({
       title: 'Confirmation de suppression',
@@ -73,5 +73,5 @@ export class PopoverPage {
       ]
     });
     prompt.present();
-  }
+  }*/
 }
