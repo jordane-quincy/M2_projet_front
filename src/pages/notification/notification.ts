@@ -38,7 +38,7 @@ export class NotificationPage {
     );
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.refreshNotificationList();
   }
 
