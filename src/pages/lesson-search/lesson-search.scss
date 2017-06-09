@@ -28,4 +28,30 @@ page-lesson-search {
       overflow: hidden;
   }
 
+  .row {
+    position: relative;
+  }
+
+  .div-toggle {
+    height: 0;
+    overflow: hidden;
+    transition: all .5s ease;
+  }
+
+  .div-toggle.toggle-open {
+    height: 230px;
+  }
+
+  #showToggle {
+    transform: rotate(0);
+    transition: transform .5s ease;
+    position: absolute;
+    right: 0;
+    top: 20px;
+  }
+
+  #showToggle.toggle-open {
+    transform: rotate(-90deg);
+  }
+
 }
