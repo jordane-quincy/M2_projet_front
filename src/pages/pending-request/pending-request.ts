@@ -17,9 +17,12 @@ export class PendingRequestPage {
 
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     this.getAllAppointments();
     this.getAllRequests();
+  }
+
+  ionViewDidLoad() {
   }
 
   getAllAppointments(){
