@@ -22,6 +22,10 @@ export class NotificationPage {
   refreshNotificationList() {
     this.notificationService.getNotifications().subscribe(
       result => {
+        // sort by creationDate
+        result.sort((a, b) => {
+          return b.creationDate - a.creationDate;
+        });
         //devise notif with status READ and status NOTREAD
         this.notifList = _.cloneDeep((result || []).filter(notif => {
           return notif.status === "NOTREAD";
