@@ -65,24 +65,7 @@ export class AppointmentPage {
     confirm.present();
   }
 
-  showConfirmValid(hours){
-    let confirm = this.alertCtrl.create({
-      title: 'Confirmation de paiement',
-      message: 'Votre compteur de temps sera débité de '+ hours +'h. Voulez-vous continuer ?',
-      buttons: [
-        {
-          text: 'Annuler',
-          role: 'cancel'
-        },
-        {
-          text:'Confirmer',
-          handler: () => {
-            console.log('Suppression');
-          }
-        }
-      ]
-    });
-    confirm.present();
+  showConfirmValid(appointment){
+    // this.navCtrl.push
   }
-
 }
