@@ -32,6 +32,13 @@ export class UserService {
     this.user.credit = credit;
   }
 
+  getUserCreditFromBack(): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/user/credit`;
+    return this.http.get(httpAddress)
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
   getUserById(id: number): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/user/get/${id}`;
     return this.http.get(httpAddress)
