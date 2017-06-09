@@ -43,17 +43,15 @@ export class AddCommentPage {
 
             this.offerService.addUserComment(this.commentForm.value, this.appointment.offer.id).subscribe(
               result => {
-                console.log("Commentaire ajouté");
-              },
-              error => {
-                this.toastService.presentToast((error || {}).message, "alert");
-              }
-            );
-
-            this.offerService.updateAppointment(body).subscribe(
-              result => {
-                this.toastService.presentToast("Votre compte a été débité", "success");
-                this.navCtrl.pop(AppointmentPage);
+                this.offerService.updateAppointment(body).subscribe(
+                  result => {
+                    this.toastService.presentToast("Votre compte a été débité", "success");
+                    this.navCtrl.pop(AppointmentPage);
+                  },
+                  error => {
+                    this.toastService.presentToast((error || {}).message, "alert");
+                  }
+                );
               },
               error => {
                 this.toastService.presentToast((error || {}).message, "alert");
