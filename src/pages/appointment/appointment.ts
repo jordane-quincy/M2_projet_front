@@ -34,6 +34,30 @@ export class AppointmentPage {
     );
   }
 
+   retrieveData(refresher): void {
+     this.offerService.getAppointment().subscribe(
+      res => {
+        this.appointmentList = res;
+      },
+      err => {
+        this.toastService.presentToast((err || {}).message, "alert");
+        refresher.complete();
+      }
+    );
+
+     this.offerService.getCoursesToGive().subscribe(
+      res => {
+        this.courseList = res;
+        refresher.complete();
+      },
+      err => {
+        this.toastService.presentToast((err || {}).message, "alert");
+        refresher.complete();
+      }
+    );
+
+  }
+
   getCoursesFromBack() {
     this.offerService.getCoursesToGive().subscribe(
       res => {

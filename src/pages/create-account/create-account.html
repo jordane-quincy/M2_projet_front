@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      {{isUpdating ? "Modification du compte" : "Création d'un compte"}}
-    </ion-title>
+  <ion-navbar *ngIf="!isUpdating; else creation">
+      <ion-title>
+        Création du compte
+      </ion-title>
   </ion-navbar>
+
+  <ng-template #creation>
+    <header-content title="Modification du compte"></header-content>
+  </ng-template>
+  
 </ion-header>
 
 
@@ -52,7 +57,7 @@
                   <ion-col>
                         <ion-item>
                             <ion-label color="primary" stacked>Téléphone</ion-label>
-                            <ion-input type="text" formControlName="phoneNumber"></ion-input>
+                            <ion-input type="tel" formControlName="phoneNumber"></ion-input>
                         </ion-item>
                   </ion-col>
             </ion-row>

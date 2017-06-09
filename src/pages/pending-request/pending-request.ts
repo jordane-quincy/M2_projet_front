@@ -25,6 +25,33 @@ export class PendingRequestPage {
   ionViewDidLoad() {
   }
 
+   retrieveData(refresher): void {
+     let body = {
+      "status": "PENDING"
+    }
+    this.offerservice.getAllAppointments(body).subscribe(
+      result => {
+        this.pendingRequests = result;
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        refresher.complete();
+      }
+    );
+
+     this.offerservice.getAllRequests().subscribe(
+      result => {
+        this.myPendingRequests = result;
+        refresher.complete();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        refresher.complete();
+      }
+    );
+
+  }
+
   getAllAppointments(){
     let body = {
       "status": "PENDING"

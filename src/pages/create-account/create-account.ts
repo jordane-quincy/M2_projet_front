@@ -52,7 +52,7 @@ export class CreateAccountPage {
         ""
     );
     this.phoneNumberCtrl = fb.control(_.get(user, "phoneNumber", ""));
-    this.userMailCtrl = fb.control({value: _.get(user, "userMail", ""), disabled: this.isUpdating}, [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]);
+    this.userMailCtrl = fb.control({value: _.get(user, "userMail", ""), disabled: this.isUpdating}, [Validators.required, Validators.email, Validators.pattern(".*(@univ-valenciennes.fr|@etu.univ-valenciennes.fr)")]);
     let validatorsForPassword = [];
     if (!this.isUpdating) {
       validatorsForPassword = [Validators.required];

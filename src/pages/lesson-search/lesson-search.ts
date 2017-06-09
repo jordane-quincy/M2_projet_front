@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DomainsService, OfferService, ToastService, LoaderService } from '../../providers/index';
+import { DomainsService, OfferService, ToastService, LoaderService, UserService } from '../../providers/index';
 import { OfferDetailsPage } from '../offer-details/offer-details';
 
 @Component({
@@ -22,7 +22,8 @@ export class LessonSearchPage {
               public domainsService: DomainsService,
               public offerService: OfferService,
               private toastService: ToastService,
-              private loaderService: LoaderService
+              private loaderService: LoaderService,
+    private userService: UserService
               ) {
     this.domainsList = [];
     this.domainsListChecked = [];
@@ -41,10 +42,21 @@ export class LessonSearchPage {
   ionViewDidEnter(): void {
     this.initDomainsList();
     this.getOffersList();
+    this.refreshCredit();
+  }
+
+    refreshCredit(){
+      this.userService.getUserCreditFromBack().subscribe(
+        result => {
+          this.userService.setUserCredit(result.credit);
+        },
+        error => {
+          this.toastService.presentToast((error || {}).message, "alert");
+        }
+      );
   }
 
   retrieveData(refresher): void {
-    console.log('toto');
     this.initDomainsList();
     this.offerService.getAllOffers().subscribe(
       result => {
