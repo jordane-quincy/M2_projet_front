@@ -7,13 +7,30 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>
+    Demandes à approuver
+   </ion-list-header>
     <ion-item-sliding *ngFor='let request of pendingRequests'>
       <ion-item>{{request.firstName}} {{request.lastName}} - {{request.offer}}</ion-item>
       <ion-item-options class="options">
-        <button ion-button color="secondary" icon-left (click)="addStudent(request)">
+        <button ion-button color="secondary" icon-left (click)="approve(request)">
           <ion-icon name="checkmark" large></ion-icon>
         </button>
-        <button ion-button color="danger" icon-left (click)="showConfirm(request.id)">
+        <button ion-button color="danger" icon-left (click)="showConfirm(request)">
+          <ion-icon name="trash" large></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+    Mes demandes en attente d'approbation
+   </ion-list-header>
+    <ion-item-sliding *ngFor='let request of myPendingRequests'>
+      <ion-item>{{request.offer.title}} par {{request.offer.user.userFirstName}} {{request.offer.user.userName}}</ion-item>
+      <ion-item-options class="options">
+        <button ion-button color="danger" icon-left (click)="showConfirmUnsub(request.id)">
           <ion-icon name="trash" large></ion-icon>
         </button>
       </ion-item-options>
