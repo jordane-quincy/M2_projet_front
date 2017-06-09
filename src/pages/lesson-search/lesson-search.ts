@@ -14,11 +14,12 @@ export class LessonSearchPage {
   private domainsList: any[];
   private domainsListChecked: any[];
   offersList: any[];
+  isAvandcedSearch = false;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              private fb: FormBuilder, 
-              public domainsService: DomainsService, 
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private fb: FormBuilder,
+              public domainsService: DomainsService,
               public offerService: OfferService,
               private toastService: ToastService,
               private loaderService: LoaderService
@@ -68,7 +69,7 @@ export class LessonSearchPage {
   getOffersList(){
     this.offerService.getAllOffers().subscribe(
       result => {
-        this.offersList = result;        
+        this.offersList = result;
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
@@ -98,4 +99,9 @@ export class LessonSearchPage {
       )
     }
   }
+
+  showAdvanceSearch(): void {
+    this.isAvandcedSearch = !this.isAvandcedSearch;
+  }
+
 }
