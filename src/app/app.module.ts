@@ -24,6 +24,7 @@ import { AppointmentPage } from '../pages/appointment/appointment';
 import { AddStudentPage } from '../pages/add-student/add-student';
 import { LessonSearchPage } from '../pages/lesson-search/lesson-search';
 import { PopoverPage } from '../pages/popover/popover';
+import { AddCommentPage } from '../pages/add-comment/add-comment';
 
 import {
   UserService,
@@ -64,7 +65,8 @@ import { DomainsService } from '../providers/domains-service';
     PendingRequestPage,
     AddStudentPage,
     LessonSearchPage,
-    PopoverPage
+    PopoverPage,
+    AddCommentPage
   ],
   imports: [
     BrowserModule,
@@ -90,7 +92,8 @@ import { DomainsService } from '../providers/domains-service';
     PendingRequestPage,
     AddStudentPage,
     LessonSearchPage,
-    PopoverPage
+    PopoverPage,
+    AddCommentPage
   ],
   providers: [
     StatusBar,
