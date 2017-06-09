@@ -1,9 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      {{isUpdating ? "Modification du compte" : "Création d'un compte"}}
-    </ion-title>
+  <ion-navbar *ngIf="!isUpdating; else creation">
+      <ion-title>
+        Création de compte
+      </ion-title>
   </ion-navbar>
+
+  <ng-template #creation>
+    <header-content></header-content>
+  </ng-template>
+  
 </ion-header>
 
 
