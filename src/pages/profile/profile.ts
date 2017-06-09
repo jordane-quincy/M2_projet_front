@@ -14,9 +14,9 @@ export class ProfilePage {
   private id: any;
   private currentUser: any;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              public popoverCtrl: PopoverController, 
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public popoverCtrl: PopoverController,
               private userService: UserService,
               private toastService: ToastService,
               private loaderService: LoaderService,
@@ -34,11 +34,11 @@ export class ProfilePage {
       this.profile = this.userService.getUserById(this.id).subscribe(
         result => {
           this.initProfile(result);
-          this.loaderService.dismissLoader()
+          this.loaderService.dismissLoader();
         },
         error => {
           this.toastService.presentToast((error || {}).message, "alert");
-          this.loaderService.dismissLoader()
+          this.loaderService.dismissLoader();
         }
       )
     } else {
@@ -49,14 +49,23 @@ export class ProfilePage {
   initProfile(profile: any): void {
     this.profile = _.cloneDeep(profile);
 
+    // get mark and comments
+    this.userService.getCommentsAndMark({email: this.profile.userMail}).subscribe(
+      result => {
+        this.profile.stars = [0,0,0,0,0];
+        this.starsDefinition(result.averageMark);
+        this.profile.remarks = result.remarks;
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
+      }
+    )
+
     // Définition du profil
     this.profile.picture = "assets/logo.png";
-    this.profile.comments = [];
-    this.profile.comments.push({mark: '5/5', text: 'Très bon cours. Avec beaucoup de contenu. prof ponctuel'});
-    this.profile.comments.push({mark: '1/5', text: 'Cours de merde'});
 
-    this.profile.stars = [0,0,0,0,0];
-    this.starsDefinition(2.75);
+
   }
 
   starsDefinition(mark: any): void {
@@ -131,7 +140,7 @@ export class ProfilePage {
         }
         this.toastService.presentToast('Validation effectuée avec succès !', 'success');
         this.loaderService.dismissLoader();
-      }, 
+      },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
         this.loaderService.dismissLoader();
