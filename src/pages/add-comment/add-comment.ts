@@ -24,7 +24,7 @@ export class AddCommentPage {
   addComment() : void{
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de paiement',
-      message: 'Votre compteur de temps sera débité de '+ this.appointment.offer.duration +'h. Voulez-vous continuer ?',
+      message: 'Attention si vous validez ce cours, vous ne pourrez plus récupérer les'+ this.appointment.offer.duration +'h même si celui-ci n a pas eu lieu. Voulez-vous continuer ?',
       buttons: [
         {
           text: 'Annuler',
