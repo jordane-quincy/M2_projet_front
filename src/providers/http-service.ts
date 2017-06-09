@@ -30,8 +30,6 @@ export class HttpService extends Http {
   private catchAuthError (self: HttpService) {
     return (res: Response) => {
       if (res.status === 401 || res.status === 403) {
-        console.log("Erreur 401 ou 403");
-        console.log(this.app);
         this.app.getRootNav().setRoot(LoginPage);
       }
       return Observable.throw(res);
