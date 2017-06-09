@@ -35,7 +35,7 @@
     <ion-item-sliding *ngFor='let request of myPendingRequests'>
       <ion-item>{{request.offer.title}} par {{request.offer.user.userFirstName}} {{request.offer.user.userName}}</ion-item>
       <ion-item-options class="options">
-        <button ion-button color="danger" icon-left (click)="showConfirmUnsub(request.id)">
+        <button ion-button color="danger" icon-left (click)="showConfirmUnsub(request)">
           <ion-icon name="trash" large></ion-icon>
         </button>
       </ion-item-options>

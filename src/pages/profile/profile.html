@@ -94,13 +94,12 @@
     <ion-card-content>
       <ion-grid>
         <ion-row *ngFor="let remark of profile.remarks">
-          <ion-col col-1>
+          <ion-col col-12>
             {{ remark.grade }}/5
-          </ion-col>
-          <ion-col col-2>
+            &nbsp;
             {{ remark.offerTitle }}
           </ion-col>
-          <ion-col col-9>
+          <ion-col col-12>
             {{ !!remark.remark ? remark.remark : "Aucun commentaire" }}
           </ion-col>
         </ion-row>
