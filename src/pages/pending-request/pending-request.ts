@@ -13,7 +13,7 @@ export class PendingRequestPage {
   pendingRequests: any[];
   myPendingRequests: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerservice: OfferService, private toastService: ToastService, private AddStudentPage: AddStudentPage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerservice: OfferService, private toastService: ToastService) {
 
   }
 
@@ -109,7 +109,7 @@ export class PendingRequestPage {
     confirm.present();
   }
 
-    addStudent(student: any){
+  addStudent(student: any){
     this.navCtrl.push(AddStudentPage, {
       student: student
     });
