@@ -42,7 +42,7 @@ export class AppointmentPage {
     );
   }
 
-  showConfirmDelete(id: number, listName: string): void {
+  showConfirmDelete(appointment: any, listName: string): void {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de suppression',
       message: 'Êtes-vous sûr de vouloir supprimer ce rendez-vous ?',
@@ -55,9 +55,28 @@ export class AppointmentPage {
           text:'Supprimer',
           handler: () => {
             if(listName === 'courseList') {
-              this.courseList = this.courseList.filter(element => element.id !== id);
+              let body = {'IdOffer' : appointment.id, 'status' : 'CANCELLED', 'date': appointment.date ,'duration': appointment.duration};
+              this.offerService.updateAppointment(body).subscribe(
+                result => {
+                  this.toastService.presentToast("Cours à donner supprimé !", "success");
+                  this.courseList = this.courseList.filter(element => element.id !== appointment.id);
+                },
+                error => {
+                  this.toastService.presentToast((error || {}).message, "alert");
+                }
+              );
+
             } else if(listName === 'appointmentList') {
-              this.appointmentList = this.appointmentList.filter(element => element.id !== id);
+              let body = {'IdOffer' : appointment.id, 'status' : 'CANCELLED', 'date': appointment.date ,'duration': appointment.offer.duration};
+              this.offerService.updateAppointment(body).subscribe(
+                result => {
+                  this.toastService.presentToast("Cours à suivre supprimé !", "success");
+                  this.appointmentList = this.appointmentList.filter(element => element.id !== appointment.id);
+                },
+                error => {
+                  this.toastService.presentToast((error || {}).message, "alert");
+                }
+              );
             }
           }
         }

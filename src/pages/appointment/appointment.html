@@ -20,7 +20,7 @@
         {{appointment.date | date: 'dd/MM/y à HH:mm'}}
      </ion-item>
      <ion-item-options class="options">
-       <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment.id, 'courseList')">
+       <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment, 'courseList')">
          <ion-icon name="trash" large></ion-icon>
        </button>
      </ion-item-options>
@@ -44,7 +44,7 @@
         <button ion-button color="secondary" icon-left (click)="showConfirmValid(appointment)">
           <ion-icon name="checkmark" large></ion-icon>
         </button>
-        <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment.id, 'appointmentList')">
+        <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment, 'appointmentList')">
           <ion-icon name="trash" large></ion-icon>
         </button>
       </ion-item-options>
