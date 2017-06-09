@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { AddStudentPage } from '../add-student/add-student';
-
 import { OfferService, ToastService } from '../../providers/index';
 
 @Component({
@@ -12,6 +10,7 @@ import { OfferService, ToastService } from '../../providers/index';
 export class PendingRequestPage {
 
   pendingRequests: any[];
+  myPendingRequests: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerservice: OfferService, private toastService: ToastService) {
 
@@ -19,6 +18,7 @@ export class PendingRequestPage {
 
   ionViewDidLoad() {
     this.getAllAppointments();
+    this.getAllRequests();
   }
 
   getAllAppointments(){
@@ -35,7 +35,39 @@ export class PendingRequestPage {
     );
   }
 
+
+  getAllRequests(){
+    this.offerservice.getAllRequests().subscribe(
+      result => {
+        console.log(result);
+        this.myPendingRequests = result;
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
+  }
+
+  approve(request: any): void {
+    request.status = 'VALIDATED';
+    request.IdOffer = request.id;
+    delete(request.id);
+    console.log(request);
+    this.offerservice.updateAppointment(request).subscribe(
+      result => {
+        this.myPendingRequests = this.myPendingRequests.filter(element => element.id !== request.IdOffer);
+        this.toastService.presentToast("Demande de cours approuvé !", "success");
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
+  }
+
   showConfirm(request: any): void {
+    request.status = 'CANCELLED';
+    request.IdOffer = request.id;
+    delete(request.id);
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de suppression',
       message: 'Etes vous sûr de vouloir supprimer cette demande en attente ?',
@@ -47,15 +79,9 @@ export class PendingRequestPage {
         {
           text:'Supprimer',
           handler: () => {
-            let body = {
-              "IdOffer": request.id,
-              "date": request.date,
-              "duration": request.duration,
-              "status": "REFUSED"
-            };
-            this.offerservice.updateAppointment(body).subscribe(
+            this.offerservice.updateAppointment(request).subscribe(
               result => {
-                this.toastService.presentToast("Cette demande de rendez-vous a bien été supprimée", "success");
+                 this.toastService.presentToast("Cette demande de rendez-vous a bien été supprimée", "success");
                 this.pendingRequests = this.pendingRequests.filter(element => element.id !== request.id);
               },
               error => {
@@ -69,10 +95,32 @@ export class PendingRequestPage {
     confirm.present();
   }
 
-  addStudent(student: any){
-    this.navCtrl.push(AddStudentPage, {
-      student: student
+  showConfirmUnsub(index: number): void {
+    let confirm = this.alertCtrl.create({
+      title: 'Confirmation de suppression',
+      message: 'Etes vous sûr de vouloir supprimer cette demande en attente ?',
+      buttons: [
+        {
+          text: 'Annuler',
+          role: 'cancel'
+        },
+        {
+          text:'Supprimer',
+          handler: () => {
+            this.offerservice.unsubscribeOffer({'IdOffer' : index}).subscribe(
+              result => {
+                this.myPendingRequests = this.myPendingRequests.filter(element => element.id !== index);
+              },
+              error => {
+                this.toastService.presentToast((error || {}).message, "alert");
+              }
+            );
+
+          }
+        }
+      ]
     });
+    confirm.present();
   }
 
 }

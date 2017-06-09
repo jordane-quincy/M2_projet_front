@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
-import { ImagePicker } from '@ionic-native/image-picker';
 import { OfferService, ToastService } from '../../providers/index';
 import { UserOffersPage } from '../user-offers/user-offers';
 
@@ -16,7 +15,7 @@ export class AddOfferPage {
   offer: any;
   updateMode: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private imagePicker: ImagePicker, private offerService: OfferService, private toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private offerService: OfferService, private toastService: ToastService) {
     if(this.navParams.data.offer) {
       this.offer = this.navParams.data.offer;
       this.updateMode = true;
