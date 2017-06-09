@@ -15,7 +15,7 @@ export class AddOfferPage {
   offer: any;
   updateMode: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private imagePicker: ImagePicker, private offerService: OfferService, private toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private offerService: OfferService, private toastService: ToastService) {
     if(this.navParams.data.offer) {
       this.offer = this.navParams.data.offer;
       this.updateMode = true;
