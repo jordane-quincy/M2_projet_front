@@ -13,6 +13,7 @@ export class AddStudentPage {
   form: FormGroup;
   date: Date;
   student: any;
+  maxDate: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private offerservice: OfferService, private toastService: ToastService) {
     if(this.navParams.data.student) {
@@ -21,6 +22,7 @@ export class AddStudentPage {
     this.form = fb.group({
       date: fb.control(this.date, [Validators.required])
     });
+    this.maxDate = (new Date()).getFullYear() + 1;
   }
 
   ionViewDidLoad() {
