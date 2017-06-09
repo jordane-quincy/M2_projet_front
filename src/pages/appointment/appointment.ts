@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { OfferService, ToastService } from '../../providers/index';
+import { AddCommentPage } from '../add-comment/add-comment';
 
 @Component({
   selector: 'page-appointment',
@@ -84,24 +85,7 @@ export class AppointmentPage {
     confirm.present();
   }
 
-  showConfirmValid(hours){
-    let confirm = this.alertCtrl.create({
-      title: 'Confirmation de paiement',
-      message: 'Votre compteur de temps sera débité de '+ hours +'h. Voulez-vous continuer ?',
-      buttons: [
-        {
-          text: 'Annuler',
-          role: 'cancel'
-        },
-        {
-          text:'Confirmer',
-          handler: () => {
-            console.log('Suppression');
-          }
-        }
-      ]
-    });
-    confirm.present();
+  showConfirmValid(appointment){
+    this.navCtrl.push(AddCommentPage, {appointment: appointment})
   }
-
 }
