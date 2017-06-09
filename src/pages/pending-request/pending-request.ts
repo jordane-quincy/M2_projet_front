@@ -32,7 +32,7 @@ export class PendingRequestPage {
     );
   }
 
-  showConfirm(index: number): void {
+  showConfirm(request: any): void {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de suppression',
       message: 'Etes vous sûr de vouloir supprimer cette demande en attente ?',
@@ -44,7 +44,21 @@ export class PendingRequestPage {
         {
           text:'Supprimer',
           handler: () => {
-            this.pendingRequests = this.pendingRequests.filter(element => element.id !== index);
+            let body = {
+              "IdOffer": request.id,
+              "date": request.date,
+              "duration": request.duration,
+              "status": "REFUSED"
+            };
+            this.offerservice.updateAppointment(body).subscribe(
+              result => {
+                this.toastService.presentToast("Cette demande de rendez-vous a bien été supprimée", "success");
+                this.pendingRequests = this.pendingRequests.filter(element => element.id !== request.id);
+              },
+              error => {
+                this.toastService.presentToast((error || {}).message, "alert");
+              }
+            );
           }
         }
       ]
