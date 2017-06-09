@@ -3,7 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { AddOfferPage } from '../add-offer/add-offer';
 
-import { OfferService, ToastService } from '../../providers/index';
+import { OfferService, ToastService, LoaderService } from '../../providers/index';
 
 @Component({
   selector: 'page-user-offers',
@@ -13,7 +13,7 @@ export class UserOffersPage {
 
   userOffersList: any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService, private loaderService: LoaderService) {
   }
 
     ionViewDidLoad() {
@@ -59,13 +59,16 @@ export class UserOffersPage {
         {
           text:'Supprimer',
           handler: () => {
+            this.loaderService.presentLoaderDefault('Suppression en cours');
             this.userOffersList = this.userOffersList.filter(element => element.id !== id);
             this.offerService.deleteOffer(id).subscribe(
               res => {
                 this.toastService.presentToast((res || {}).message, "success");
+                this.loaderService.dismissLoader();
               },
               err => {
                 this.toastService.presentToast((err || {}).message, "alert");
+                this.loaderService.dismissLoader();
               }
             );
             console.log('Suppression');

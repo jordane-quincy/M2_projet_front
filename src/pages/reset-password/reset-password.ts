@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { UserService } from '../../providers/user-service';
+import { UserService, LoaderService } from '../../providers/index';
 import { LoginPage } from '../login/login';
 import * as _ from 'lodash';
 
@@ -24,7 +24,7 @@ export class ResetPasswordPage {
     return password === repeatPassword ? null : { matchingError: true };
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private userService: UserService, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private userService: UserService, public toastCtrl: ToastController, private loaderService: LoaderService) {
     // Get question label for navParams
     this.questionLabel = navParams.get('questionLabel');
     this.userEmail = navParams.get('email');
@@ -48,6 +48,8 @@ export class ResetPasswordPage {
   presentSuccessToast(message: string) {
     let toast = this.toastCtrl.create({
       message: message,
+      showCloseButton: true,
+      closeButtonText: 'Ok',
       duration: 3000,
       position: "top",
       cssClass: "toast-success"
@@ -73,15 +75,18 @@ export class ResetPasswordPage {
     body.email = this.userEmail;
     delete(body.passwordForm);
     // send the new password to the back
+    this.loaderService.presentLoaderDefault('Enregistrement des modification en cours');
     this.userService.resetPassword(body).subscribe(
       res => {
         this.presentSuccessToast("Mot de passe réinitialisé");
         //redirect to the loginPage
+        this.loaderService.dismissLoader();
         this.navCtrl.push(LoginPage);
       },
       err => {
         // Error, bad answer or error server
         this.presentErrorToast((err || {}).message);
+        this.loaderService.dismissLoader();
       }
     );
   }
