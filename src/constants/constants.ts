@@ -1,3 +1,3 @@
 export const environment: any = {
-    backendUrl: 'http://localhost:8080'
+    backendUrl: 'https://clemscode.ovh'
 }
