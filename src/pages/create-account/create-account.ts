@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import * as _ from 'lodash';
 import { CreateAccountSkillsPage } from '../create-account-skills/create-account-skills'
-import { UserService, ToastService, FormationService } from '../../providers/index';
+import { UserService, ToastService, FormationService, LoaderService } from '../../providers/index';
 
 @Component({
   selector: 'page-create-account',
@@ -34,7 +34,7 @@ export class CreateAccountPage {
     return password === repeatPassword ? null : { matchingError: true };
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private userService: UserService, public toastService: ToastService, public formationService: FormationService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private userService: UserService, public toastService: ToastService, public formationService: FormationService, private loaderService: LoaderService) {
     // Check if we are updating user or creating one
     // TODO maybe get the user witht he fact that he's connected
     let user = navParams.get('user');
@@ -128,15 +128,18 @@ export class CreateAccountPage {
         return skill.label;
       });
       user.validatePassword = validatePassword;
+      this.loaderService.presentLoaderDefault('Création en cours');
       this.userService.updateAccount(user).subscribe(
         res => {
           this.toastService.presentToast("Votre compte a été mis à jour", "success");
           this.userService.setUser(res);
+          this.loaderService.dismissLoader();
           // redirect to profile page
           this.navCtrl.pop();
         },
         err => {
           this.toastService.presentToast((err || {}).message, "alert");
+          this.loaderService.dismissLoader();
         }
       );
     }

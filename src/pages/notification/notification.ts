@@ -43,7 +43,6 @@ export class NotificationPage {
   }
 
   validateNotification(id: number): void {
-    console.log(id);
     this.notificationService.markAsRead(id).subscribe(
       result => {
         this.refreshNotificationList();

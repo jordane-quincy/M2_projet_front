@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { OfferService, ToastService } from '../../providers/index';
+import { OfferService, ToastService, LoaderService } from '../../providers/index';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppointmentPage } from '../appointment/appointment';
 
@@ -12,7 +12,7 @@ export class AddCommentPage {
   private appointment: any;
   commentForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService, private loaderService: LoaderService) {
     this.commentForm = fb.group({
       comment: fb.control("", [Validators.required]),
       grade: fb.control(0, [Validators.required])
@@ -41,20 +41,24 @@ export class AddCommentPage {
               "status": "FINISHED"
             };
 
+            this.loaderService.presentLoaderDefault('Enregistrement en cours');
             this.offerService.addUserComment(this.commentForm.value, this.appointment.offer.id).subscribe(
               result => {
                 this.offerService.updateAppointment(body).subscribe(
                   result => {
                     this.toastService.presentToast("Votre compte a été débité", "success");
+                    this.loaderService.dismissLoader();
                     this.navCtrl.pop(AppointmentPage);
                   },
                   error => {
                     this.toastService.presentToast((error || {}).message, "alert");
+                    this.loaderService.dismissLoader();
                   }
                 );
               },
               error => {
                 this.toastService.presentToast((error || {}).message, "alert");
+                this.loaderService.dismissLoader();
               }
             );
           }
