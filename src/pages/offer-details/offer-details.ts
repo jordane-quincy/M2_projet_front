@@ -81,6 +81,7 @@ export class OfferDetailsPage {
             this.loaderService.presentLoaderDefault('Inscription en cours');
             this.offerService.subscribeOffer(body).subscribe(
               res => {
+                this.userService.setUserCredit(res.user);
                 this.toastService.presentToast("Inscription envoyée !", "success");
                 this.loaderService.dismissLoader();
                 this.navCtrl.pop();

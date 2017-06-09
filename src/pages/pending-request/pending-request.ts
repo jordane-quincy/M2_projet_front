@@ -23,7 +23,10 @@ export class PendingRequestPage {
   }
 
   getAllAppointments(){
-    this.offerservice.getAllAppointments().subscribe(
+    let body = {
+      "status": "PENDING"
+    }
+    this.offerservice.getAllAppointments(body).subscribe(
       result => {
         this.pendingRequests = result;
       },
