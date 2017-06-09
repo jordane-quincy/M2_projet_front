@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { OfferService, ToastService } from '../../providers/index';
+import { AddCommentPage } from '../add-comment/add-comment';
 
 @Component({
   selector: 'page-appointment',
@@ -66,6 +67,6 @@ export class AppointmentPage {
   }
 
   showConfirmValid(appointment){
-    // this.navCtrl.push
+    this.navCtrl.push(AddCommentPage, {appointment: appointment})
   }
 }
