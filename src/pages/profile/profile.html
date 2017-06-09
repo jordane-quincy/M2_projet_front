@@ -43,6 +43,11 @@
 
     <ion-card-content>
       <ion-grid>
+        <ion-row *ngIf="(profile.skills || []).length === 0">
+          <ion-col col-12>
+            Aucune compétence
+          </ion-col>
+        </ion-row>
         <ion-row *ngFor="let skill of profile.skills">
           <ion-col col-8 class="no-padding">
             <ion-item>{{ skill.label }}</ion-item>
