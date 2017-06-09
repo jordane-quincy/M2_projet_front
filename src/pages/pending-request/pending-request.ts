@@ -34,6 +34,7 @@ export class PendingRequestPage {
     );
   }
 
+
   getAllRequests(){
     this.offerservice.getAllRequests().subscribe(
       result => {
@@ -79,13 +80,13 @@ export class PendingRequestPage {
           handler: () => {
             this.offerservice.updateAppointment(request).subscribe(
               result => {
+                 this.toastService.presentToast("Cette demande de rendez-vous a bien été supprimée", "success");
                 this.pendingRequests = this.pendingRequests.filter(element => element.id !== request.id);
               },
               error => {
                 this.toastService.presentToast((error || {}).message, "alert");
               }
             );
-
           }
         }
       ]

@@ -39,6 +39,13 @@ export class UserService {
     .catch((error: any) => Observable.throw(error.json()));
   }
 
+  getCommentsAndMark(body: any): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/user/opinions`;
+    return this.http.post(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
+
   createAccount(body: any): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/user/create`;
     return this.http.post(httpAddress, JSON.stringify(body))

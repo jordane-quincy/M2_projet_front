@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, App } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -36,6 +36,7 @@ import {
   FormationService,
   SkillService,
   OfferService,
+  NotificationService,
   LoaderService
 } from '../providers/index';
 
@@ -106,15 +107,10 @@ import { DomainsService } from '../providers/domains-service';
     OfferService,
     SkillService,
     LoaderService,
+    NotificationService,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {
-      provide: Http,
-      useFactory: (backend: XHRBackend, options: RequestOptions, tokenService: TokenService) => {
-        return new HttpService(backend, options, tokenService);
-      },
-      deps: [XHRBackend, RequestOptions, TokenService]
-    },
-    DomainsService,
+    {provide: Http, useClass: HttpService},
+    DomainsService
   ]
 })
 export class AppModule {}

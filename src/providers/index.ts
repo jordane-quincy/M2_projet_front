@@ -8,3 +8,4 @@ export * from './offer-service';
 export * from './skill-service';
 export * from './domains-service';
 export * from './loader-service';
+export * from './notification-service';
