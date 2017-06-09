@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
-import { OfferService, ToastService } from '../../providers/index';
+import { OfferService, ToastService, LoaderService } from '../../providers/index';
 import { UserOffersPage } from '../user-offers/user-offers';
 
 @Component({
@@ -15,7 +15,7 @@ export class AddOfferPage {
   offer: any;
   updateMode: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private offerService: OfferService, private toastService: ToastService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private offerService: OfferService, private toastService: ToastService, private loaderService: LoaderService) {
     if(this.navParams.data.offer) {
       this.offer = this.navParams.data.offer;
       this.updateMode = true;
@@ -36,36 +36,45 @@ export class AddOfferPage {
   }
 
   getDomainesFromBack() {
+    this.loaderService.presentLoaderDefault('Chargement en cours');
     this.offerService.getDomaines().subscribe(
       res => {
         this.domaineList = res;
+        this.loaderService.dismissLoader();
       },
       err => {
         this.toastService.presentToast((err || {}).message, "alert");
+        this.loaderService.dismissLoader();
       }
     );
   }
 
   add() {
+    this.loaderService.presentLoaderDefault('Enregistrement en cours');
     this.offerService.createOffer(this.form.value).subscribe(
       result => {
         this.toastService.presentToast("Votre offre a été ajoutée", "success");
+        this.loaderService.dismissLoader();
         this.navCtrl.pop(UserOffersPage);
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
       }
     );
   }
 
   modify(){
+    this.loaderService.presentLoaderDefault('Enregistrement en cours');
     this.offerService.updateOffer(this.form.value, this.offer.id).subscribe(
       result => {
         this.toastService.presentToast("Votre offre a bien été modifiée", "success");
+        this.loaderService.dismissLoader();
         this.navCtrl.pop(UserOffersPage);
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
       }
     );
   }

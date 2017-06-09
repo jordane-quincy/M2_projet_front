@@ -10,7 +10,7 @@ export class HeaderContentComponent {
   @Input() title: string;
 
   constructor(private userService: UserService) {
-    
+    document.title = 'Ionic App';
   }
 
 }
