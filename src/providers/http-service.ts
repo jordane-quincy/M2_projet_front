@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
+import { App } from 'ionic-angular';
 import {Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers} from '@angular/http';
 import { TokenService } from '../providers/token-service';
+import { LoginPage } from '../pages/login/login';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,7 +12,7 @@ export class HttpService extends Http {
 
   private tokenService: TokenService;
 
-  constructor (backend: XHRBackend, options: RequestOptions, tokenService: TokenService) {
+  constructor (backend: XHRBackend, options: RequestOptions, tokenService: TokenService, private app: App) {
     super(backend, options);
     this.tokenService = tokenService;
   }
@@ -28,7 +30,7 @@ export class HttpService extends Http {
   private catchAuthError (self: HttpService) {
     return (res: Response) => {
       if (res.status === 401 || res.status === 403) {
-        console.log("Erreur 401 ou 403");
+        this.app.getRootNav().setRoot(LoginPage);
       }
       return Observable.throw(res);
     };
