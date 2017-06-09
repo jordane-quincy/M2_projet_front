@@ -1,13 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
-import { IonicApp, IonicModule, IonicErrorHandler, App } from 'ionic-angular';
+import { HttpModule, Http } from '@angular/http';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { ImagePicker } from '@ionic-native/image-picker';
 
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { CreateAccountSkillsPage } from '../pages/create-account-skills/create-account-skills';
@@ -98,7 +96,6 @@ import { DomainsService } from '../providers/domains-service';
     StatusBar,
     SplashScreen,
     UserService,
-    ImagePicker,
     HttpService,
     TokenService,
     ToastService,
