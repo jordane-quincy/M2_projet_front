@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
-import { ImagePicker } from '@ionic-native/image-picker';
 import { OfferService, ToastService } from '../../providers/index';
 import { UserOffersPage } from '../user-offers/user-offers';
 
