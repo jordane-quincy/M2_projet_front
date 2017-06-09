@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { OfferService, ToastService } from '../../providers/index';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppointmentPage } from '../appointment/appointment';
 
 @Component({
   selector: 'page-add-comment',
@@ -14,7 +15,7 @@ export class AddCommentPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService) {
     this.commentForm = fb.group({
       comment: fb.control("", [Validators.required]),
-      mark: fb.control(0, [Validators.required])
+      grade: fb.control(0, [Validators.required])
     });
 
     this.appointment = navParams.get("appointment");
@@ -40,10 +41,19 @@ export class AddCommentPage {
               "status": "FINISHED"
             };
 
+            this.offerService.addUserComment(this.commentForm.value, this.appointment.offer.id).subscribe(
+              result => {
+                console.log("Commentaire ajouté");
+              },
+              error => {
+                this.toastService.presentToast((error || {}).message, "alert");
+              }
+            );
+
             this.offerService.updateAppointment(body).subscribe(
               result => {
                 this.toastService.presentToast("Votre compte a été débité", "success");
-                // this.navCtrl.pop(AppointmentPage);
+                this.navCtrl.pop(AppointmentPage);
               },
               error => {
                 this.toastService.presentToast((error || {}).message, "alert");

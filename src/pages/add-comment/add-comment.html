@@ -8,8 +8,8 @@
 <ion-content padding>
   <form [formGroup]="commentForm">
     <ion-item>
-      <ion-range min="0" max="5" step="1" pin="true" formControlName="mark" required>
-        <ion-label range-left>Note | {{commentForm.value.mark}} étoiles</ion-label>
+      <ion-range min="0" max="5" step="1" pin="true" formControlName="grade" required>
+        <ion-label range-left>Note | {{commentForm.value.grade}} étoiles</ion-label>
       </ion-range>
     </ion-item>
 
@@ -18,6 +18,6 @@
       <ion-textarea formControlName="comment" required></ion-textarea>
     </ion-item>
 
-    <button ion-button full type="submit" [disabled]="commentForm.invalid" (click)="addComment()">Rechercher</button>
+    <button ion-button full type="submit" [disabled]="commentForm.invalid" (click)="addComment()">Commenter</button>
   </form>
 </ion-content>

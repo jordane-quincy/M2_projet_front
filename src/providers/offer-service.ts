@@ -110,4 +110,11 @@ export class OfferService {
     .map(res => res.json())
     .catch((error: any) => Observable.throw(error.json()));
   }
+
+  addUserComment(body: any, id: number): Observable<any> {
+    let httpAddress: string = `${environment.backendUrl}/offer/comment/` + id;
+    return this.http.post(httpAddress, JSON.stringify(body))
+    .map(res => res.json())
+    .catch((error: any) => Observable.throw(error.json()));
+  }
 }
