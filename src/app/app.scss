@@ -26,3 +26,7 @@
 .platform-ios.platform-cordova:not(.fullscreen) .search-bar {
      margin-top: 20px;
 }
+
+.alert-md .alert-wrapper {
+    max-width: 95%;
+}

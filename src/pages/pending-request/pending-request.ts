@@ -110,7 +110,7 @@ export class PendingRequestPage {
     confirm.present();
   }
 
-  showConfirmUnsub(index: number): void {
+  showConfirmUnsub(request: any): void {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de suppression',
       message: 'Etes vous sûr de vouloir supprimer cette demande en attente ?',
@@ -122,10 +122,11 @@ export class PendingRequestPage {
         {
           text:'Supprimer',
           handler: () => {
-            this.offerservice.unsubscribeOffer({'IdOffer' : index}).subscribe(
+            let body = {'IdOffer' : request.id, 'status' : 'CANCELLED', 'date': request.date ,'duration': request.offer.duration};
+            this.offerservice.updateAppointment(body).subscribe(
               result => {
                 this.userservice.setUserCredit(result.user);
-                this.myPendingRequests = this.myPendingRequests.filter(element => element.id !== index);
+                this.myPendingRequests = this.myPendingRequests.filter(element => element.id !== body.IdOffer);
                 this.toastService.presentToast("Demande supprimée !", "success");
               },
               error => {
