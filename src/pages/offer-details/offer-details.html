@@ -76,5 +76,11 @@
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  <button *ngIf="userService.getUser()?.userMail !== offer.user?.userMail && userService.getUser()?.credit >= offer.duration" ion-button round class="subscribe" icon-left (click)="subscribe(offer.id)">Je m'inscris</button>
+  <button *ngIf="userService.getUser()?.credit >= offer.duration && userService.getUser()?.userMail !== offer.user?.userMail; else noCredit" ion-button round class="subscribe" icon-left (click)="subscribe(offer.id)">Je m'inscris</button>
+  <ng-template #noCredit>
+    <h6 class="no-credit" *ngIf="userService.getUser()?.userMail !== offer.user?.userMail; else currentUser"> Vous ne disposez plus d'assez de crédits pour souscrire à cette offre !</h6>
+  </ng-template>
+  <ng-template #currentUser>
+    <h6 class="no-credit"> Vous ne pouvez pas vous inscrire à votre offre !</h6>
+  </ng-template>
 </ion-content>
