@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { AddStudentPage } from '../add-student/add-student';
-
 import { OfferService, ToastService } from '../../providers/index';
 
 @Component({
