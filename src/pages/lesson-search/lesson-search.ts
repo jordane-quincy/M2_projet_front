@@ -45,15 +45,15 @@ export class LessonSearchPage {
     this.refreshCredit();
   }
 
-    refreshCredit(){
-      this.userService.getUserCreditFromBack().subscribe(
-        result => {
-          this.userService.setUserCredit(result.credit);
-        },
-        error => {
-          this.toastService.presentToast((error || {}).message, "alert");
-        }
-      );
+  refreshCredit(){
+    this.userService.getUserCreditFromBack().subscribe(
+      result => {
+        this.userService.setUserCredit(result.credit);
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
   }
 
   retrieveData(refresher): void {
@@ -73,6 +73,7 @@ export class LessonSearchPage {
   initDomainsList(): void {
     this.domainsService.getDomainsList().subscribe(
       result => {
+        this.domainsList = [];
         this.domainsList = [...this.domainsList, ...result];
 
         for(var i = 0; i < this.domainsList.length; i++)
