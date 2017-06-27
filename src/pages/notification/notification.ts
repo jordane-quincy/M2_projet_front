@@ -20,6 +20,57 @@ export class NotificationPage {
   ) {
   }
 
+  ionViewDidEnter() {
+    this.refreshNotificationList();
+    this.refreshCredit();
+  }
+
+  retrieveData(refresher) {
+    this.notificationService.getNotifications().subscribe(
+      result => {
+        // sort by creationDate
+        result.sort((a, b) => {
+          return b.creationDate - a.creationDate;
+        });
+        //devise notif with status READ and status NOTREAD
+        this.notifList = _.cloneDeep((result || []).filter(notif => {
+          return notif.status === "NOTREAD";
+        }));
+        this.oldNotifList = _.cloneDeep((result || []).filter(notif => {
+          return notif.status === "READ";
+        }));
+        refresher.complete();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        refresher.complete();
+      }
+    );
+  }
+
+  refreshCredit() {
+    this.userService.getUserCreditFromBack().subscribe(
+      result => {
+        this.userService.setUserCredit(result.credit);
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
+  }
+
+  validateNotification(id: number): void {
+    this.notificationService.markAsRead(id).subscribe(
+      result => {
+        this.refreshNotificationList();
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+        this.loaderService.dismissLoader();
+      }
+    );
+  }
+
   refreshNotificationList() {
     this.notificationService.getNotifications().subscribe(
       result => {
@@ -35,56 +86,6 @@ export class NotificationPage {
           return notif.status === "READ";
         }));
         this.loaderService.dismissLoader();
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-        this.loaderService.dismissLoader();
-      }
-    );
-  }
-
-
-
-  ionViewDidEnter() {
-    this.refreshNotificationList();
-    this.refreshCredit();
-  }
-
-    retrieveData(refresher){
-    this.notificationService.getNotifications().subscribe(
-      result => {
-        //devise notif with status READ and status NOTREAD
-        this.notifList = _.cloneDeep((result || []).filter(notif => {
-          return notif.status === "NOTREAD";
-        }));
-        this.oldNotifList = _.cloneDeep((result || []).filter(notif => {
-          return notif.status === "READ";
-        }));
-        refresher.complete();
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-        refresher.complete();
-      }
-    );
-
-  }
-
-  refreshCredit(){
-    this.userService.getUserCreditFromBack().subscribe(
-      result => {
-        this.userService.setUserCredit(result.credit);
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-      }
-    );
-  }
-
-  validateNotification(id: number): void {
-    this.notificationService.markAsRead(id).subscribe(
-      result => {
-        this.refreshNotificationList();
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
