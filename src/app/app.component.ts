@@ -8,12 +8,15 @@ import { LoginPage } from '../pages/login/login';
 @Component({
   templateUrl: 'app.html'
 })
+
+/**
+ * Premier composant chargé par Ionic, qui redirige vers la rootPage définie et permet de définir des options spécifiques
+ */
 export class MyApp {
+  // La page principale de l'application sera la page de login
   rootPage:any = LoginPage;
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       if(platform.is('ios')){
         statusBar.overlaysWebView(false);
       } else {

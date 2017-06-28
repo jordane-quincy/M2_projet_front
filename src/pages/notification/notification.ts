@@ -25,29 +25,6 @@ export class NotificationPage {
     this.refreshCredit();
   }
 
-  retrieveData(refresher) {
-    this.notificationService.getNotifications().subscribe(
-      result => {
-        // sort by creationDate
-        result.sort((a, b) => {
-          return b.creationDate - a.creationDate;
-        });
-        //devise notif with status READ and status NOTREAD
-        this.notifList = _.cloneDeep((result || []).filter(notif => {
-          return notif.status === "NOTREAD";
-        }));
-        this.oldNotifList = _.cloneDeep((result || []).filter(notif => {
-          return notif.status === "READ";
-        }));
-        refresher.complete();
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-        refresher.complete();
-      }
-    );
-  }
-
   refreshCredit() {
     this.userService.getUserCreditFromBack().subscribe(
       result => {
@@ -71,7 +48,10 @@ export class NotificationPage {
     );
   }
 
-  refreshNotificationList() {
+  refreshNotificationList(refresher?: any) {
+    if(!refresher) {
+      this.loaderService.presentLoaderDefault("Chargement des notifications");
+    }
     this.notificationService.getNotifications().subscribe(
       result => {
         // sort by creationDate
@@ -85,11 +65,11 @@ export class NotificationPage {
         this.oldNotifList = _.cloneDeep((result || []).filter(notif => {
           return notif.status === "READ";
         }));
-        this.loaderService.dismissLoader();
+        refresher ? refresher.complete() : this.loaderService.dismissLoader();
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
-        this.loaderService.dismissLoader();
+        refresher ? refresher.complete() : this.loaderService.dismissLoader();
       }
     );
   }

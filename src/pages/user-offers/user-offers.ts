@@ -17,30 +17,21 @@ export class UserOffersPage {
   }
 
   ionViewDidLoad() {
-    // Get formation from back
-    this.getUserOffersFromBack();
+    this.retrieveData();
   }
 
-  getUserOffersFromBack() {
+  retrieveData(refresher?: any) {
+    if(!refresher) {
+      this.loaderService.presentLoaderDefault('Chargement des offres');
+    }
     this.offerService.getUserOffers().subscribe(
       res => {
         this.userOffersList = res;
+        refresher ? refresher.complete() : this.loaderService.dismissLoader();
       },
       err => {
         this.toastService.presentToast((err || {}).message, "alert");
-      }
-    );
-  }
-
-  retrieveData(refresher) {
-    this.offerService.getUserOffers().subscribe(
-      res => {
-        this.userOffersList = res;
-        refresher.complete();
-      },
-      err => {
-        this.toastService.presentToast((err || {}).message, "alert");
-        refresher.complete();
+        refresher ? refresher.complete() : this.loaderService.dismissLoader();
       }
     );
   }
@@ -48,13 +39,11 @@ export class UserOffersPage {
   showConfirm(id: number): void {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de suppression',
-      message: 'Etes vous sur de vouloir supprimer cette offre ?',
+      message: 'Etes vous sûr de vouloir supprimer cette offre ?',
       buttons: [
         {
           text: 'Annuler',
-          handler: () => {
-            console.log('annulation');
-          }
+          role: 'cancel'
         },
         {
           text: 'Supprimer',
@@ -71,7 +60,6 @@ export class UserOffersPage {
                 this.loaderService.dismissLoader();
               }
             );
-            console.log('Suppression');
           }
         }
       ]

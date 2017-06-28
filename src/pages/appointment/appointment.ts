@@ -16,46 +16,28 @@ export class AppointmentPage {
   }
 
   ionViewDidLoad() {
-    this.getAppointmentFromBack();
+    this.retrieveData();
+  }
+
+  getAppointmentFromBack(refresher?: any) {
+    if(!refresher) {
+      this.loaderService.presentLoaderDefault('Chargement en cours');
+    }
+    this.offerService.getAppointment().subscribe(
+      res => {
+        this.appointmentList = res;
+        refresher ? refresher.complete() : this.loaderService.dismissLoader();
+      },
+      err => {
+        this.toastService.presentToast((err || {}).message, "alert");
+        refresher ? refresher.complete() : this.loaderService.dismissLoader();
+      }
+    );
+  }
+
+  retrieveData(refresher?: any): void {
     this.getCoursesFromBack();
-  }
-
-  getAppointmentFromBack() {
-    this.loaderService.presentLoaderDefault('Chargement en cours');
-    this.offerService.getAppointment().subscribe(
-      res => {
-        this.appointmentList = res;
-        this.loaderService.dismissLoader();
-      },
-      err => {
-        this.toastService.presentToast((err || {}).message, "alert");
-        this.loaderService.dismissLoader();
-      }
-    );
-  }
-
-  retrieveData(refresher): void {
-    this.offerService.getAppointment().subscribe(
-      res => {
-        this.appointmentList = res;
-      },
-      err => {
-        this.toastService.presentToast((err || {}).message, "alert");
-        refresher.complete();
-      }
-    );
-
-    this.offerService.getCoursesToGive().subscribe(
-      res => {
-        this.courseList = res;
-        refresher.complete();
-      },
-      err => {
-        this.toastService.presentToast((err || {}).message, "alert");
-        refresher.complete();
-      }
-    );
-
+    this.getAppointmentFromBack(refresher);
   }
 
   getCoursesFromBack() {
@@ -81,37 +63,26 @@ export class AppointmentPage {
         {
           text: 'Supprimer',
           handler: () => {
-            if (listName === 'courseList') {
-              let body = { 'IdOffer': appointment.id, 'status': 'CANCELLED', 'date': appointment.date, 'duration': appointment.duration };
-              this.loaderService.presentLoaderDefault('Suppression en cours');
-              this.offerService.updateAppointment(body).subscribe(
-                result => {
-                  this.userService.setUserCredit(result.user);
-                  this.toastService.presentToast("Cours à donner supprimé !", "success");
+            let duration: any = (listName === 'courseList') ? appointment.duration : appointment.offer.duration;
+            let body = { 'IdOffer': appointment.id, 'status': 'CANCELLED', 'date': appointment.date, 'duration': duration };
+            this.loaderService.presentLoaderDefault('Suppression en cours');
+            this.offerService.updateAppointment(body).subscribe(
+              result => {
+                this.userService.setUserCredit(result.user);
+                this.toastService.presentToast("Cours supprimé !", "success");
+                if(listName === 'courseList') {
                   this.courseList = this.courseList.filter(element => element.id !== appointment.id);
-                  this.loaderService.dismissLoader();
-                },
-                error => {
-                  this.toastService.presentToast((error || {}).message, "alert");
-                  this.loaderService.dismissLoader();
-                }
-              );
-
-            } else if (listName === 'appointmentList') {
-              let body = { 'IdOffer': appointment.id, 'status': 'CANCELLED', 'date': appointment.date, 'duration': appointment.offer.duration };
-              this.loaderService.presentLoaderDefault('Suppression en cours');
-              this.offerService.updateAppointment(body).subscribe(
-                result => {
-                  this.toastService.presentToast("Cours à suivre supprimé !", "success");
+                } else if (listName === 'appointmentList') {
                   this.appointmentList = this.appointmentList.filter(element => element.id !== appointment.id);
-                  this.loaderService.dismissLoader();
-                },
-                error => {
-                  this.toastService.presentToast((error || {}).message, "alert");
-                  this.loaderService.dismissLoader();
                 }
-              );
-            }
+                this.courseList = this.courseList.filter(element => element.id !== appointment.id);
+                this.loaderService.dismissLoader();
+              },
+              error => {
+                this.toastService.presentToast((error || {}).message, "alert");
+                this.loaderService.dismissLoader();
+              }
+            );
           }
         }
       ]

@@ -152,7 +152,9 @@
             </div>
           </div>
           <br/>
-          <button ion-button type="submit" [disabled]="createAccountForm.invalid">{{isUpdating ? "Mettre à jour" : "Suivant"}} <ion-icon *ngIf="!isUpdating" name="arrow-forward"></ion-icon></button>
+          <ion-row align-items-center justify-content-center>
+            <button ion-button round col-6 type="submit" [disabled]="createAccountForm.invalid" (click)="addComment()">{{isUpdating ? "Mettre à jour" : "Suivant"}}<ion-icon *ngIf="!isUpdating" name="arrow-forward"></ion-icon></button>
+          </ion-row>
         </form>
       </ion-col>
     </ion-row>

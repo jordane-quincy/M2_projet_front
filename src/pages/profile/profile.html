@@ -96,7 +96,7 @@
       <ion-grid>
         <ion-row *ngFor="let remark of profile.remarks">
           <ion-col col-12>
-            {{ remark.grade }}/5 &nbsp; {{ remark.offerTitle }}
+            <b>{{ remark.grade }}/5 &nbsp; {{ remark.offerTitle }}</b>
           </ion-col>
           <ion-col col-12>
             {{ !!remark.remark ? remark.remark : "Aucun commentaire" }}

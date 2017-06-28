@@ -34,14 +34,14 @@
       </ion-item>
 
       <ion-item>
-        <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" formControlName="duration" class="no-padding">
+        <ion-range min="1" max="5" step="1" dualKnobs="true" pin="false" formControlName="duration" class="no-padding">
           <ion-label range-left>Durée | {{searchFilters.value.duration.lower}}h </ion-label>
           <ion-label range-right> {{searchFilters.value.duration.upper}}h</ion-label>
         </ion-range>
       </ion-item>
 
       <ion-item>
-        <ion-range min="0" max="5" step="1" pin="true" formControlName="minavggrade" class="no-padding">
+        <ion-range min="0" max="5" step="1" pin="false" formControlName="minavggrade" class="no-padding">
           <ion-label range-left>Note | {{searchFilters.value.minavggrade}} étoiles</ion-label>
         </ion-range>
       </ion-item>
@@ -60,8 +60,9 @@
         <ion-label color="danger" text-center>Merci de choisir étudiant, professeur ou les deux</ion-label>
       </ion-item>
     </div>
-
-    <button ion-button full type="submit" [disabled]="!searchFilters.value.teacher && !searchFilters.value.student">Rechercher</button>
+    <ion-row align-items-center justify-content-center>
+      <button ion-button round col-6 type="submit" [disabled]="!searchFilters.value.teacher && !searchFilters.value.student">Rechercher</button>
+    </ion-row>
   </form>
 
   <ion-row align-items-center justify-content-center>

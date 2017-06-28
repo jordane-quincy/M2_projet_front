@@ -18,6 +18,9 @@
       <ion-textarea formControlName="comment" required></ion-textarea>
     </ion-item>
 
-    <button ion-button full type="submit" [disabled]="commentForm.invalid" (click)="addComment()">Commenter</button>
+    <ion-row align-items-center justify-content-center>
+      <button ion-button round col-6 type="submit" [disabled]="commentForm.invalid" (click)="addComment()">Commenter</button>
+    </ion-row>
+    
   </form>
 </ion-content>

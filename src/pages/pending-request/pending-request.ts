@@ -18,59 +18,35 @@ export class PendingRequestPage {
   }
 
   ionViewDidEnter() {
-    this.getAllAppointments();
-    this.getAllRequests();
+    this.retrieveData();
   }
 
-  ionViewDidLoad() {
+  retrieveData(refresher?: any): void {
+    this.getAllPendingRequests();
+    this.getAllAppointments(refresher);
   }
 
-  retrieveData(refresher): void {
+  getAllAppointments(refresher?: any) {
     let body = {
       "status": "PENDING"
+    }
+    if(!refresher) {
+      this.loaderService.presentLoaderDefault('Chargement en cours');
     }
     this.offerservice.getRequestsToApprove(body).subscribe(
       result => {
         this.pendingRequests = result;
+        refresher ? refresher.complete() : this.loaderService.dismissLoader();
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
-        refresher.complete();
-      }
-    );
-
-    this.offerservice.getAllPendingRequests().subscribe(
-      result => {
-        this.myPendingRequests = result;
-        refresher.complete();
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-        refresher.complete();
-      }
-    );
-
-  }
-
-  getAllAppointments() {
-    let body = {
-      "status": "PENDING"
-    }
-    this.loaderService.presentLoaderDefault('Chargement en cours');
-    this.offerservice.getRequestsToApprove(body).subscribe(
-      result => {
-        this.pendingRequests = result;
-        this.loaderService.dismissLoader();
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-        this.loaderService.dismissLoader();
+        refresher ? refresher.complete() : this.loaderService.dismissLoader();
       }
     );
   }
 
 
-  getAllRequests() {
+  getAllPendingRequests() {
     this.offerservice.getAllPendingRequests().subscribe(
       result => {
         this.myPendingRequests = result;

@@ -34,9 +34,7 @@
           </div>
         </div>
         <ion-row align-items-center justify-content-center>
-          <ion-col col-sm-12 col-md-8>
-            <button [(disabled)]="isUpdating && updateSkillsAccount.invalid" ion-button col-12 (click)="createAccount()">{{isUpdating ? "Mettre à jour" : "Créer compte"}}</button>
-          </ion-col>
+          <button [(disabled)]="isUpdating && updateSkillsAccount.invalid" ion-button round col-6 (click)="createAccount()">{{isUpdating ? "Mettre à jour" : "Créer compte"}}</button>
         </ion-row>
       </form>
     </ion-col>

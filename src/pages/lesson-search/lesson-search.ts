@@ -40,9 +40,21 @@ export class LessonSearchPage {
   }
 
   ionViewDidEnter(): void {
+    this.retrieveData();
+    this.searchFilters = this.fb.group({
+      keywords: this.fb.control(""),
+      domains: this.fb.control(this.domainsListChecked),
+      duration: this.fb.control({ lower: 1, upper: 5 }),
+      teacher: this.fb.control(true),
+      student: this.fb.control(true),
+      minavggrade: 0
+    });
+  }
+
+  retrieveData(refresher?: any): void {
     this.initDomainsList();
-    this.getOffersList();
     this.refreshCredit();
+    this.startSearch(refresher);
   }
 
   refreshCredit() {
@@ -56,37 +68,13 @@ export class LessonSearchPage {
     );
   }
 
-  retrieveData(refresher): void {
-    this.initDomainsList();
-    this.offerService.getAllOffers().subscribe(
-      result => {
-        this.offersList = result;
-        refresher.complete();
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
-      }
-    );
-
-  }
-
   initDomainsList(): void {
     this.domainsService.getDomainsList().subscribe(
       result => {
-        this.domainsList = [];
-        this.domainsList = [...this.domainsList, ...result];
-
-        for (var i = 0; i < this.domainsList.length; i++)
+        this.domainsList = [...result];
+        for (var i = 0; i < this.domainsList.length; i++) {
           this.domainsListChecked.push(this.domainsList[i].id);
-
-        this.searchFilters = this.fb.group({
-          keywords: this.fb.control(""),
-          domains: this.fb.control(this.domainsListChecked),
-          duration: this.fb.control({ lower: 1, upper: 5 }),
-          teacher: this.fb.control(true),
-          student: this.fb.control(true),
-          minavggrade: 0
-        });
+        }
       },
       error => {
         this.toastService.presentToast((error || {}).message, "alert");
@@ -94,34 +82,19 @@ export class LessonSearchPage {
     );
   }
 
-  getOffersList() {
-    this.offerService.getAllOffers().subscribe(
-      result => {
-        this.offersList = result;
-      },
-      error => {
-        this.toastService.presentToast((error || {}).message, "alert");
+  startSearch(refresher?: any): void {
+    if (this.searchFilters.value.teacher || this.searchFilters.value.student) {
+      if(!refresher) {
+        this.loaderService.presentLoaderDefault('Recherche en cours');
       }
-    );
-  }
-
-  handleOfferClick(offer: any): void {
-    this.navCtrl.push(OfferDetailsPage, {
-      offer: offer
-    });
-  }
-
-  startSearch(): void {
-    if (!(!this.searchFilters.value.teacher && !this.searchFilters.value.student)) {
-      console.log(this.searchFilters.value);
-      this.loaderService.presentLoaderDefault('Recherche en cours');
       this.offerService.getOffersByFilters(this.searchFilters.value).subscribe(
         result => {
           this.offersList = result;
-          this.loaderService.dismissLoader();
+          refresher ? refresher.complete() : this.loaderService.dismissLoader();
         },
         error => {
           this.toastService.presentToast((error || {}).message, "alert");
+          refresher ? refresher.complete() : this.loaderService.dismissLoader();
         }
       )
     }
@@ -131,4 +104,10 @@ export class LessonSearchPage {
     this.isAvandcedSearch = !this.isAvandcedSearch;
   }
 
+  
+  handleOfferClick(offer: any): void {
+    this.navCtrl.push(OfferDetailsPage, {
+      offer: offer
+    });
+  }
 }
