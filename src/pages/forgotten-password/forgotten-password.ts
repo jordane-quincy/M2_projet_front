@@ -14,7 +14,7 @@ export class ForgottenPasswordPage {
   emailCtrl: FormControl;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private userService: UserService, public toastService: ToastService) {
-    this.emailCtrl =  fb.control('', [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]);
+    this.emailCtrl = fb.control('', [Validators.required, Validators.email, Validators.pattern(".*@(univ-valenciennes.fr|etu.univ-valenciennes.fr)")]);
     this.forgottenPasswordForm = fb.group({
       email: this.emailCtrl
     });
@@ -28,7 +28,7 @@ export class ForgottenPasswordPage {
     this.userService.askForResetPassword(this.forgottenPasswordForm.value).subscribe(
       res => {
         //redirect to the resetPassword view with the question
-        this.navCtrl.push(ResetPasswordPage, {questionLabel: res.question, email: this.forgottenPasswordForm.value.email});
+        this.navCtrl.push(ResetPasswordPage, { questionLabel: res.question, email: this.forgottenPasswordForm.value.email });
       },
       err => {
         // Error, the email doesn't correspond to a user or server error

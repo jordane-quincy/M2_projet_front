@@ -52,7 +52,7 @@ export class CreateAccountPage {
         ""
     );
     this.phoneNumberCtrl = fb.control(_.get(user, "phoneNumber", ""));
-    this.userMailCtrl = fb.control({value: _.get(user, "userMail", ""), disabled: this.isUpdating}, [Validators.required, Validators.email, Validators.pattern(".*(@univ-valenciennes.fr|@etu.univ-valenciennes.fr)")]);
+    this.userMailCtrl = fb.control({ value: _.get(user, "userMail", ""), disabled: this.isUpdating }, [Validators.required, Validators.email, Validators.pattern(".*(@univ-valenciennes.fr|@etu.univ-valenciennes.fr)")]);
     let validatorsForPassword = [];
     if (!this.isUpdating) {
       validatorsForPassword = [Validators.required];
@@ -60,8 +60,8 @@ export class CreateAccountPage {
     this.passwordCtrl = fb.control('', validatorsForPassword);
     this.repeatPasswordCtrl = fb.control('', validatorsForPassword);
     this.passwordForm = fb.group(
-      {password: this.passwordCtrl, repeatPassword: this.repeatPasswordCtrl},
-      {validator: CreateAccountPage.passwordMatch}
+      { password: this.passwordCtrl, repeatPassword: this.repeatPasswordCtrl },
+      { validator: CreateAccountPage.passwordMatch }
     )
     this.questionCtrl = fb.control("", this.isUpdating ? [] : [Validators.required]);
     this.answerCtrl = fb.control("", this.isUpdating ? [] : [Validators.required]);
@@ -115,14 +115,14 @@ export class CreateAccountPage {
     user.birthday = +new Date(user.birthday);
     let validatePassword = user.validatePassword;
     user.formationId = user.formation;
-    delete(user.validatePassword);
-    delete(user.formation);
-    delete(user.passwordForm);
+    delete (user.validatePassword);
+    delete (user.formation);
+    delete (user.passwordForm);
     if (this.isUpdating) {
       // update the account
       user.id = this.connectedUser.id;
       if (!user.password) {
-        delete(user.password);
+        delete (user.password);
       }
       user.skills = (this.connectedUser.skills || []).map(skill => {
         return skill.label;
@@ -145,7 +145,7 @@ export class CreateAccountPage {
     }
     else {
       // create the account
-      this.navCtrl.push(CreateAccountSkillsPage, {user: user});
+      this.navCtrl.push(CreateAccountSkillsPage, { user: user });
     }
   }
 }

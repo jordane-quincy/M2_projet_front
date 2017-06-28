@@ -1,6 +1,6 @@
 <ion-header>
 
-  <header-content title="Recherche" ></header-content>
+  <header-content title="Recherche"></header-content>
 
 </ion-header>
 
@@ -14,80 +14,80 @@
 
   <form (ngSubmit)="startSearch()" [formGroup]="searchFilters">
 
-        <ion-row class="row">
-          <ion-col col-sm-12 col-12>
-            <ion-item>
-              <ion-label color="primary" stacked>Mots clés</ion-label>
-              <ion-input type="text" formControlName="keywords"></ion-input>
-            </ion-item>
-          </ion-col>
+    <ion-row class="row">
+      <ion-col col-sm-12 col-12>
+        <ion-item>
+          <ion-label color="primary" stacked>Mots clés</ion-label>
+          <ion-input type="text" formControlName="keywords"></ion-input>
+        </ion-item>
+      </ion-col>
 
-            <button type="button" id="showToggle" (click)="showAdvanceSearch()" [ngClass]="{'toggle-open': isAvandcedSearch}"><ion-icon name="arrow-dropleft"></ion-icon></button>
-        </ion-row>
+      <button type="button" id="showToggle" (click)="showAdvanceSearch()" [ngClass]="{'toggle-open': isAvandcedSearch}"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    </ion-row>
 
-        <div class="div-toggle" [ngClass]="{'toggle-open': isAvandcedSearch}">
-          <ion-item>
-            <ion-label>Domaines</ion-label>
-            <ion-select multiple="true" cancelText="Annuler" okText="Ok" formControlName="domains">
-              <ion-option *ngFor="let domain of domainsList" [value]="domain.id">{{domain.domainName}}</ion-option>
-            </ion-select>
-          </ion-item>
+    <div class="div-toggle" [ngClass]="{'toggle-open': isAvandcedSearch}">
+      <ion-item>
+        <ion-label>Domaines</ion-label>
+        <ion-select multiple="true" cancelText="Annuler" okText="Ok" formControlName="domains">
+          <ion-option *ngFor="let domain of domainsList" [value]="domain.id">{{domain.domainName}}</ion-option>
+        </ion-select>
+      </ion-item>
 
-          <ion-item>
-            <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" formControlName="duration" class="no-padding">
-              <ion-label range-left>Durée | {{searchFilters.value.duration.lower}}h </ion-label>
-              <ion-label range-right> {{searchFilters.value.duration.upper}}h</ion-label>
-            </ion-range>
-          </ion-item>
+      <ion-item>
+        <ion-range min="1" max="5" step="1" dualKnobs="true" pin="true" formControlName="duration" class="no-padding">
+          <ion-label range-left>Durée | {{searchFilters.value.duration.lower}}h </ion-label>
+          <ion-label range-right> {{searchFilters.value.duration.upper}}h</ion-label>
+        </ion-range>
+      </ion-item>
 
-          <ion-item>
-            <ion-range min="0" max="5" step="1" pin="true" formControlName="minavggrade" class="no-padding">
-              <ion-label range-left>Note | {{searchFilters.value.minavggrade}} étoiles</ion-label>
-            </ion-range>
-          </ion-item>
+      <ion-item>
+        <ion-range min="0" max="5" step="1" pin="true" formControlName="minavggrade" class="no-padding">
+          <ion-label range-left>Note | {{searchFilters.value.minavggrade}} étoiles</ion-label>
+        </ion-range>
+      </ion-item>
 
-          <ion-item>
-            <ion-label>Enseignant </ion-label>
-            <ion-toggle checked="true" formControlName="teacher"></ion-toggle>
-          </ion-item>
+      <ion-item>
+        <ion-label>Enseignant </ion-label>
+        <ion-toggle checked="true" formControlName="teacher"></ion-toggle>
+      </ion-item>
 
-          <ion-item>
-            <ion-label>Etudiant</ion-label>
-            <ion-toggle checked="true" formControlName="student"></ion-toggle>
-          </ion-item>
+      <ion-item>
+        <ion-label>Etudiant</ion-label>
+        <ion-toggle checked="true" formControlName="student"></ion-toggle>
+      </ion-item>
 
-          <ion-item *ngIf="!searchFilters.value.teacher && !searchFilters.value.student">
-            <ion-label color="danger" text-center>Merci de choisir étudiant, professeur ou les deux</ion-label>
-          </ion-item>
-        </div>
+      <ion-item *ngIf="!searchFilters.value.teacher && !searchFilters.value.student">
+        <ion-label color="danger" text-center>Merci de choisir étudiant, professeur ou les deux</ion-label>
+      </ion-item>
+    </div>
 
-        <button ion-button full type="submit" [disabled]="!searchFilters.value.teacher && !searchFilters.value.student">Rechercher</button>
-      </form>
+    <button ion-button full type="submit" [disabled]="!searchFilters.value.teacher && !searchFilters.value.student">Rechercher</button>
+  </form>
 
-      <ion-row align-items-center justify-content-center>
-        <ion-col col-xs-12 col-md-8 col-12>
-          <ion-row *ngIf="offersList?.length > 0; else emptyMessage">
+  <ion-row align-items-center justify-content-center>
+    <ion-col col-xs-12 col-md-8 col-12>
+      <ion-row *ngIf="offersList?.length > 0; else emptyMessage">
         <ion-col col-12 *ngFor="let offer of offersList" (click)="handleOfferClick(offer)">
-        <ion-card class="offers-list-item">
-          <ion-card-header>
-            <ion-item class="no-padding">
-              {{offer.title}}
-              <ion-badge item-end>{{offer.duration}} h</ion-badge>
-            </ion-item>
-          </ion-card-header>
-          <ion-card-content text-nowrap>
-            {{offer.description}}
-          </ion-card-content>
-        </ion-card>
+          <ion-card class="offers-list-item">
+            <ion-card-header>
+              <ion-item class="no-padding">
+                {{offer.title}}
+                <ion-badge item-end>{{offer.duration}} h</ion-badge>
+              </ion-item>
+            </ion-card-header>
+            <ion-card-content text-nowrap>
+              {{offer.description}}
+            </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
-        </ion-col>
-      </ion-row>
+    </ion-col>
+  </ion-row>
 
 
-      <ng-template #emptyMessage>
-        Aucune offre ne correspond à vos critères de recherche.
-      </ng-template>
+  <ng-template #emptyMessage>
+    Aucune offre ne correspond à vos critères de recherche.
+  </ng-template>
 
 
 

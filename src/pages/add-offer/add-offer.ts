@@ -15,14 +15,14 @@ export class AddOfferPage {
   offer: any;
   updateMode: boolean;
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
-              private fb: FormBuilder, 
-              private offerService: OfferService, 
-              private toastService: ToastService, 
-              private loaderService: LoaderService,
-              private domainsService: DomainsService) {
-    if(this.navParams.data.offer) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private fb: FormBuilder,
+    private offerService: OfferService,
+    private toastService: ToastService,
+    private loaderService: LoaderService,
+    private domainsService: DomainsService) {
+    if (this.navParams.data.offer) {
       this.offer = this.navParams.data.offer;
       this.updateMode = true;
     } else {
@@ -70,7 +70,7 @@ export class AddOfferPage {
     );
   }
 
-  modify(){
+  modify() {
     this.loaderService.presentLoaderDefault('Enregistrement en cours');
     this.offerService.updateOffer(this.form.value, this.offer.id).subscribe(
       result => {

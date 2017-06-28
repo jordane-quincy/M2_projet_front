@@ -16,7 +16,7 @@ export class AddStudentPage {
   maxDate: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private offerservice: OfferService, private toastService: ToastService, private loaderService: LoaderService) {
-    if(this.navParams.data.student) {
+    if (this.navParams.data.student) {
       this.student = this.navParams.data.student;
     }
     this.form = fb.group({

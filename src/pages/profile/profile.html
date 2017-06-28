@@ -1,6 +1,6 @@
 <ion-header>
 
-  <header-content title="Profil" ></header-content>
+  <header-content title="Profil"></header-content>
 
 </ion-header>
 
@@ -35,7 +35,8 @@
     </ion-row>
 
     <ion-row>
-      <ion-col col-12 text-center class="birthdate-role-style">{{profile.role === "STUDENT" ? "Etudiant" : "Professeur"}} {{(profile.formation || {}).level}} - {{(profile.formation || {}).name}}</ion-col>
+      <ion-col col-12 text-center class="birthdate-role-style">{{profile.role === "STUDENT" ? "Etudiant" : "Professeur"}} {{(profile.formation || {}).level}} - {{(profile.formation
+        || {}).name}}</ion-col>
     </ion-row>
   </ion-grid>
 
@@ -74,14 +75,14 @@
           <ion-icon name="star" class="icon-size"></ion-icon>
         </span>
 
-        <span *ngSwitchCase="0.5">
+    <span *ngSwitchCase="0.5">
           <ion-icon name="star-half" class="icon-size"></ion-icon>
         </span>
 
-        <span *ngSwitchDefault>
+    <span *ngSwitchDefault>
           <ion-icon name="star-outline" class="icon-size"></ion-icon>
         </span>
-      </span>
+    </span>
     </span>
   </ion-item>
 
@@ -95,9 +96,7 @@
       <ion-grid>
         <ion-row *ngFor="let remark of profile.remarks">
           <ion-col col-12>
-            {{ remark.grade }}/5
-            &nbsp;
-            {{ remark.offerTitle }}
+            {{ remark.grade }}/5 &nbsp; {{ remark.offerTitle }}
           </ion-col>
           <ion-col col-12>
             {{ !!remark.remark ? remark.remark : "Aucun commentaire" }}

@@ -29,12 +29,12 @@ export class ResetPasswordPage {
     this.questionLabel = navParams.get('questionLabel');
     this.userEmail = navParams.get('email');
     // Setup Form
-    this.answerCtrl =  fb.control('', [Validators.required]);
+    this.answerCtrl = fb.control('', [Validators.required]);
     this.newPasswordCtrl = fb.control('', [Validators.required]);
     this.newPasswordRepeatCtrl = fb.control('', [Validators.required]);
     this.passwordForm = fb.group(
-      {newPassword: this.newPasswordCtrl, newPasswordRepeat: this.newPasswordRepeatCtrl},
-      {validator: ResetPasswordPage.passwordMatch}
+      { newPassword: this.newPasswordCtrl, newPasswordRepeat: this.newPasswordRepeatCtrl },
+      { validator: ResetPasswordPage.passwordMatch }
     )
     this.resetPasswordForm = fb.group({
       answer: this.answerCtrl,
@@ -73,7 +73,7 @@ export class ResetPasswordPage {
     let body = _.cloneDeep(this.resetPasswordForm.value);
     body.password = body.passwordForm.newPassword;
     body.email = this.userEmail;
-    delete(body.passwordForm);
+    delete (body.passwordForm);
     // send the new password to the back
     this.loaderService.presentLoaderDefault('Enregistrement des modification en cours');
     this.userService.resetPassword(body).subscribe(

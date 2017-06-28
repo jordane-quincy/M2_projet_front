@@ -29,14 +29,6 @@ export class AutocompleteSkillsComponent implements OnInit {
   }
 
   constructor(private skillService: SkillService, private toastService: ToastService) {
-    // this.completeSkills = [
-    //   "JS",
-    //   "CSS",
-    //   "HTML",
-    //   "Anglais",
-    //   "React",
-    //   "Ionic"
-    // ]
     this.selectedSkills = [];
   }
 
@@ -67,7 +59,7 @@ export class AutocompleteSkillsComponent implements OnInit {
   }
 
   onClickSkill(skill: string) {
-    if (!_.find(this.selectedSkills, {label: skill})) {
+    if (!_.find(this.selectedSkills, { label: skill })) {
       this.selectedSkills.push({
         label: skill,
         customSkill: false

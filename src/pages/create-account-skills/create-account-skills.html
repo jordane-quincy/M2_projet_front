@@ -1,8 +1,8 @@
 <ion-header>
   <ion-navbar *ngIf="!isUpdating; else creation">
-      <ion-title>
-        Création des compétences
-      </ion-title>
+    <ion-title>
+      Création des compétences
+    </ion-title>
   </ion-navbar>
 
   <ng-template #creation>
@@ -13,32 +13,32 @@
 
 
 <ion-content padding>
-    <ion-row align-items-center justify-content-center>
-        <ion-col col-sm-12 col-md-8>
-            <autocomplete-skills [(selectedSkills)]="selectedSkills" ></autocomplete-skills>
-        </ion-col>
-    </ion-row>
-    <ion-row align-items-center justify-content-center>
-        <ion-col col-sm-12 col-md-8>
-          <form [formGroup]="updateSkillsAccount">
-            <div *ngIf="isUpdating">
-              <br/>
-              <br/>
-              <br/>
-              <ion-item>
-                <ion-label color="primary" stacked>Donnez votre mot de passe pour validation</ion-label>
-                <ion-input type="password" formControlName="password"></ion-input>
-              </ion-item>
-              <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
-                Le mot de passe pour valider la modification de compte est requise
-              </div>
-            </div>
-            <ion-row align-items-center justify-content-center>
-                <ion-col col-sm-12 col-md-8>
-                    <button [(disabled)]="isUpdating && updateSkillsAccount.invalid" ion-button col-12 (click)="createAccount()">{{isUpdating ? "Mettre à jour" : "Créer compte"}}</button>
-                </ion-col>
-            </ion-row>
-          </form>
-        </ion-col>
-    </ion-row>
+  <ion-row align-items-center justify-content-center>
+    <ion-col col-sm-12 col-md-8>
+      <autocomplete-skills [(selectedSkills)]="selectedSkills"></autocomplete-skills>
+    </ion-col>
+  </ion-row>
+  <ion-row align-items-center justify-content-center>
+    <ion-col col-sm-12 col-md-8>
+      <form [formGroup]="updateSkillsAccount">
+        <div *ngIf="isUpdating">
+          <br/>
+          <br/>
+          <br/>
+          <ion-item>
+            <ion-label color="primary" stacked>Donnez votre mot de passe pour validation</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
+            Le mot de passe pour valider la modification de compte est requise
+          </div>
+        </div>
+        <ion-row align-items-center justify-content-center>
+          <ion-col col-sm-12 col-md-8>
+            <button [(disabled)]="isUpdating && updateSkillsAccount.invalid" ion-button col-12 (click)="createAccount()">{{isUpdating ? "Mettre à jour" : "Créer compte"}}</button>
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-col>
+  </ion-row>
 </ion-content>

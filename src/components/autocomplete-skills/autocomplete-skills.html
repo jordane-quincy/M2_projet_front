@@ -1,9 +1,5 @@
 <div>
-  <ion-searchbar
-    [showCancelButton]="shouldShowCancel"
-    (ionInput)="getSkills($event)"
-    animated="true"
-    placeholder="Rechercher une compétence">
+  <ion-searchbar [showCancelButton]="shouldShowCancel" (ionInput)="getSkills($event)" animated="true" placeholder="Rechercher une compétence">
   </ion-searchbar>
   <ion-list>
     <ion-item class="selectionnable_item" (click)="onClickSkill(skill.label)" *ngFor="let skill of skills">
@@ -13,7 +9,9 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <h6 class="align-with-ion-item">Liste des compétences sélectionnées <ion-icon (click)="addSkill()" class="add-icon" name="add"></ion-icon></h6>
+        <h6 class="align-with-ion-item">Liste des compétences sélectionnées
+          <ion-icon (click)="addSkill()" class="add-icon" name="add"></ion-icon>
+        </h6>
       </ion-col>
     </ion-row>
     <ion-list>

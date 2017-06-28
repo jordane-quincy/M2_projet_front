@@ -12,13 +12,13 @@ export class OfferDetailsPage {
   offer: any;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private offerService: OfferService,
-              private toastService: ToastService,
-              private userService: UserService,
-              private loaderService: LoaderService,
-              private alertCtrl: AlertController) {
-    if(this.navParams.data) {
+    public navParams: NavParams,
+    private offerService: OfferService,
+    private toastService: ToastService,
+    private userService: UserService,
+    private loaderService: LoaderService,
+    private alertCtrl: AlertController) {
+    if (this.navParams.data) {
       this.offer = this.navParams.data.offer;
     }
   }
@@ -27,32 +27,26 @@ export class OfferDetailsPage {
 
   }
 
-   starsDefinition(mark: any) {
+  starsDefinition(mark: any) {
     let i: any;
-    let stars = [0,0,0,0,0];
+    let stars = [0, 0, 0, 0, 0];
     i = 0;
 
-    while(mark > 0)
-    {
-      if((mark - 1) >= 0)
-      {
+    while (mark > 0) {
+      if ((mark - 1) >= 0) {
         mark = mark - 1;
         stars[i] = 1;
       }
-      else if(mark - 0.5 >= 0)
-      {
+      else if (mark - 0.5 >= 0) {
         mark = mark - 0.5;
         stars[i] = 0.5;
       }
-      else if(mark >= 0.25 && mark < 0.5)
-      {
-        if(stars[i-1] == 0.5)
-        {
+      else if (mark >= 0.25 && mark < 0.5) {
+        if (stars[i - 1] == 0.5) {
           mark = 0;
-          stars[i-1] = 1;
+          stars[i - 1] = 1;
         }
-        else
-        {
+        else {
           mark = 0;
           stars[i] = 0.5;
         }
@@ -66,7 +60,7 @@ export class OfferDetailsPage {
   }
 
   subscribe(id: number) {
-    let body: any = {"IdOffer": id};
+    let body: any = { "IdOffer": id };
     let alert = this.alertCtrl.create({
       title: 'Confirmation d\'inscription',
       message: 'Êtes-vous sûr de vouloir vous inscrire à cette offre ?',
@@ -101,7 +95,7 @@ export class OfferDetailsPage {
   }
 
   goToProfilePage(id: number): void {
-    this.navCtrl.push(ProfilePage, {userId: id});
+    this.navCtrl.push(ProfilePage, { userId: id });
   }
 
 }

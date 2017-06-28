@@ -1,20 +1,20 @@
 <ion-header>
 
-  <header-content title="Demandes en attente" ></header-content>
+  <header-content title="Demandes en attente"></header-content>
 
 </ion-header>
 
 
 <ion-content>
-    <ion-refresher (ionRefresh)="retrieveData($event)">
+  <ion-refresher (ionRefresh)="retrieveData($event)">
     <ion-refresher-content>
 
     </ion-refresher-content>
   </ion-refresher>
   <ion-list>
     <ion-list-header>
-    Demandes à approuver
-   </ion-list-header>
+      Demandes à approuver
+    </ion-list-header>
     <ion-item-sliding *ngFor='let request of pendingRequests'>
       <ion-item>{{request.firstName}} {{request.lastName}} - {{request.offer}}</ion-item>
       <ion-item-options class="options">
@@ -30,8 +30,8 @@
 
   <ion-list>
     <ion-list-header>
-    Mes demandes en attente d'approbation
-   </ion-list-header>
+      Mes demandes en attente d'approbation
+    </ion-list-header>
     <ion-item-sliding *ngFor='let request of myPendingRequests'>
       <ion-item>{{request.offer.title}} par {{request.offer.user.userFirstName}} {{request.offer.user.userName}}</ion-item>
       <ion-item-options class="options">

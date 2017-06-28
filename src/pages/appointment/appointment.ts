@@ -15,7 +15,7 @@ export class AppointmentPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService, private userService: UserService, private loaderService: LoaderService) {
   }
 
-    ionViewDidLoad() {
+  ionViewDidLoad() {
     this.getAppointmentFromBack();
     this.getCoursesFromBack();
   }
@@ -34,8 +34,8 @@ export class AppointmentPage {
     );
   }
 
-   retrieveData(refresher): void {
-     this.offerService.getAppointment().subscribe(
+  retrieveData(refresher): void {
+    this.offerService.getAppointment().subscribe(
       res => {
         this.appointmentList = res;
       },
@@ -45,7 +45,7 @@ export class AppointmentPage {
       }
     );
 
-     this.offerService.getCoursesToGive().subscribe(
+    this.offerService.getCoursesToGive().subscribe(
       res => {
         this.courseList = res;
         refresher.complete();
@@ -79,10 +79,10 @@ export class AppointmentPage {
           role: 'cancel'
         },
         {
-          text:'Supprimer',
+          text: 'Supprimer',
           handler: () => {
-            if(listName === 'courseList') {
-              let body = {'IdOffer' : appointment.id, 'status' : 'CANCELLED', 'date': appointment.date ,'duration': appointment.duration};
+            if (listName === 'courseList') {
+              let body = { 'IdOffer': appointment.id, 'status': 'CANCELLED', 'date': appointment.date, 'duration': appointment.duration };
               this.loaderService.presentLoaderDefault('Suppression en cours');
               this.offerService.updateAppointment(body).subscribe(
                 result => {
@@ -97,8 +97,8 @@ export class AppointmentPage {
                 }
               );
 
-            } else if(listName === 'appointmentList') {
-              let body = {'IdOffer' : appointment.id, 'status' : 'CANCELLED', 'date': appointment.date ,'duration': appointment.offer.duration};
+            } else if (listName === 'appointmentList') {
+              let body = { 'IdOffer': appointment.id, 'status': 'CANCELLED', 'date': appointment.date, 'duration': appointment.offer.duration };
               this.loaderService.presentLoaderDefault('Suppression en cours');
               this.offerService.updateAppointment(body).subscribe(
                 result => {
@@ -119,7 +119,7 @@ export class AppointmentPage {
     confirm.present();
   }
 
-  showConfirmValid(appointment){
-    this.navCtrl.push(AddCommentPage, {appointment: appointment})
+  showConfirmValid(appointment) {
+    this.navCtrl.push(AddCommentPage, { appointment: appointment })
   }
 }

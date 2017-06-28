@@ -6,7 +6,7 @@
 
 
 <ion-content>
-<ion-refresher (ionRefresh)="retrieveData($event)">
+  <ion-refresher (ionRefresh)="retrieveData($event)">
     <ion-refresher-content>
 
     </ion-refresher-content>
@@ -18,11 +18,11 @@
       <ion-col col-xs-12>
         <ion-list>
           <ion-list-header>
-           Nouvelles Notifications
+            Nouvelles Notifications
           </ion-list-header>
           <ion-item *ngFor="let notif of notifList">
             <h2>
-              {{notif.title}}   {{notif.creationDate | date:'dd/MM/y'}}
+              {{notif.title}} {{notif.creationDate | date:'dd/MM/y'}}
               <button class="float-right" ion-button color="secondary" round (click)="validateNotification(notif.id)">
                 <ion-icon name="checkmark" large></ion-icon>
               </button>
@@ -32,11 +32,11 @@
         </ion-list>
         <ion-list>
           <ion-list-header>
-           Anciennes Notifications
+            Anciennes Notifications
           </ion-list-header>
           <ion-item *ngFor="let notif of oldNotifList">
             <h2>
-              {{notif.title}}   {{notif.creationDate | date:'dd/MM/y'}}
+              {{notif.title}} {{notif.creationDate | date:'dd/MM/y'}}
             </h2>
             <p text-wrap>{{notif.content}}</p>
           </ion-item>

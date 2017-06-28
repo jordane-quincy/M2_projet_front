@@ -17,32 +17,32 @@ import { AuthService, ToastService, LoaderService, TokenService, UserService } f
 export class MenuPage {
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private app: App,
-              private authService: AuthService,
-              private toastService: ToastService,
-              private loaderService: LoaderService,
-              private tokenService: TokenService,
-              private userService: UserService,
-              private alertCtrl: AlertController
-              ) {
+    public navParams: NavParams,
+    private app: App,
+    private authService: AuthService,
+    private toastService: ToastService,
+    private loaderService: LoaderService,
+    private tokenService: TokenService,
+    private userService: UserService,
+    private alertCtrl: AlertController
+  ) {
 
   }
 
-    ionViewDidEnter(): void {
-      this.refreshCredit();
-    }
+  ionViewDidEnter(): void {
+    this.refreshCredit();
+  }
 
-    refreshCredit(){
-        this.userService.getUserCreditFromBack().subscribe(
-          result => {
-            this.userService.setUserCredit(result.credit);
-          },
-          error => {
-            this.toastService.presentToast((error || {}).message, "alert");
-          }
-        );
-    }
+  refreshCredit() {
+    this.userService.getUserCreditFromBack().subscribe(
+      result => {
+        this.userService.setUserCredit(result.credit);
+      },
+      error => {
+        this.toastService.presentToast((error || {}).message, "alert");
+      }
+    );
+  }
 
   openPageProfil(): void {
     this.navCtrl.push(ProfilePage);

@@ -11,35 +11,35 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-list>
-   <ion-list-header>
-    Cours à donner
-   </ion-list-header>
-   <ion-item-sliding class="sliding" *ngFor="let appointment of courseList">
-     <ion-item>
-       <!--<ion-avatar item-start>
+    <ion-list-header>
+      Cours à donner
+    </ion-list-header>
+    <ion-item-sliding class="sliding" *ngFor="let appointment of courseList">
+      <ion-item>
+        <!--<ion-avatar item-start>
           <img src="data:image/jpeg;base64,{{appointment.picture}}"/>
         </ion-avatar>-->
-       <h2>{{appointment.offer}}</h2>
-       <ion-icon name="calendar" class="icon-calendar"></ion-icon>
+        <h2>{{appointment.offer}}</h2>
+        <ion-icon name="calendar" class="icon-calendar"></ion-icon>
         {{appointment.date | date: 'dd/MM/y à HH:mm'}}
-     </ion-item>
-     <ion-item-options class="options">
-       <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment, 'courseList')">
+      </ion-item>
+      <ion-item-options class="options">
+        <button ion-button color="danger" icon-left (click)="showConfirmDelete(appointment, 'courseList')">
          <ion-icon name="trash" large></ion-icon>
        </button>
-     </ion-item-options>
-   </ion-item-sliding>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
   <ion-list>
     <ion-list-header>
-     Cours à suivre
+      Cours à suivre
     </ion-list-header>
     <ion-item-sliding class="sliding" *ngFor="let appointment of appointmentList">
       <ion-item *ngIf="appointment.status == 'VALIDATED'">
         <h2>{{appointment.offer?.title}}</h2>
         <ion-icon name="calendar" class="icon-calendar"></ion-icon>
-         {{appointment.date | date: 'dd/MM/y à HH:mm'}}
+        {{appointment.date | date: 'dd/MM/y à HH:mm'}}
       </ion-item>
       <ion-item-options class="options">
         <button ion-button color="secondary" icon-left (click)="showConfirmValid(appointment)">

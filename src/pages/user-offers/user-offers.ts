@@ -16,33 +16,33 @@ export class UserOffersPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private offerService: OfferService, private toastService: ToastService, private loaderService: LoaderService) {
   }
 
-    ionViewDidLoad() {
+  ionViewDidLoad() {
     // Get formation from back
-      this.getUserOffersFromBack();
-    }
+    this.getUserOffersFromBack();
+  }
 
-    getUserOffersFromBack() {
-      this.offerService.getUserOffers().subscribe(
-        res => {
-          this.userOffersList = res;
-        },
-        err => {
-          this.toastService.presentToast((err || {}).message, "alert");
-        }
-      );
-    }
-
-    retrieveData(refresher){
+  getUserOffersFromBack() {
     this.offerService.getUserOffers().subscribe(
-        res => {
-          this.userOffersList = res;
-          refresher.complete();
-        },
-        err => {
-          this.toastService.presentToast((err || {}).message, "alert");
-          refresher.complete();
-        }
-      );
+      res => {
+        this.userOffersList = res;
+      },
+      err => {
+        this.toastService.presentToast((err || {}).message, "alert");
+      }
+    );
+  }
+
+  retrieveData(refresher) {
+    this.offerService.getUserOffers().subscribe(
+      res => {
+        this.userOffersList = res;
+        refresher.complete();
+      },
+      err => {
+        this.toastService.presentToast((err || {}).message, "alert");
+        refresher.complete();
+      }
+    );
   }
 
   showConfirm(id: number): void {
@@ -52,12 +52,12 @@ export class UserOffersPage {
       buttons: [
         {
           text: 'Annuler',
-          handler:() => {
+          handler: () => {
             console.log('annulation');
           }
         },
         {
-          text:'Supprimer',
+          text: 'Supprimer',
           handler: () => {
             this.loaderService.presentLoaderDefault('Suppression en cours');
             this.userOffersList = this.userOffersList.filter(element => element.id !== id);

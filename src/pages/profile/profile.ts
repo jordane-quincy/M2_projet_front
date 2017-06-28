@@ -15,20 +15,20 @@ export class ProfilePage {
   private currentUser: any;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public popoverCtrl: PopoverController,
-              private userService: UserService,
-              private toastService: ToastService,
-              private loaderService: LoaderService,
-              private skillService: SkillService,
-              private alertCtrl: AlertController) {
+    public navParams: NavParams,
+    public popoverCtrl: PopoverController,
+    private userService: UserService,
+    private toastService: ToastService,
+    private loaderService: LoaderService,
+    private skillService: SkillService,
+    private alertCtrl: AlertController) {
     this.profile = {};
   }
 
   ionViewDidEnter() {
     // get connected user
     this.currentUser = this.userService.getUser();
-    if(this.navParams.data.userId) {
+    if (this.navParams.data.userId) {
       this.id = this.navParams.data.userId
       this.loaderService.presentLoaderDefault('Chargement du profil');
       this.profile = this.userService.getUserById(this.id).subscribe(
@@ -50,9 +50,9 @@ export class ProfilePage {
     this.profile = _.cloneDeep(profile);
 
     // get mark and comments
-    this.userService.getCommentsAndMark({email: this.profile.userMail}).subscribe(
+    this.userService.getCommentsAndMark({ email: this.profile.userMail }).subscribe(
       result => {
-        this.profile.stars = [0,0,0,0,0];
+        this.profile.stars = [0, 0, 0, 0, 0];
         this.starsDefinition(result.averageMark);
         this.profile.remarks = result.remarks;
       },
@@ -67,27 +67,21 @@ export class ProfilePage {
     var i: any;
     i = 0;
 
-    while(mark > 0)
-    {
-      if((mark - 1) >= 0)
-      {
+    while (mark > 0) {
+      if ((mark - 1) >= 0) {
         mark = mark - 1;
         this.profile.stars[i] = 1;
       }
-      else if(mark - 0.5 >= 0)
-      {
+      else if (mark - 0.5 >= 0) {
         mark = mark - 0.5;
         this.profile.stars[i] = 0.5;
       }
-      else if(mark >= 0.25 && mark < 0.5)
-      {
-        if(this.profile.stars[i-1] == 0.5)
-        {
+      else if (mark >= 0.25 && mark < 0.5) {
+        if (this.profile.stars[i - 1] == 0.5) {
           mark = 0;
-          this.profile.stars[i-1] = 1;
+          this.profile.stars[i - 1] = 1;
         }
-        else
-        {
+        else {
           mark = 0;
           this.profile.stars[i] = 0.5;
         }
@@ -102,14 +96,14 @@ export class ProfilePage {
   confirmSkillValidation(skill: any): void {
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de validation',
-      message:  `Êtes-vous sûr de vouloir valider la compétence ${skill.label} pour ${this.profile.userFirstName} ${this.profile.userName} ?`,
+      message: `Êtes-vous sûr de vouloir valider la compétence ${skill.label} pour ${this.profile.userFirstName} ${this.profile.userName} ?`,
       buttons: [
         {
           text: 'Annuler',
           role: 'cancel'
         },
         {
-          text:'Valider',
+          text: 'Valider',
           handler: () => {
             this.validateSkill(skill.id);
           }
@@ -128,8 +122,8 @@ export class ProfilePage {
     this.skillService.validateSkill(body).subscribe(
       result => {
         /* Change the value for the IHM, to avoid refreshing the page */
-        for(let i: number = 0; i < this.profile.skills.length; i++) {
-          if(this.profile.skills[i].id === skillId) {
+        for (let i: number = 0; i < this.profile.skills.length; i++) {
+          if (this.profile.skills[i].id === skillId) {
             this.profile.skills[i].validated = true;
           }
         }
@@ -144,7 +138,7 @@ export class ProfilePage {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage, {navCtrlData: this.navCtrl, connectedUser: _.cloneDeep(this.profile)});
+    let popover = this.popoverCtrl.create(PopoverPage, { navCtrlData: this.navCtrl, connectedUser: _.cloneDeep(this.profile) });
     popover.present({ ev: myEvent });
   }
 }

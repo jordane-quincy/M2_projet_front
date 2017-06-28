@@ -17,14 +17,14 @@ export class LessonSearchPage {
   isAvandcedSearch = false;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private fb: FormBuilder,
-              public domainsService: DomainsService,
-              public offerService: OfferService,
-              private toastService: ToastService,
-              private loaderService: LoaderService,
+    public navParams: NavParams,
+    private fb: FormBuilder,
+    public domainsService: DomainsService,
+    public offerService: OfferService,
+    private toastService: ToastService,
+    private loaderService: LoaderService,
     private userService: UserService
-              ) {
+  ) {
     this.domainsList = [];
     this.domainsListChecked = [];
 
@@ -45,7 +45,7 @@ export class LessonSearchPage {
     this.refreshCredit();
   }
 
-  refreshCredit(){
+  refreshCredit() {
     this.userService.getUserCreditFromBack().subscribe(
       result => {
         this.userService.setUserCredit(result.credit);
@@ -76,7 +76,7 @@ export class LessonSearchPage {
         this.domainsList = [];
         this.domainsList = [...this.domainsList, ...result];
 
-        for(var i = 0; i < this.domainsList.length; i++)
+        for (var i = 0; i < this.domainsList.length; i++)
           this.domainsListChecked.push(this.domainsList[i].id);
 
         this.searchFilters = this.fb.group({
@@ -94,7 +94,7 @@ export class LessonSearchPage {
     );
   }
 
-  getOffersList(){
+  getOffersList() {
     this.offerService.getAllOffers().subscribe(
       result => {
         this.offersList = result;
@@ -112,8 +112,7 @@ export class LessonSearchPage {
   }
 
   startSearch(): void {
-    if(!(!this.searchFilters.value.teacher && !this.searchFilters.value.student))
-    {
+    if (!(!this.searchFilters.value.teacher && !this.searchFilters.value.student)) {
       console.log(this.searchFilters.value);
       this.loaderService.presentLoaderDefault('Recherche en cours');
       this.offerService.getOffersByFilters(this.searchFilters.value).subscribe(

@@ -1,14 +1,14 @@
 <ion-header>
   <ion-navbar *ngIf="!isUpdating; else creation">
-      <ion-title>
-        Création du compte
-      </ion-title>
+    <ion-title>
+      Création du compte
+    </ion-title>
   </ion-navbar>
 
   <ng-template #creation>
     <header-content title="Modification du compte"></header-content>
   </ng-template>
-  
+
 </ion-header>
 
 
@@ -17,142 +17,142 @@
     <ion-row align-items-center justify-content-center>
       <ion-col col-sm-12 col-md-8>
         <form (ngSubmit)="createAccount()" [formGroup]="createAccountForm">
-            <h5 class="align-with-ion-item no-margin-bottom">
-                Informations
-            </h5>
-            <ion-row align-items-center justify-content-center>
-                  <ion-col>
-                        <ion-item>
-                            <ion-label color="primary" stacked>Nom *</ion-label>
-                            <ion-input type="text" formControlName="userName"></ion-input>
-                        </ion-item>
-                        <div class="input-error" *ngIf="userNameCtrl.touched && userNameCtrl.hasError('required')">
-                            Le nom est requis
-                        </div>
-                  </ion-col>
-            </ion-row>
+          <h5 class="align-with-ion-item no-margin-bottom">
+            Informations
+          </h5>
+          <ion-row align-items-center justify-content-center>
+            <ion-col>
+              <ion-item>
+                <ion-label color="primary" stacked>Nom *</ion-label>
+                <ion-input type="text" formControlName="userName"></ion-input>
+              </ion-item>
+              <div class="input-error" *ngIf="userNameCtrl.touched && userNameCtrl.hasError('required')">
+                Le nom est requis
+              </div>
+            </ion-col>
+          </ion-row>
 
-            <ion-row align-items-center justify-content-center>
-                  <ion-col>
-                        <ion-item>
-                            <ion-label color="primary" stacked>Prénom *</ion-label>
-                            <ion-input type="text" formControlName="userFirstName"></ion-input>
-                        </ion-item>
-                        <div class="input-error" *ngIf="userFirstNameCtrl.touched && userFirstNameCtrl.hasError('required')">
-                          Le prénom est requis
-                        </div>
-                  </ion-col>
-            </ion-row>
+          <ion-row align-items-center justify-content-center>
+            <ion-col>
+              <ion-item>
+                <ion-label color="primary" stacked>Prénom *</ion-label>
+                <ion-input type="text" formControlName="userFirstName"></ion-input>
+              </ion-item>
+              <div class="input-error" *ngIf="userFirstNameCtrl.touched && userFirstNameCtrl.hasError('required')">
+                Le prénom est requis
+              </div>
+            </ion-col>
+          </ion-row>
 
-            <ion-row align-items-center justify-content-center>
-                  <ion-col>
-                        <ion-item>
-                            <ion-label color="primary" stacked>Date de naissance *</ion-label>
-                            <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthday" doneText="Ok" cancelText="Annuler"></ion-datetime>
-                        </ion-item>
-                  </ion-col>
-            </ion-row>
+          <ion-row align-items-center justify-content-center>
+            <ion-col>
+              <ion-item>
+                <ion-label color="primary" stacked>Date de naissance *</ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" formControlName="birthday" doneText="Ok" cancelText="Annuler"></ion-datetime>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
-            <ion-row align-items-center justify-content-center>
-                  <ion-col>
-                        <ion-item>
-                            <ion-label color="primary" stacked>Téléphone</ion-label>
-                            <ion-input type="tel" formControlName="phoneNumber"></ion-input>
-                        </ion-item>
-                  </ion-col>
-            </ion-row>
+          <ion-row align-items-center justify-content-center>
+            <ion-col>
+              <ion-item>
+                <ion-label color="primary" stacked>Téléphone</ion-label>
+                <ion-input type="tel" formControlName="phoneNumber"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
 
+          <ion-row align-items-center justify-content-center>
+            <ion-col>
+              <ion-item>
+                <ion-label color="primary" stacked>Email *</ion-label>
+                <ion-input type="email" formControlName="userMail"></ion-input>
+              </ion-item>
+              <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('required')">
+                L'email est requis
+              </div>
+              <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('email') && !userMailCtrl.hasError('required')">
+                Mauvais format d'email
+              </div>
+              <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('pattern') && !userMailCtrl.hasError('required')">
+                L' email doit finir par @etu.univ-valenciennes.fr ou @univ-valenciennes.fr
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row align-items-center justify-content-center>
+            <ion-col>
+              <ion-item>
+                <ion-label>Formation *</ion-label>
+                <ion-select submitText="Okay" cancelText="Cancel" formControlName="formation">
+                  <ion-option *ngFor="let form of formationList" [value]="form.id">{{form.level}} - {{form.name}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <div formGroupName="passwordForm">
             <ion-row align-items-center justify-content-center>
-                  <ion-col>
-                        <ion-item>
-                            <ion-label color="primary" stacked>Email *</ion-label>
-                            <ion-input type="email" formControlName="userMail"></ion-input>
-                        </ion-item>
-                        <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('required')">
-                            L'email est requis
-                        </div>
-                        <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('email') && !userMailCtrl.hasError('required')">
-                            Mauvais format d'email
-                        </div>
-                        <div class="input-error" *ngIf="userMailCtrl.touched && userMailCtrl.hasError('pattern') && !userMailCtrl.hasError('required')">
-                            L' email doit finir par @etu.univ-valenciennes.fr ou @univ-valenciennes.fr
-                        </div>
-                  </ion-col>
+              <ion-col>
+                <ion-item>
+                  <ion-label color="primary" stacked>{{isUpdating ? "Nouveau mot de passe" : "Mot de passe *"}}</ion-label>
+                  <ion-input type="password" formControlName="password"></ion-input>
+                </ion-item>
+                <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
+                  Le mot de passe est requis
+                </div>
+              </ion-col>
             </ion-row>
             <ion-row align-items-center justify-content-center>
               <ion-col>
                 <ion-item>
-                  <ion-label>Formation *</ion-label>
-                  <ion-select submitText="Okay" cancelText="Cancel" formControlName="formation">
-                    <ion-option *ngFor="let form of formationList" [value]="form.id">{{form.level}} - {{form.name}}</ion-option>
-                  </ion-select>
+                  <ion-label color="primary" stacked>Répeter {{isUpdating ? "nouveau" : ""}} mot de passe {{isUpdating ? "" : "*"}}</ion-label>
+                  <ion-input type="password" formControlName="repeatPassword"></ion-input>
                 </ion-item>
+                <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
+                  Le mot de passe est requis
+                </div>
+                <div class="input-error" *ngIf="repeatPasswordCtrl.touched && repeatPasswordCtrl.hasError('required')">
+                  La répétition de mot de passe est requise
+                </div>
+                <div class="input-error" *ngIf="passwordForm.touched && passwordForm.hasError('matchingError')">
+                  Les mots de passe ne correspondent pas
+                </div>
               </ion-col>
             </ion-row>
-            <div formGroupName="passwordForm">
-                  <ion-row align-items-center justify-content-center>
-                        <ion-col>
-                              <ion-item>
-                                  <ion-label color="primary" stacked>{{isUpdating ? "Nouveau mot de passe" : "Mot de passe *"}}</ion-label>
-                                  <ion-input type="password" formControlName="password"></ion-input>
-                              </ion-item>
-                              <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
-                                  Le mot de passe est requis
-                              </div>
-                        </ion-col>
-                  </ion-row>
-                  <ion-row align-items-center justify-content-center>
-                        <ion-col>
-                              <ion-item>
-                                    <ion-label color="primary" stacked>Répeter {{isUpdating ? "nouveau" : ""}} mot de passe {{isUpdating ? "" : "*"}}</ion-label>
-                                    <ion-input type="password" formControlName="repeatPassword"></ion-input>
-                              </ion-item>
-                              <div class="input-error" *ngIf="passwordCtrl.touched && passwordCtrl.hasError('required')">
-                                  Le mot de passe est requis
-                              </div>
-                              <div class="input-error" *ngIf="repeatPasswordCtrl.touched && repeatPasswordCtrl.hasError('required')">
-                                  La répétition de mot de passe est requise
-                              </div>
-                              <div class="input-error" *ngIf="passwordForm.touched && passwordForm.hasError('matchingError')">
-                                  Les mots de passe ne correspondent pas
-                              </div>
-                        </ion-col>
-                  </ion-row>
+          </div>
+          <br/>
+          <div *ngIf="!isUpdating">
+            <h5 class="align-with-ion-item no-margin-bottom">
+              Questions de récupération de mot de passe
+            </h5>
+            <ion-item>
+              <ion-label color="primary" stacked>Intitulé question *</ion-label>
+              <ion-input type="text" formControlName="question"></ion-input>
+            </ion-item>
+            <div class="input-error" *ngIf="questionCtrl.touched && questionCtrl.hasError('required')">
+              L' intitulé de la question est requis
             </div>
+            <ion-item>
+              <ion-label color="primary" stacked>Réponse question *</ion-label>
+              <ion-input type="text" formControlName="answer"></ion-input>
+            </ion-item>
+            <div class="input-error" *ngIf="answerCtrl.touched && answerCtrl.hasError('required')">
+              La réponse à la question est requise
+            </div>
+          </div>
+          <div *ngIf="isUpdating">
             <br/>
-            <div *ngIf="!isUpdating">
-              <h5 class="align-with-ion-item no-margin-bottom">
-                Questions de récupération de mot de passe
-              </h5>
-              <ion-item>
-                <ion-label color="primary" stacked>Intitulé question *</ion-label>
-                <ion-input type="text" formControlName="question"></ion-input>
-              </ion-item>
-              <div class="input-error" *ngIf="questionCtrl.touched && questionCtrl.hasError('required')">
-                  L' intitulé de la question est requis
-              </div>
-              <ion-item>
-                <ion-label color="primary" stacked>Réponse question *</ion-label>
-                <ion-input type="text" formControlName="answer"></ion-input>
-              </ion-item>
-              <div class="input-error" *ngIf="answerCtrl.touched && answerCtrl.hasError('required')">
-                La réponse à la question est requise
-              </div>
-            </div>
-            <div *ngIf="isUpdating">
-              <br/>
-              <br/>
-              <br/>
-              <ion-item>
-                <ion-label color="primary" stacked>Donnez votre mot de passe pour validation *</ion-label>
-                <ion-input type="password" formControlName="validatePassword"></ion-input>
-              </ion-item>
-              <div class="input-error" *ngIf="validatePasswordCtrl.touched && validatePasswordCtrl.hasError('required')">
-                Le mot de passe est requis pour valider la modification de compte
-              </div>
-            </div>
             <br/>
-            <button ion-button type="submit" [disabled]="createAccountForm.invalid">{{isUpdating ? "Mettre à jour" : "Suivant"}} <ion-icon *ngIf="!isUpdating" name="arrow-forward"></ion-icon></button>
+            <br/>
+            <ion-item>
+              <ion-label color="primary" stacked>Donnez votre mot de passe pour validation *</ion-label>
+              <ion-input type="password" formControlName="validatePassword"></ion-input>
+            </ion-item>
+            <div class="input-error" *ngIf="validatePasswordCtrl.touched && validatePasswordCtrl.hasError('required')">
+              Le mot de passe est requis pour valider la modification de compte
+            </div>
+          </div>
+          <br/>
+          <button ion-button type="submit" [disabled]="createAccountForm.invalid">{{isUpdating ? "Mettre à jour" : "Suivant"}} <ion-icon *ngIf="!isUpdating" name="arrow-forward"></ion-icon></button>
         </form>
       </ion-col>
     </ion-row>

@@ -1,60 +1,60 @@
 <ion-content padding>
-    <ion-grid>
-        <ion-row align-items-center justify-content-center>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center>
 
-                <ion-img width="200" height="200" src="assets/logo-full.png"></ion-img>
+      <ion-img width="200" height="200" src="assets/logo-full.png"></ion-img>
 
-        </ion-row>
+    </ion-row>
 
-        <form (ngSubmit)="login()" [formGroup]="form">
+    <form (ngSubmit)="login()" [formGroup]="form">
 
-            <ion-row align-items-center justify-content-center>
-                <ion-col col-xs-12 col-sm-8>
-                    <ion-item>
-                        <ion-label color="primary" stacked>Email universitaire *</ion-label>
-                        <ion-input type="email" placeholder="" formControlName="email" required></ion-input>
-                    </ion-item>
-                    <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('required')">
-                        L'email est requis
-                    </div>
-                    <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
-                        Mauvais format d'email
-                    </div>
-                    <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('pattern') && !form.controls['email'].hasError('required')">
-                        L' email doit finir par @etu.univ-valenciennes.fr ou @univ-valenciennes.fr
-                    </div>
-                </ion-col>
-            </ion-row>
+      <ion-row align-items-center justify-content-center>
+        <ion-col col-xs-12 col-sm-8>
+          <ion-item>
+            <ion-label color="primary" stacked>Email universitaire *</ion-label>
+            <ion-input type="email" placeholder="" formControlName="email" required></ion-input>
+          </ion-item>
+          <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('required')">
+            L'email est requis
+          </div>
+          <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('email') && !form.controls['email'].hasError('required')">
+            Mauvais format d'email
+          </div>
+          <div class="input-error" *ngIf="form.controls['email'].touched && form.controls['email'].hasError('pattern') && !form.controls['email'].hasError('required')">
+            L' email doit finir par @etu.univ-valenciennes.fr ou @univ-valenciennes.fr
+          </div>
+        </ion-col>
+      </ion-row>
 
-            <ion-row align-items-center justify-content-center>
-                <ion-col col-xs-12 col-sm-8>
-                      <ion-item>
-                        <ion-label color="primary" stacked>Mot de passe *</ion-label>
-                        <ion-input type="password" placeholder="" formControlName="password" required></ion-input>
-                      </ion-item>
-                      <div class="input-error" *ngIf="form.controls['password'].touched && form.controls['password'].hasError('required')">
-                          Le mot de passe est requis
-                      </div>
-              </ion-col>
-            </ion-row>
+      <ion-row align-items-center justify-content-center>
+        <ion-col col-xs-12 col-sm-8>
+          <ion-item>
+            <ion-label color="primary" stacked>Mot de passe *</ion-label>
+            <ion-input type="password" placeholder="" formControlName="password" required></ion-input>
+          </ion-item>
+          <div class="input-error" *ngIf="form.controls['password'].touched && form.controls['password'].hasError('required')">
+            Le mot de passe est requis
+          </div>
+        </ion-col>
+      </ion-row>
 
-            <ion-row align-items-center justify-content-center>
-                    <ion-col col-xs-12 col-sm-8>
-                        <button ion-button col-12 type="submit" [disabled]="form.invalid">Connexion</button>
-                    </ion-col>
-            </ion-row>
+      <ion-row align-items-center justify-content-center>
+        <ion-col col-xs-12 col-sm-8>
+          <button ion-button col-12 type="submit" [disabled]="form.invalid">Connexion</button>
+        </ion-col>
+      </ion-row>
 
-        </form>
+    </form>
 
-        <ion-row align-items-center justify-content-center>
-                    <a [navPush]="forgottenPasswordPage">Mot de passe oublié ?</a>
-        </ion-row>
+    <ion-row align-items-center justify-content-center>
+      <a [navPush]="forgottenPasswordPage">Mot de passe oublié ?</a>
+    </ion-row>
 
-        <ion-row align-items-center justify-content-center class="create-account">
-                <span>Vous n'avez pas de compte ?</span>
-                <a [navPush]="createAccountPage">Créer</a>
-        </ion-row>
+    <ion-row align-items-center justify-content-center class="create-account">
+      <span>Vous n'avez pas de compte ?</span>
+      <a [navPush]="createAccountPage">Créer</a>
+    </ion-row>
 
 
-    </ion-grid>
+  </ion-grid>
 </ion-content>

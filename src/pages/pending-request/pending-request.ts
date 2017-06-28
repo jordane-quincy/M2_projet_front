@@ -25,8 +25,8 @@ export class PendingRequestPage {
   ionViewDidLoad() {
   }
 
-   retrieveData(refresher): void {
-     let body = {
+  retrieveData(refresher): void {
+    let body = {
       "status": "PENDING"
     }
     this.offerservice.getRequestsToApprove(body).subscribe(
@@ -39,7 +39,7 @@ export class PendingRequestPage {
       }
     );
 
-     this.offerservice.getAllPendingRequests().subscribe(
+    this.offerservice.getAllPendingRequests().subscribe(
       result => {
         this.myPendingRequests = result;
         refresher.complete();
@@ -52,7 +52,7 @@ export class PendingRequestPage {
 
   }
 
-  getAllAppointments(){
+  getAllAppointments() {
     let body = {
       "status": "PENDING"
     }
@@ -70,7 +70,7 @@ export class PendingRequestPage {
   }
 
 
-  getAllRequests(){
+  getAllRequests() {
     this.offerservice.getAllPendingRequests().subscribe(
       result => {
         this.myPendingRequests = result;
@@ -85,7 +85,7 @@ export class PendingRequestPage {
   showConfirm(request: any): void {
     request.status = 'REFUSED';
     request.IdOffer = request.id;
-    delete(request.id);
+    delete (request.id);
     let confirm = this.alertCtrl.create({
       title: 'Confirmation de suppression',
       message: 'Etes vous sûr de vouloir supprimer cette demande en attente ?',
@@ -95,7 +95,7 @@ export class PendingRequestPage {
           role: 'cancel'
         },
         {
-          text:'Supprimer',
+          text: 'Supprimer',
           handler: () => {
             this.loaderService.presentLoaderDefault('Suppression en cours');
             this.offerservice.updateAppointment(request).subscribe(
@@ -126,9 +126,9 @@ export class PendingRequestPage {
           role: 'cancel'
         },
         {
-          text:'Supprimer',
+          text: 'Supprimer',
           handler: () => {
-            let body = {'IdOffer' : request.id, 'status' : 'CANCELLED', 'date': request.date ,'duration': request.offer.duration};
+            let body = { 'IdOffer': request.id, 'status': 'CANCELLED', 'date': request.date, 'duration': request.offer.duration };
             this.loaderService.presentLoaderDefault('Suppression en cours');
             this.offerservice.updateAppointment(body).subscribe(
               result => {
@@ -150,7 +150,7 @@ export class PendingRequestPage {
     confirm.present();
   }
 
-  addStudent(student: any){
+  addStudent(student: any) {
     this.navCtrl.push(AddStudentPage, {
       student: student
     });

@@ -44,7 +44,7 @@
     </ion-card-content>
   </ion-card>
 
-    <ion-card *ngFor="let mark of offer.remarks">
+  <ion-card *ngFor="let mark of offer.remarks">
     <ion-card-content>
       <ion-grid>
         <ion-row>
@@ -55,28 +55,29 @@
         <ion-row>
           <ion-col col-12>
             <ion-item text-center>
-            <span *ngFor="let star of starsDefinition(mark.grade)">
+              <span *ngFor="let star of starsDefinition(mark.grade)">
               <span [ngSwitch]="star">
                 <span *ngSwitchCase="1">
                   <ion-icon name="star" class="icon-size"></ion-icon>
                 </span>
 
-                <span *ngSwitchCase="0.5">
+              <span *ngSwitchCase="0.5">
                   <ion-icon name="star-half" class="icon-size"></ion-icon>
                 </span>
 
-                <span *ngSwitchDefault>
+              <span *ngSwitchDefault>
                   <ion-icon name="star-outline" class="icon-size"></ion-icon>
                 </span>
               </span>
-            </span>
-          </ion-item>
+              </span>
+            </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
   </ion-card>
-  <button *ngIf="userService.getUser()?.credit >= offer.duration && userService.getUser()?.userMail !== offer.user?.userMail; else noCredit" ion-button round class="subscribe" icon-left (click)="subscribe(offer.id)">Je m'inscris</button>
+  <button *ngIf="userService.getUser()?.credit >= offer.duration && userService.getUser()?.userMail !== offer.user?.userMail; else noCredit"
+    ion-button round class="subscribe" icon-left (click)="subscribe(offer.id)">Je m'inscris</button>
   <ng-template #noCredit>
     <h6 class="no-credit" *ngIf="userService.getUser()?.userMail !== offer.user?.userMail; else currentUser"> Vous ne disposez plus d'assez de crédits pour souscrire à cette offre !</h6>
   </ng-template>

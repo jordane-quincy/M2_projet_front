@@ -44,7 +44,7 @@ export class CreateAccountSkillsPage {
       let body = _.cloneDeep(this.connectedUser);
       body.skills = skills;
       body.formationId = body.formation.id;
-      delete(body.formation);
+      delete (body.formation);
       body.validatePassword = this.updateSkillsAccount.value.password;
       this.loaderService.presentLoaderDefault('Modification en cours');
       this.userService.updateAccount(body).subscribe(
