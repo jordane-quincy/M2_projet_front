@@ -29,7 +29,7 @@ export class PendingRequestPage {
      let body = {
       "status": "PENDING"
     }
-    this.offerservice.getAllAppointments(body).subscribe(
+    this.offerservice.getRequestsToApprove(body).subscribe(
       result => {
         this.pendingRequests = result;
       },
@@ -39,7 +39,7 @@ export class PendingRequestPage {
       }
     );
 
-     this.offerservice.getAllRequests().subscribe(
+     this.offerservice.getAllPendingRequests().subscribe(
       result => {
         this.myPendingRequests = result;
         refresher.complete();
@@ -57,7 +57,7 @@ export class PendingRequestPage {
       "status": "PENDING"
     }
     this.loaderService.presentLoaderDefault('Chargement en cours');
-    this.offerservice.getAllAppointments(body).subscribe(
+    this.offerservice.getRequestsToApprove(body).subscribe(
       result => {
         this.pendingRequests = result;
         this.loaderService.dismissLoader();
@@ -71,7 +71,7 @@ export class PendingRequestPage {
 
 
   getAllRequests(){
-    this.offerservice.getAllRequests().subscribe(
+    this.offerservice.getAllPendingRequests().subscribe(
       result => {
         this.myPendingRequests = result;
       },

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams } from 'ionic-angular';
-import { OfferService, ToastService, LoaderService } from '../../providers/index';
+import { OfferService, ToastService, LoaderService, DomainsService } from '../../providers/index';
 import { UserOffersPage } from '../user-offers/user-offers';
 
 @Component({
@@ -15,7 +15,13 @@ export class AddOfferPage {
   offer: any;
   updateMode: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private offerService: OfferService, private toastService: ToastService, private loaderService: LoaderService) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private fb: FormBuilder, 
+              private offerService: OfferService, 
+              private toastService: ToastService, 
+              private loaderService: LoaderService,
+              private domainsService: DomainsService) {
     if(this.navParams.data.offer) {
       this.offer = this.navParams.data.offer;
       this.updateMode = true;
@@ -37,7 +43,7 @@ export class AddOfferPage {
 
   getDomainesFromBack() {
     this.loaderService.presentLoaderDefault('Chargement en cours');
-    this.offerService.getDomaines().subscribe(
+    this.domainsService.getDomainsList().subscribe(
       res => {
         this.domaineList = res;
         this.loaderService.dismissLoader();

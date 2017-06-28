@@ -37,9 +37,6 @@
     </ion-list-header>
     <ion-item-sliding class="sliding" *ngFor="let appointment of appointmentList">
       <ion-item *ngIf="appointment.status == 'VALIDATED'">
-        <!--<ion-avatar item-start>
-           <img src="data:image/jpeg;base64,{{appointment.picture}}"/>
-         </ion-avatar>-->
         <h2>{{appointment.offer?.title}}</h2>
         <ion-icon name="calendar" class="icon-calendar"></ion-icon>
          {{appointment.date | date: 'dd/MM/y à HH:mm'}}

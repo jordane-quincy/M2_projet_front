@@ -19,8 +19,8 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private authService: AuthService, private toastService: ToastService, private tokenService: TokenService, private loaderService: LoaderService, private userService: UserService) {
     this.form = fb.group({
-      email: fb.control('', [Validators.required, Validators.email, Validators.pattern(".*(@univ-valenciennes.fr|@etu.univ-valenciennes.fr)")]),
-      password: fb.control('', [Validators.required])
+      email: fb.control('jordane.quincy@etu.univ-valenciennes.fr', [Validators.required, Validators.email, Validators.pattern(".*(@univ-valenciennes.fr|@etu.univ-valenciennes.fr)")]),
+      password: fb.control('jquincy', [Validators.required])
     });
   }
 

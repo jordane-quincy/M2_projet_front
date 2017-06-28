@@ -7,6 +7,9 @@ import 'rxjs/add/operator/catch';;
 
 import { environment } from '../constants/constants';
 
+/**
+ * Service permettant de gérer l'authentification sur l'application
+ */
 @Injectable()
 export class AuthService {
 
@@ -14,6 +17,10 @@ export class AuthService {
 
   }
 
+  /**
+   * Permet de faire la requête pour la demande de connection à l'application
+   * @param body : objet content l'adresse mail et le mot de passe de connecxion
+   */
   login(body: any): Observable<any> {
 		let httpAddress: string = `${environment.backendUrl}/auth/connect`;
 		return this.http.post(httpAddress, JSON.stringify(body))
@@ -21,6 +28,9 @@ export class AuthService {
 		.catch((error: any) => Observable.throw(error.json()));
   }
 
+  /**
+   * Permet de faire la requête pour la demande de déconnexion, afin d'invalider le token en cours d'utilisation
+   */
   disconnect(): Observable<any> {
 		let httpAddress: string = `${environment.backendUrl}/auth/disconnect`;
 		return this.http.post(httpAddress, {})

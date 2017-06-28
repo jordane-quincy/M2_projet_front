@@ -7,6 +7,9 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+/**
+ * Service permettant de surcharger les requêtes HTTP qui sont envoyées dans l'application
+ */
 @Injectable()
 export class HttpService extends Http {
 
@@ -17,6 +20,11 @@ export class HttpService extends Http {
     this.tokenService = tokenService;
   }
 
+  /**
+   * Permet de surcharger l'objet contenant la requête HTTP, afin d'y ajouter le token et le format JSON
+   * @param request : objet contenant la requête HTTP
+   * @param options : options associées à la requête
+   */
   request(request: Request, options?: RequestOptionsArgs): Observable<Response> {
     let token = this.tokenService.getToken();
     if (!request.headers) {
@@ -24,10 +32,14 @@ export class HttpService extends Http {
     }
     request.headers.append('Authorization', token);
     request.headers.append('Content-Type', 'application/json');
-    return super.request(request, options).catch(this.catchAuthError(this));
+    return super.request(request, options).catch(this.catchAuthError());
   }
 
-  private catchAuthError (self: HttpService) {
+  /**
+   * Détecte les erreurs retournées par le back et renvoie la réponse contenant l'erreur.
+   * Si une erreur d'autorisation (401 ou 403) est retournée, on redirige l'utilisateur vers l'écran d'authentification.
+   */
+  private catchAuthError () {
     return (res: Response) => {
       if (res.status === 401 || res.status === 403) {
         this.app.getRootNav().setRoot(LoginPage);

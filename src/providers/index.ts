@@ -1,3 +1,7 @@
+/**
+ * Index permettant d'exporter l'ensemble des services disponibles dans l'application.
+ * Permet de rendre plus lisible les imports dans chaque page.
+ */
 export * from './http-service';
 export * from './toast-service';
 export * from './token-service';

@@ -7,6 +7,11 @@ import * as _ from 'lodash';
   selector: 'autocomplete-skills',
   templateUrl: 'autocomplete-skills.html'
 })
+
+/**
+ * TODO: comment
+ */
+
 export class AutocompleteSkillsComponent implements OnInit {
 
   text: string;

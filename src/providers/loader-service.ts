@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { LoadingController} from 'ionic-angular';
 
+/**
+ * Service permettant de factoriser l'utilisation d'un loader pendant les temps de chargement
+ */
 @Injectable()
 export class LoaderService {
 
-    loading: any;
+  loading: any;
 
   constructor(public loadingCtrl: LoadingController) {
 

@@ -7,6 +7,9 @@ import 'rxjs/add/operator/catch';;
 
 import { environment } from '../constants/constants';
 
+/**
+ * Service permettant de gérer les domaines d'appartenance des offres
+ */
 @Injectable()
 export class DomainsService {
 
@@ -14,6 +17,9 @@ export class DomainsService {
 
   }
 
+  /**
+   * Récupère la liste des domaines disponibles
+   */
   getDomainsList(): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/domain/list`;
     return this.http.get(httpAddress, {})

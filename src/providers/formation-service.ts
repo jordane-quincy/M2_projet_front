@@ -6,6 +6,9 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
+/**
+* Service permettant de gérer les formations disponibles
+*/
 @Injectable()
 export class FormationService {
 
@@ -13,6 +16,9 @@ export class FormationService {
 
   }
 
+  /**
+   * Récupère la liste des formations disponibles
+   */
   getFormations(): Observable<any> {
     let httpAddress: string = `${environment.backendUrl}/formation/list`
     return this.http.get(httpAddress)
